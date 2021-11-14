@@ -59,3 +59,11 @@ https://github.com/siyoon210/serverless/commit/02c96b93475d7a7e7a64d9813c51d8d17
 
 1. schema.graphql clinetId 추가후 `amplify push`
 2. `npm install uuid`
+3. https://github.com/siyoon210/serverless/commit/9f9e2234728bd954d8ec87646ce08e0b830d9150
+
+- aws-exports.js에 있는 api key를 통한 API 요청은 운영환경에서 위험하니 사용하지 않는다.
+
+### 5. 클라우드 리소스 삭제 및 정리
+- `amplify delete` 모든 카테고리 리소스 삭제
+- `amplify remove api` 특정 리소스 (ex api) 삭제
+- `amplify push`로 클라우드에 반영
