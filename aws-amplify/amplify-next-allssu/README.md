@@ -47,3 +47,4 @@ https://www.youtube.com/watch?v=Yz8DcuD0fKg
 1. `amplify add api` (api 추가)
 2. `amplify status` - push 할때 반영되는 리소스 상태를 보여줌
 3. `amplify push`
+4. `amplify console api` (aws api확인용 console 열기 - 테스트 할수 있는 환경)
