@@ -4,7 +4,11 @@ https://www.youtube.com/watch?v=W0d9lGKZZtA
 ### SETUP
 1. `yarn create next-app amplify-next-allssu` next js 프로젝트 생성 
 2. 생성된 프로젝트 디렉토리에서 `yarn dev` 개발모드 진입
-3. chakra ui 적용 `yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4` (https://chakra-ui.com/docs/getting-started)
+3. chakra ui 적용 https://chakra-ui.com/docs/getting-started
+   
+   `yarn add @chakra-ui/react @emotion/react@^11 @emotion/styled@^11 framer-motion@^4` (차크라 적용)
+   
+   `yarn add @chakra-ui/icons` (아이콘용 설치)
 
    ```js
    // pages/_app.js
@@ -24,8 +28,7 @@ https://www.youtube.com/watch?v=W0d9lGKZZtA
    //page/index.js (next가 만들어준 다른 부분 다 삭제)
    export default function Home() {
      return (
-       <div}>
-       </div>
+       <div></div>
      )
    }
    ```
