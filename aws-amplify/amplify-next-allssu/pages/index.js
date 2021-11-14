@@ -4,6 +4,10 @@ import {useEffect, useState} from "react";
 import {API, graphqlOperation} from 'aws-amplify'
 import {listTodos} from "../src/graphql/queries";
 import {createTodo} from "../src/graphql/mutations";
+import {v4 as uuid } from 'uuid'
+import {onCreateTodo} from "../src/graphql/subscriptions";
+
+const CLIENT_ID = uuid()
 
 export default function Home() {
     const [todos, setTodos] = useState([]);
@@ -12,6 +16,18 @@ export default function Home() {
 
     useEffect(() => {
         getData()
+        const subscription = API.graphql(graphqlOperation(onCreateTodo))
+            .subscribe({
+                next: ({value}) => {
+                    const todo = value.data.onCreateTodo;
+                    console.log(todo);
+                    if (CLIENT_ID === todo.clientId) {
+                        return false;
+                    }
+                    setTodos([...todos, todo]);
+                }
+            });
+        return () => {subscription.unsubscribe()}
     }, [])
 
     const getData = async () => {
@@ -34,7 +50,8 @@ export default function Home() {
             const result = await API.graphql(graphqlOperation(createTodo, {
                 input: {
                     name,
-                    description
+                    description,
+                    clientId: CLIENT_ID
                 }
             }));
             setTodos([...todos, result.data.createTodo]);

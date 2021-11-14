@@ -54,3 +54,8 @@ https://www.youtube.com/watch?v=Yz8DcuD0fKg
 1. `yarn add aws-amplify` 리액트 앱에서 amplify 사용하는 라이브러리 설치
 
 https://github.com/siyoon210/serverless/commit/02c96b93475d7a7e7a64d9813c51d8d17e3c1129
+
+### 4. 실시간 웹 (GraphQL Subscriptions)
+
+1. schema.graphql clinetId 추가후 `amplify push`
+2. `npm install uuid`
