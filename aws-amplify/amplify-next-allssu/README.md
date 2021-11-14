@@ -48,3 +48,9 @@ https://www.youtube.com/watch?v=Yz8DcuD0fKg
 2. `amplify status` - push 할때 반영되는 리소스 상태를 보여줌
 3. `amplify push`
 4. `amplify console api` (aws api확인용 console 열기 - 테스트 할수 있는 환경)
+
+### 3. React 앱에 Ampliify GraphQL 붙이기
+
+1. `yarn add aws-amplify` 리액트 앱에서 amplify 사용하는 라이브러리 설치
+
+https://github.com/siyoon210/serverless/commit/02c96b93475d7a7e7a64d9813c51d8d17e3c1129
