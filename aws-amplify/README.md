@@ -1,3 +1,10 @@
+## amplify 설치 & 설정
+https://www.youtube.com/watch?v=Yz8DcuD0fKg
+- `npm install -g @aws-amplify/cli amplify cli` 설치 (글로벌이므로 없는 경우만 설치)
+- `amplify init` to initialize a new Amplify project
+- `amplify pull <app-id>` to pull your existing Amplify project. Find the <app-id> in the AWS Console or Amplify Admin UI
+- `amplify configure`
+
 ## 명령어
 - init                         Initializes a new project, sets up deployment resources in the cloud, and makes your project ready for Amplify.                              
 - configure                    Configures the attributes of your project for amplify-cli, such as switching front-end framework and adding/removing cloud-provider plugins.
@@ -8,11 +15,11 @@
 - status [<category> ...]      Shows the state of local resources not yet pushed to the cloud (Create/Update/Delete).                                                       
 - status -v [<category> ...]   Shows the detailed verbose diff between local and deployed resources, including cloudformation-diff                                          
 - delete                       Deletes all of the resources tied to the project from the cloud.                                                                             
-- <category> add               Adds a resource for an Amplify category in your local backend                                                                                
-- <category> update            Update resource for an Amplify category in your local backend.                                                                               
-- <category> push              Provisions all cloud resources in a category with the latest local developments.                                                             
-- <category> remove            Removes a resource for an Amplify category in your local backend.                                                                            
-- <category>                   Displays subcommands of the specified Amplify category.                                                                                      
+- `<category>` add               Adds a resource for an Amplify category in your local backend                                                                                
+- `<category>` update            Update resource for an Amplify category in your local backend.                                                                               
+- `<category>` push              Provisions all cloud resources in a category with the latest local developments.                                                             
+- `<category>` remove            Removes a resource for an Amplify category in your local backend.                                                                            
+- `<category>`                   Displays subcommands of the specified Amplify category.                                                                                      
 - mock                         Run mock server for testing categories locally.                                                                                              
 - codegen                      Generates GraphQL statements(queries, mutations and eventHandlers) and type annotations.                                                     
 - env                          Displays and manages environment related information for your Amplify project.                                                               
