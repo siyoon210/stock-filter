@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {API, graphqlOperation} from "aws-amplify";
 import {listTodos} from "./graphql/queries";
-import {createTodo} from "./graphql/mutations";
+import {createTodo, deleteTodo} from "./graphql/mutations";
 import {v4 as uuid} from "uuid"
 
 function App() {
@@ -31,13 +31,24 @@ function App() {
         initData()
     }
 
+    const deleteExistTodo = async (id) => {
+        try {
+            await API.graphql(graphqlOperation(deleteTodo, {input : {id}}))
+            setTodos([...todos].filter(todo => todo.id !== id))
+        } catch (e) {
+            console.log(e)
+        }
+    }
+
     return (
         <div>
             <input type={"text"} onChange={(e) => setNewTodo(e.target.value)} placeholder={"제목"}/>
             <input type={"text"} onChange={(e) => setDescription(e.target.value)} placeholder={"내용"}/>
             <button onClick={submitTodo}>등록</button>
             <div>
-                {todos.map(todo => <div>{todo.name}, {todo.description}</div>)}
+                {todos.map(todo => <div key={todo.id}>{todo.name}, {todo.description}
+                    <button onClick={() => deleteExistTodo(todo.id)}>삭제</button>
+                </div>)}
             </div>
         </div>
     );
