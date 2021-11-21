@@ -20,7 +20,7 @@ public class DebtRatioJudge {
     }
 
     //최근연도 부채비율이 100보다 낮은가
-    public boolean pass() {
+    public boolean pass(String code) {
         int lastYearIndex = getLastYearIndex(debtRatio);
         if (lastYearIndex < 0) {
             return false;
@@ -32,8 +32,8 @@ public class DebtRatioJudge {
                 LOGGER.info(DEBT_RATIO + "가 100보다 큼");
                 return false;
             }
-        } catch (NumberFormatException e) {
-            LOGGER.warning("NumberFormatException\n" + debtRatio);
+        } catch (Exception e) {
+            LOGGER.warning("Exception :" + DEBT_RATIO + "(" + code + ")");
             return false;
         }
 

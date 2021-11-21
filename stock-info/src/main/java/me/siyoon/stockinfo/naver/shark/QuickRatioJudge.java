@@ -20,7 +20,7 @@ public class QuickRatioJudge {
     }
 
     //최근연도 당좌비율이 100보다 높은가
-    public boolean pass() {
+    public boolean pass(String code) {
         int lastYearIndex = getLastYearIndex(quickRatio);
         if (lastYearIndex < 0) {
             return false;
@@ -32,8 +32,8 @@ public class QuickRatioJudge {
                 LOGGER.info(QUICK_RATIO + "가 100보다 작음");
                 return false;
             }
-        } catch (NumberFormatException e) {
-            LOGGER.warning("NumberFormatException\n" + quickRatio);
+        } catch (Exception e) {
+            LOGGER.warning("Exception :" + QUICK_RATIO + "(" + code + ")");
             return false;
         }
 

@@ -20,7 +20,7 @@ public class NetIncomeJudge {
     }
 
     //최근 3~4개년도 당기순이익이 0보다 큰가
-    public boolean pass() {
+    public boolean pass(String code) {
         int lastYearIndex = getLastYearIndex(netIncome);
         if (lastYearIndex < 0) {
             return false;
@@ -33,8 +33,8 @@ public class NetIncomeJudge {
                     LOGGER.info(NET_INCOME + "이 0 보다 작음 " + netIncomeValue);
                     return false;
                 }
-            } catch (NumberFormatException e) {
-                LOGGER.warning("NumberFormatException\n" + netIncome);
+            } catch (Exception e) {
+                LOGGER.warning("Exception :" + NET_INCOME + "(" + code + ")");
                 return false;
             }
         }

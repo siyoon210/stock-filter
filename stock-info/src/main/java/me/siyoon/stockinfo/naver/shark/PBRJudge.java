@@ -20,7 +20,7 @@ public class PBRJudge {
     }
 
     //최근연도 PBR이 1보다 작은가
-    public boolean pass() {
+    public boolean pass(String code) {
         int lastYearIndex = getLastYearIndex(pbr);
         if (lastYearIndex < 0) {
             return false;
@@ -32,8 +32,8 @@ public class PBRJudge {
                 LOGGER.info(PBR + "이 1보다 큼");
                 return false;
             }
-        } catch (NumberFormatException e) {
-            LOGGER.warning("NumberFormatException\n" + pbr);
+        } catch (Exception e) {
+            LOGGER.warning("Exception :" + PBR + "(" + code + ")");
             return false;
         }
 

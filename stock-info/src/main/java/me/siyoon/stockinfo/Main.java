@@ -17,13 +17,8 @@ public class Main {
         StringBuilder result = new StringBuilder();
         Shark shark = new Shark();
 
-        for (String stockCode : stockCodes) {
-            shark.run(stockCode, result);
-        }
-
         List<Boolean> collect = stockCodes.parallelStream()
                 .map(code -> shark.run(code, result)).filter(b -> b).collect(Collectors.toList());
-        LOGGER.info("collect.size() = " + collect.size());
-        System.out.println(result);
+        LOGGER.info("collect.size() = " + collect.size() + "\n" + result);
     }
 }

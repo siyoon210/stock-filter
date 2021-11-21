@@ -19,38 +19,43 @@ public class Shark {
         }
         LOGGER.info(companyName + "(" + code + ")" + " 분석 시작");
 
+        TransactionPriceJudge transactionPriceJudge = new TransactionPriceJudge(document);
+        if (!transactionPriceJudge.pass(code)) {
+            return false;
+        }
+
         Element companyAnalysisTable = getCompanyAnalysisTable(document);
         if (companyAnalysisTable == null) {
             return false;
         }
 
         OperatingProfitJudge operatingProfitJudge = new OperatingProfitJudge(companyAnalysisTable);
-        if (!operatingProfitJudge.pass()) {
+        if (!operatingProfitJudge.pass(code)) {
             return false;
         }
 
         NetIncomeJudge netIncomeJudge = new NetIncomeJudge(companyAnalysisTable);
-        if (!netIncomeJudge.pass()) {
+        if (!netIncomeJudge.pass(code)) {
             return false;
         }
 
         DebtRatioJudge debtRatioJudge = new DebtRatioJudge(companyAnalysisTable);
-        if (!debtRatioJudge.pass()) {
+        if (!debtRatioJudge.pass(code)) {
             return false;
         }
 
         QuickRatioJudge quickRatioJudge = new QuickRatioJudge(companyAnalysisTable);
-        if (!quickRatioJudge.pass()) {
+        if (!quickRatioJudge.pass(code)) {
             return false;
         }
 
         MarketOddsJudge marketOddsJudge = new MarketOddsJudge(companyAnalysisTable);
-        if (!marketOddsJudge.pass()) {
+        if (!marketOddsJudge.pass(code)) {
             return false;
         }
 
         PBRJudge pbrJudge = new PBRJudge(companyAnalysisTable);
-        if (!pbrJudge.pass()) {
+        if (!pbrJudge.pass(code)) {
             return false;
         }
 

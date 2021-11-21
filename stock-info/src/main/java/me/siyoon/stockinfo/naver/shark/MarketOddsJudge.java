@@ -20,7 +20,7 @@ public class MarketOddsJudge {
     }
 
     //최근 3~4개년도 시가배당률이 2보다 큰가
-    public boolean pass() {
+    public boolean pass(String code) {
         int lastYearIndex = getLastYearIndex(marketOdds);
         if (lastYearIndex < 0) {
             return false;
@@ -33,8 +33,8 @@ public class MarketOddsJudge {
                     LOGGER.info(MARKET_ODDS + "이 2 보다 작음. " + marketOdds);
                     return false;
                 }
-            } catch (NumberFormatException e) {
-                LOGGER.warning("NumberFormatException\n" + marketOdds);
+            } catch (Exception e) {
+                LOGGER.warning("Exception :" + MARKET_ODDS + "(" + code + ")");
                 return false;
             }
         }

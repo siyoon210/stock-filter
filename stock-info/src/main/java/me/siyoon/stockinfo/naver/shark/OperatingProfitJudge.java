@@ -1,7 +1,5 @@
 package me.siyoon.stockinfo.naver.shark;
 
-import me.siyoon.stockinfo.util.ElementTextValidator;
-import me.siyoon.stockinfo.util.LastYearIndexExtractor;
 import org.jsoup.nodes.Element;
 
 import static me.siyoon.stockinfo.Main.LOGGER;
@@ -22,7 +20,7 @@ public class OperatingProfitJudge {
     }
 
     //최근 3~4개년도 영업이익이 0보다 큰가
-    public boolean pass() {
+    public boolean pass(String code) {
         int lastYearIndex = getLastYearIndex(operatingProfit);
         if (lastYearIndex < 0) {
             return false;
@@ -35,8 +33,8 @@ public class OperatingProfitJudge {
                     LOGGER.info(OPERATING_PROFIT + "이 0 보다 작음 " + operatingProfitValue);
                     return false;
                 }
-            } catch (NumberFormatException e) {
-                LOGGER.warning("NumberFormatException\n" + operatingProfit);
+            } catch (Exception e) {
+                LOGGER.warning("Exception :" + OPERATING_PROFIT + "(" + code + ")");
                 return false;
             }
         }
