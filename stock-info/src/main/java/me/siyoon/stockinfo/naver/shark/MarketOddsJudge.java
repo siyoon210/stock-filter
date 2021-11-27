@@ -19,7 +19,7 @@ public class MarketOddsJudge {
         validateElement(marketOdds, MARKET_ODDS);
     }
 
-    //최근 3~4개년도 시가배당률이 2보다 큰가
+    //최근 3~4개년도 시가배당률이 N보다 큰가
     public boolean pass(String code) {
         int lastYearIndex = getLastYearIndex(marketOdds);
         if (lastYearIndex < 0) {
@@ -29,8 +29,8 @@ public class MarketOddsJudge {
         for (int i = 0; i <= lastYearIndex; i++) {
             try {
                 double marketOdds = getNumberValue(this.marketOdds, i);
-                if (marketOdds < 2) {
-                    LOGGER.info(MARKET_ODDS + "이 2 보다 작음. " + marketOdds);
+                if (marketOdds < 3) {
+                    LOGGER.info(MARKET_ODDS + "이 3 보다 작음. " + marketOdds);
                     return false;
                 }
             } catch (Exception e) {

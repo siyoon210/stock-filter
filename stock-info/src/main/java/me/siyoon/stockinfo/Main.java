@@ -3,6 +3,7 @@ package me.siyoon.stockinfo;
 import me.siyoon.stockinfo.code.StockCodeExtractor;
 import me.siyoon.stockinfo.naver.shark.Shark;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -13,6 +14,7 @@ public class Main {
     public static void main(String[] args) {
         StockCodeExtractor stockCodeExtractor = new StockCodeExtractor();
         List<String> stockCodes = stockCodeExtractor.getStockCodes();
+//        List<String> stockCodes = Arrays.asList("005930");
 
         StringBuilder result = new StringBuilder();
         Shark shark = new Shark();

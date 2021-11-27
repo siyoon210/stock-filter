@@ -39,6 +39,11 @@ public class Shark {
             return false;
         }
 
+        PERJudge perJudge = new PERJudge(companyAnalysisTable);
+        if (!perJudge.pass(code)) {
+            return false;
+        }
+
         DebtRatioJudge debtRatioJudge = new DebtRatioJudge(companyAnalysisTable);
         if (!debtRatioJudge.pass(code)) {
             return false;
@@ -54,10 +59,10 @@ public class Shark {
             return false;
         }
 
-        PBRJudge pbrJudge = new PBRJudge(companyAnalysisTable);
-        if (!pbrJudge.pass(code)) {
-            return false;
-        }
+//        PBRJudge pbrJudge = new PBRJudge(companyAnalysisTable);
+//        if (!pbrJudge.pass(code)) {
+//            return false;
+//        }
 
         result.append(companyName+"("+code+") " + URL + code + "\n");
         return true;

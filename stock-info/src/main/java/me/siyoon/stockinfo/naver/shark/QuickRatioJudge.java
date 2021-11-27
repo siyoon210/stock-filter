@@ -28,7 +28,7 @@ public class QuickRatioJudge {
         try {
             double getDebtRatio = getNumberValue(quickRatio, lastYearIndex);
 
-            if (getDebtRatio < 100) {
+            if (getDebtRatio < 70) {
                 LOGGER.info(QUICK_RATIO + "가 100보다 작음");
                 return false;
             }
