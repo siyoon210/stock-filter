@@ -14,11 +14,11 @@ public class Performances { // 기간별 실적 분석
 
     public List<Performance> in(List<Period> periods) {
         return periods.stream()
-                      .map(period -> value.getOrDefault(period, Performance.EMPTY))
+                      .map(period -> value.getOrDefault(period, Performance.UNKNOWN_VALUE))
                       .collect(Collectors.toList());
     }
 
     public Performance of(Period period) {
-        return value.getOrDefault(period, Performance.EMPTY);
+        return value.getOrDefault(period, Performance.UNKNOWN_VALUE);
     }
 }

@@ -9,10 +9,10 @@ import lombok.ToString;
 @ToString
 public class Performance { // 실적 분석
 
-    public static final Performance EMPTY = Performance.builder()
-                                                       .netIncome(NetIncome.UNKNOWN_NET_INCOME)
-                                                       .dps(DPS.UNKNOWN_DPS)
-                                                       .build();
+    public static final Performance UNKNOWN_VALUE = Performance.builder()
+                                                               .netIncome(NetIncome.UNKNOWN_VALUE)
+                                                               .dps(DPS.UNKNOWN_VALUE)
+                                                               .build();
 
     public final NetIncome netIncome; // 당기순이익
     public final DPS dps; // 주당 배당금 (Dividend Per Share)

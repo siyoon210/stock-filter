@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand.ExpectedDividendYieldCommand;
+import me.siyoon.stockfilter.domain.DPS;
 import me.siyoon.stockfilter.domain.DividendYield;
 import me.siyoon.stockfilter.domain.Performance;
 import me.siyoon.stockfilter.domain.StockInfo;
@@ -23,14 +24,27 @@ class ExpectationDividendYieldFilter implements StockFilterI {
 
         List<Performance> performances = stockInfo.performancesIn(command.periods);
         Double price = stockInfo.price();
-        Double threshold = command.threshold;
 
         return performances.stream()
-                           .allMatch(expectedDividendYieldPredicate(price, threshold));
+                           .allMatch(expectedDividendYieldPredicate(command, price));
     }
 
-    private Predicate<Performance> expectedDividendYieldPredicate(Double price, Double threshold) {
-        return performance -> expectedDividendYield(price, performance).isGreaterThan(threshold);
+    private Predicate<Performance> expectedDividendYieldPredicate(
+            ExpectedDividendYieldCommand command,
+            Double price) {
+        return performance -> {
+            if (unknownValuePass(command, performance)) {
+                return true;
+            }
+            return expectedDividendYield(price, performance).isGreaterThan(command.threshold);
+        };
+    }
+
+    private boolean unknownValuePass(ExpectedDividendYieldCommand command,
+                                     Performance performance) {
+        return command.unknownValuePass
+                && (performance == Performance.UNKNOWN_VALUE
+                || performance.dps == DPS.UNKNOWN_VALUE);
     }
 
     private DividendYield expectedDividendYield(Double price, Performance performance) {

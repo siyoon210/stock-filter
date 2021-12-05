@@ -9,7 +9,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class DPS { // 주당 배당금 (Dividend Per Share)
 
-    public static final DPS UNKNOWN_DPS = new DPS(Double.MIN_VALUE);
+    public static final DPS UNKNOWN_VALUE = new DPS(Double.MIN_VALUE);
 
     private final Double value;
 

@@ -22,7 +22,7 @@ public class NaverNetIncomeParser {
             return new NetIncome(Double.valueOf(textValue));
         } catch (Exception e) {
             log.warn("NaverNetIncomeParser {}", e.getMessage());
-            return NetIncome.UNKNOWN_NET_INCOME;
+            return NetIncome.UNKNOWN_VALUE;
         }
     }
 }

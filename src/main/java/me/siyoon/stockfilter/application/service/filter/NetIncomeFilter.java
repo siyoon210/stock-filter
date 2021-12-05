@@ -1,8 +1,10 @@
 package me.siyoon.stockfilter.application.service.filter;
 
 import java.util.List;
+import java.util.function.Predicate;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand.NetIncomeCommand;
+import me.siyoon.stockfilter.domain.NetIncome;
 import me.siyoon.stockfilter.domain.Performance;
 import me.siyoon.stockfilter.domain.StockInfo;
 import org.springframework.stereotype.Component;
@@ -23,6 +25,21 @@ class NetIncomeFilter implements StockFilterI {
         Double threshold = command.threshold;
 
         return performances.stream()
-                           .allMatch(performance -> performance.netIncome.isGraterThan(threshold));
+                           .allMatch(netIncomePredicate(command, threshold));
+    }
+
+    private Predicate<Performance> netIncomePredicate(NetIncomeCommand command, Double threshold) {
+        return performance -> {
+            if (unknownValuePass(command, performance)) {
+                return true;
+            }
+            return performance.netIncome.isGraterThan(threshold);
+        };
+    }
+
+    private boolean unknownValuePass(NetIncomeCommand command, Performance performance) {
+        return command.unknownValuePass
+                && (performance == Performance.UNKNOWN_VALUE
+                || performance.netIncome == NetIncome.UNKNOWN_VALUE);
     }
 }

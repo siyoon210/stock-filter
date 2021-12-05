@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 public class NetIncome { // 당기순이익
 
-    public static final NetIncome UNKNOWN_NET_INCOME = new NetIncome(Double.MIN_VALUE);
+    public static final NetIncome UNKNOWN_VALUE = new NetIncome(Double.MIN_VALUE);
 
     private final Double value;
 
