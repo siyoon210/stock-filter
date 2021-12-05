@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.code;
+package me.siyoon.stockfilter.adapter.out.stockcode;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.code;
+package me.siyoon.stockfilter.adapter.out.stockcode;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -66,11 +66,11 @@ public class NaverStockCodeCrawler implements StockCodeReader {
     }
 
     private static Document document(String marketCode, int page) {
-        String stockList = String.format(STOCK_LIST_URL_FORMAT, marketCode, page);
+        String stockListUrl = String.format(STOCK_LIST_URL_FORMAT, marketCode, page);
         try {
-            return Jsoup.connect(stockList).get();
+            return Jsoup.connect(stockListUrl).get();
         } catch (IOException e) {
-            throw new StockInfoConnectException("Connect 실패 : " + stockList);
+            throw new StockInfoConnectException("Connect 실패 : " + stockListUrl);
         }
     }
 }

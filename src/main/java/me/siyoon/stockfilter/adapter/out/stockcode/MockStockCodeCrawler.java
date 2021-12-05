@@ -1,8 +1,6 @@
-package me.siyoon.stockfilter.adapter.out.code;
+package me.siyoon.stockfilter.adapter.out.stockcode;
 
 import java.util.List;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 
 public class MockStockCodeCrawler implements StockCodeReader {
 
