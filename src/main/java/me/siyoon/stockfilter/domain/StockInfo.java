@@ -3,10 +3,12 @@ package me.siyoon.stockfilter.domain;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.ToString;
 
 
 @AllArgsConstructor
 @Builder
+@ToString
 public class StockInfo {
 
     public final String name;
@@ -16,5 +18,9 @@ public class StockInfo {
 
     public List<Performance> performancesIn(List<Period> periods) {
         return performances.in(periods);
+    }
+
+    public Double price() {
+        return tradingInfo.price;
     }
 }

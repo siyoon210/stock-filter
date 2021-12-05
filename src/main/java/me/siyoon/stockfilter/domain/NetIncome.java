@@ -1,11 +1,15 @@
 package me.siyoon.stockfilter.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-@Getter
+@EqualsAndHashCode
 @AllArgsConstructor
+@ToString
 public class NetIncome { // 당기순이익
+
+    public static final NetIncome UNKNOWN_NET_INCOME = new NetIncome(Double.MIN_VALUE);
 
     private final Double value;
 

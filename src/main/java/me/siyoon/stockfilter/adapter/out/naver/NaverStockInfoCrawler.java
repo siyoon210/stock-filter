@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.adapter.out.stockcode.StockCodeReader;
+import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.out.LoadStockInfoPort;
 import me.siyoon.stockfilter.domain.StockInfo;
 import me.siyoon.stockfilter.exception.StockInfoConnectException;
@@ -20,11 +21,12 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class NaverStockInfoCrawler implements LoadStockInfoPort {
 
-    private static final String URL = "https://finance.naver.com/item/main.nhn?code=";
+    public static final String URL = "https://finance.naver.com/item/main.nhn?code=";
 
     private final StockCodeReader stockCodeReader;
-    private final NaverStockInfoParser naverStockInfoParser;
-    private final NaverTradingInfoParser naverTradingInfoParser;
+    private final NaverStockInfoParser stockInfoParser;
+    private final NaverTradingInfoParser tradingInfoParser;
+    private final NaverPerformanceParser performanceParser;
 
     @Override
     public List<StockInfo> stockInfos() {
@@ -40,12 +42,13 @@ public class NaverStockInfoCrawler implements LoadStockInfoPort {
             Document document = document(stockCode);
 
             return StockInfo.builder()
-                            .name(naverStockInfoParser.companyName(document))
+                            .name(stockInfoParser.companyName(document))
                             .code(stockCode)
-                            .tradingInfo(naverTradingInfoParser.tradingInfo(document))
-                            .performances(null)
+                            .tradingInfo(tradingInfoParser.tradingInfo(document))
+                            .performances(performanceParser.performances(document))
                             .build();
         } catch (StockInfoParseException e) {
+            log.warn("StockInfoParseException. {} URL= {}", e.getMessage(), URL + stockCode);
             return null;
         }
     }

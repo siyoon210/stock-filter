@@ -1,10 +1,12 @@
 package me.siyoon.stockfilter.adapter.out.naver;
 
+import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.exception.StockInfoParseException;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 class NaverStockInfoParser {
 
     public String companyName(Document document) {

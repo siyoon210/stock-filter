@@ -15,7 +15,7 @@ public class StockFilter {
 
     public List<StockInfo> filteredStocks(StockFilterCommand filterCommand,
                                           List<StockInfo> allStockInfos) {
-        return allStockInfos.stream()
+        return allStockInfos.parallelStream()
                             .filter(stockInfo -> passed(filterCommand, stockInfo))
                             .collect(Collectors.toList());
     }
