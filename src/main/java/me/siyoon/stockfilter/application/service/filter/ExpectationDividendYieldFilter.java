@@ -15,12 +15,15 @@ class ExpectationDividendYieldFilter implements StockFilterI {
     // {expectedDividendYield}(예상 배당률)이 THIS_YEAR 기간동안 {threshold} 이상인가
     @Override
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
-        ExpectedDividendYieldCommand expectedDividendYieldCommand = filterCommand.expectedDividendYield;
+        ExpectedDividendYieldCommand command = filterCommand.expectedDividendYield;
 
-        List<Performance> performances
-                = stockInfo.performancesIn(expectedDividendYieldCommand.periods);
+        if (command.skip) {
+            return true;
+        }
+
+        List<Performance> performances = stockInfo.performancesIn(command.periods);
         Double price = stockInfo.price();
-        Double threshold = expectedDividendYieldCommand.threshold;
+        Double threshold = command.threshold;
 
         return performances.stream()
                            .allMatch(expectedDividendYieldPredicate(price, threshold));
