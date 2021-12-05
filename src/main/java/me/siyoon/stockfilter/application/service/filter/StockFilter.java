@@ -3,10 +3,13 @@ package me.siyoon.stockfilter.application.service.filter;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import me.siyoon.stockfilter.adapter.out.naver.NaverStockInfoCrawler;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.domain.StockInfo;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class StockFilter {

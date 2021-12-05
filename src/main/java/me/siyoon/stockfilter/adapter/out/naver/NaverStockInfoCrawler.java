@@ -39,6 +39,7 @@ public class NaverStockInfoCrawler implements LoadStockInfoPort {
 
     private StockInfo stockInfo(String stockCode) {
         try {
+            log.info("크롤링 시작. URL = {}", NaverStockInfoCrawler.URL + stockCode);
             Document document = document(stockCode);
 
             return StockInfo.builder()
@@ -48,7 +49,7 @@ public class NaverStockInfoCrawler implements LoadStockInfoPort {
                             .performances(performanceParser.performances(document))
                             .build();
         } catch (StockInfoParseException e) {
-            log.warn("StockInfoParseException. {} URL= {}", e.getMessage(), URL + stockCode);
+            log.warn("StockInfoParseException. {}", e.getMessage());
             return null;
         }
     }

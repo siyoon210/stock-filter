@@ -21,7 +21,7 @@ public class StockFilterController {
     public List<String> stock(@RequestBody StockFilterCommand stockFilterCommand) {
         List<StockInfo> stockInfos = stockFilterUseCase.filteredStocks(stockFilterCommand);
         return stockInfos.stream()
-                         .map(stockInfo -> NaverStockInfoCrawler.URL + stockInfo.code)
+                         .map(stockInfo -> stockInfo.name + ": " + NaverStockInfoCrawler.URL + stockInfo.code)
                          .collect(Collectors.toList());
     }
 }
