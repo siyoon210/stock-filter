@@ -18,10 +18,10 @@ public class StockFilterCommand {
     public static class NetIncomeCommand {
 
         public final List<Period> periods;
-        public final Long threshold; // 억원
+        public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public NetIncomeCommand(List<Period> periods, Long threshold) {
+        public NetIncomeCommand(List<Period> periods, Double threshold) {
             this.periods = periods;
             this.threshold = threshold;
         }

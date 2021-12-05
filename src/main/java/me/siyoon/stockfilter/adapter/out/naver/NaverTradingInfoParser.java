@@ -26,8 +26,9 @@ class NaverTradingInfoParser {
                                   .getElementsByClass("rate_info").get(0)
                                   .getElementsByClass("today").get(0)
                                   .getElementsByClass("no_today").get(0)
-                                  .getElementsByTag("span").get(0).text();
-            return Double.valueOf(text.replace(",", ""));
+                                  .getElementsByTag("span").get(0)
+                                  .text().replace(",", "");
+            return Double.valueOf(text);
         } catch (NumberFormatException e) {
             throw new StockInfoParseException("주가 파싱 실패" + e.getMessage());
         }
@@ -43,8 +44,8 @@ class NaverTradingInfoParser {
                                   .getElementsByTag("td").get(2)
                                   .getElementsByTag("em").get(0)
                                   .getElementsByClass("blind").get(0)
-                                  .text();
-            return Long.parseLong(text.replace(",", ""));
+                                  .text().replace(",", "");
+            return Long.parseLong(text);
         } catch (Exception e) {
             throw new StockInfoParseException("거래량 파싱 실패 " + e.getMessage());
         }

@@ -3,6 +3,7 @@ package me.siyoon.stockfilter.adapter.in;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import me.siyoon.stockfilter.exception.StockInfoConnectException;
+import me.siyoon.stockfilter.exception.StockInfoFatalException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,6 +17,11 @@ public class StockFilterControllerAdvice {
                              .body(new Response(e.getMessage()));
     }
 
+    @ExceptionHandler(StockInfoFatalException.class)
+    public ResponseEntity<Object> handleFatalException(RuntimeException e) {
+        return ResponseEntity.internalServerError()
+                             .body(new Response(e.getMessage()));
+    }
 
     @RequiredArgsConstructor
     @Getter

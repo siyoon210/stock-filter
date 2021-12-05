@@ -15,7 +15,7 @@ class NetIncomeFilter implements StockFilterI {
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         NetIncomeCommand netIncomeCommand = filterCommand.netIncome;
         List<Performance> performances = stockInfo.performancesIn(netIncomeCommand.periods);
-        Long threshold = netIncomeCommand.threshold;
+        Double threshold = netIncomeCommand.threshold;
 
         return performances.stream()
                            .allMatch(performance -> performance.netIncome.isGraterThan(threshold));

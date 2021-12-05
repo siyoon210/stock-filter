@@ -7,9 +7,9 @@ import lombok.Getter;
 @AllArgsConstructor
 public class NetIncome { // 당기순이익
 
-    private final Long value;
+    private final Double value;
 
-    public boolean isGraterThan(Long value) {
+    public boolean isGraterThan(Double value) {
         return this.value > value;
     }
 }
