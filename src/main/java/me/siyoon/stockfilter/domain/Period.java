@@ -1,6 +1,5 @@
-package me.siyoon.stockfilter.application.port.in;
+package me.siyoon.stockfilter.domain;
 
-import java.util.Arrays;
 import java.util.List;
 
 public enum Period {
@@ -11,5 +10,5 @@ public enum Period {
     ;
 
     public static final List<Period> LAST_THREE_YEARS
-            = Arrays.asList(LAST_YEAR, TWO_YEARS_AGO, THREE_YEARS_AGO);
+            = List.of(LAST_YEAR, TWO_YEARS_AGO, THREE_YEARS_AGO);
 }

@@ -2,7 +2,6 @@ package me.siyoon.stockfilter.domain;
 
 import java.util.List;
 import lombok.AllArgsConstructor;
-import me.siyoon.stockfilter.application.port.in.Period;
 
 
 @AllArgsConstructor

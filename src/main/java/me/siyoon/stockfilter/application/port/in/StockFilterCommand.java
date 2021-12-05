@@ -3,6 +3,7 @@ package me.siyoon.stockfilter.application.port.in;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.List;
 import lombok.ToString;
+import me.siyoon.stockfilter.domain.Period;
 
 @ToString
 public class StockFilterCommand {

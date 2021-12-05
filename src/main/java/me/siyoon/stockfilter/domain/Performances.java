@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
-import me.siyoon.stockfilter.application.port.in.Period;
 
 @AllArgsConstructor
 public class Performances { // 기간별 실적 분석
