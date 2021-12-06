@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.adapter.out.naver.performace.NaverDebtRatioParser;
 import me.siyoon.stockfilter.adapter.out.naver.performace.NaverDpsParser;
 import me.siyoon.stockfilter.adapter.out.naver.performace.NaverNetIncomeParser;
+import me.siyoon.stockfilter.adapter.out.naver.performace.NaverOperatingIncomeParser;
 import me.siyoon.stockfilter.adapter.out.naver.performace.NaverPerformanceParseHelper;
 import me.siyoon.stockfilter.domain.Performance;
 import me.siyoon.stockfilter.domain.Performances;
@@ -34,6 +35,7 @@ public class NaverPerformanceParser {
     private Performance performance(Period period, Element performanceTable) {
 
         return Performance.builder()
+                          .operatingIncome(NaverOperatingIncomeParser.operatingIncome(period, performanceTable))
                           .netIncome(NaverNetIncomeParser.netIncome(period, performanceTable))
                           .debtRatio(NaverDebtRatioParser.debtRatio(period, performanceTable))
                           .dps(NaverDpsParser.dps(period, performanceTable))

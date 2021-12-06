@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-@EqualsAndHashCode
 @AllArgsConstructor
 @ToString
-public class NetIncome { // 당기순이익
+@EqualsAndHashCode
+public class OperatingIncome { // 영업이익
 
-    public static final NetIncome UNKNOWN_VALUE = new NetIncome(Double.MIN_VALUE);
+    public static final OperatingIncome UNKNOWN_VALUE = new OperatingIncome(Double.MIN_VALUE);
 
     private final Double value;
 

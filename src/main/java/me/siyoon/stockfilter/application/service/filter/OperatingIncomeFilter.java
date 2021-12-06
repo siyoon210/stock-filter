@@ -4,18 +4,20 @@ import java.util.List;
 import java.util.function.Predicate;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand.NetIncomeCommand;
+import me.siyoon.stockfilter.application.port.in.StockFilterCommand.OperatingIncomeCommand;
 import me.siyoon.stockfilter.domain.NetIncome;
+import me.siyoon.stockfilter.domain.OperatingIncome;
 import me.siyoon.stockfilter.domain.Performance;
 import me.siyoon.stockfilter.domain.StockInfo;
 import org.springframework.stereotype.Component;
 
 @Component
-class NetIncomeFilter implements StockFilterI {
+class OperatingIncomeFilter implements StockFilterI {
 
-    // {netIncome}(당기순이익)이 {periods} 기간동안 {threshold} 이상인가
+    // {operatingIncome}(영업이익)이 {periods} 기간동안 {threshold} 이상인가
     @Override
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
-        NetIncomeCommand command = filterCommand.netIncome;
+        OperatingIncomeCommand command = filterCommand.operatingIncome;
 
         if (command.skip) {
             return true;
@@ -25,19 +27,21 @@ class NetIncomeFilter implements StockFilterI {
         Double threshold = command.threshold;
 
         return performances.stream()
-                           .allMatch(netIncomePredicate(command, threshold));
+                           .allMatch(operatingIncomePredicate(command, threshold));
     }
 
-    private Predicate<Performance> netIncomePredicate(NetIncomeCommand command, Double threshold) {
+    private Predicate<Performance> operatingIncomePredicate(OperatingIncomeCommand command,
+                                                            Double threshold) {
         return performance -> {
             if (unknownValuePass(command, performance)) {
                 return true;
             }
-            return performance.netIncome.isGreaterThan(threshold);
+            return performance.operatingIncome.isGreaterThan(threshold);
         };
     }
 
-    private boolean unknownValuePass(NetIncomeCommand command, Performance performance) {
-        return command.unknownValuePass && performance.netIncome == NetIncome.UNKNOWN_VALUE;
+    private boolean unknownValuePass(OperatingIncomeCommand command, Performance performance) {
+        return command.unknownValuePass
+                && performance.operatingIncome == OperatingIncome.UNKNOWN_VALUE;
     }
 }

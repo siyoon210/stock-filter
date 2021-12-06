@@ -4,8 +4,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
-import me.siyoon.stockfilter.application.port.in.StockFilterCommand.DebtRatioCommand;
-import me.siyoon.stockfilter.domain.DebtRatio;
+import me.siyoon.stockfilter.application.port.in.StockFilterCommand.OperatingIncomeCommand;
+import me.siyoon.stockfilter.domain.OperatingIncome;
 import me.siyoon.stockfilter.domain.Performance;
 import me.siyoon.stockfilter.domain.Performances;
 import me.siyoon.stockfilter.domain.Period;
@@ -20,14 +20,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-class DebtRatioFilterTest {
+class OperatingIncomeFilterTest {
 
     @InjectMocks
-    private DebtRatioFilter dut;
+    private OperatingIncomeFilter dut;
 
     private static final double THRESHOLD = 100.0;
 
-    @ParameterizedTest(name = "부채비율이 command 임계값(100)보다 낮으면 pass")
+    @ParameterizedTest(name = "영업이익이 command 임계값(100)보다 높으면 pass")
     @MethodSource
     void passed_test(Double debtRatioValue, boolean expectedPass) {
         // given
@@ -42,20 +42,21 @@ class DebtRatioFilterTest {
     }
 
     private StockFilterCommand stockFilterCommand() {
-        DebtRatioCommand debtRatioCommand = DebtRatioCommand.builder()
-                                                            .skip(false)
-                                                            .unknownValuePass(false)
-                                                            .periods(List.of(Period.LAST_YEAR))
-                                                            .threshold(THRESHOLD)
-                                                            .build();
+        OperatingIncomeCommand command = OperatingIncomeCommand.builder()
+                                                               .skip(false)
+                                                               .unknownValuePass(false)
+                                                               .periods(List.of(Period.LAST_YEAR))
+                                                               .threshold(THRESHOLD)
+                                                               .build();
         return StockFilterCommand.builder()
-                                 .debtRatio(debtRatioCommand)
+                                 .operatingIncome(command)
                                  .build();
     }
 
-    private StockInfo stockInfo(Double debtRatioValue) {
+    private StockInfo stockInfo(Double operatingIncomeValue) {
         Performance performance = Performance.builder()
-                                             .debtRatio(new DebtRatio(debtRatioValue))
+                                             .operatingIncome(
+                                                     new OperatingIncome(operatingIncomeValue))
                                              .build();
         Performances performances = new Performances(Map.of(Period.LAST_YEAR, performance));
 
@@ -66,9 +67,9 @@ class DebtRatioFilterTest {
 
     private static Stream<Arguments> passed_test() {
         return Stream.of(
-                Arguments.of(THRESHOLD + 0.1, false),
+                Arguments.of(THRESHOLD + 0.1, true),
                 Arguments.of(THRESHOLD, false),
-                Arguments.of(THRESHOLD - 0.1, true)
+                Arguments.of(THRESHOLD - 0.1, false)
         );
     }
 }

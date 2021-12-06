@@ -9,13 +9,19 @@ import lombok.ToString;
 @ToString
 public class Performance { // 기업 실적
 
-    public static final Performance UNKNOWN_VALUE = Performance.builder()
-                                                               .netIncome(NetIncome.UNKNOWN_VALUE)
-                                                               .debtRatio(DebtRatio.UNKNOWN_VALUE)
-                                                               .dps(DPS.UNKNOWN_VALUE)
-                                                               .build();
+    public static final Performance UNKNOWN_VALUE = unknownPerformance();
 
+    public final OperatingIncome operatingIncome; // 영업이익
     public final NetIncome netIncome; // 당기순이익
     public final DebtRatio debtRatio; // 부채 비율
     public final DPS dps; // 주당 배당금 (Dividend Per Share)
+
+    public static Performance unknownPerformance() {
+        return Performance.builder()
+                          .operatingIncome(OperatingIncome.UNKNOWN_VALUE)
+                          .netIncome(NetIncome.UNKNOWN_VALUE)
+                          .debtRatio(DebtRatio.UNKNOWN_VALUE)
+                          .dps(DPS.UNKNOWN_VALUE)
+                          .build();
+    }
 }
