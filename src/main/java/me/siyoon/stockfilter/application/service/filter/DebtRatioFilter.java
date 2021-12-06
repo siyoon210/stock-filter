@@ -1,0 +1,45 @@
+package me.siyoon.stockfilter.application.service.filter;
+
+import java.util.List;
+import java.util.function.Predicate;
+import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
+import me.siyoon.stockfilter.application.port.in.StockFilterCommand.DebtRatioCommand;
+import me.siyoon.stockfilter.domain.DebtRatio;
+import me.siyoon.stockfilter.domain.Performance;
+import me.siyoon.stockfilter.domain.StockInfo;
+import org.springframework.stereotype.Component;
+
+@Component
+class DebtRatioFilter implements StockFilterI {
+
+    // {debtRatio}(부채비율)이 {periods} 기간동안 {threshold} 이상인가
+    @Override
+    public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
+        DebtRatioCommand command = filterCommand.debtRatio;
+
+        if (command.skip) {
+            return true;
+        }
+
+        List<Performance> performances = stockInfo.performancesIn(command.periods);
+        Double threshold = command.threshold;
+
+        return performances.stream()
+                           .allMatch(debtRatioPredicate(command, threshold));
+    }
+
+    private Predicate<Performance> debtRatioPredicate(DebtRatioCommand command, Double threshold) {
+        return performance -> {
+            if (unknownValuePass(command, performance)) {
+                return true;
+            }
+            return performance.debtRatio.isLessThan(threshold);
+        };
+    }
+
+    private boolean unknownValuePass(DebtRatioCommand command, Performance performance) {
+        return command.unknownValuePass
+                && (performance == Performance.UNKNOWN_VALUE
+                || performance.debtRatio == DebtRatio.UNKNOWN_VALUE);
+    }
+}

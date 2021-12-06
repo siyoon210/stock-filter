@@ -1,0 +1,30 @@
+###
+GET http://localhost:8080/stock
+Content-Type: application/json
+
+{
+  "netIncome": {
+    "skip": false,
+    "unknownValuePass": true,
+    "periods": [
+      "LAST_YEAR",
+      "TWO_YEARS_AGO",
+      "THREE_YEARS_AGO"
+    ],
+    "threshold": 0
+  },
+  "debtRatio": {
+    "skip": false,
+    "unknownValuePass": true,
+    "periods": [
+      "LAST_YEAR",
+      "TWO_YEARS_AGO",
+      "THREE_YEARS_AGO"
+    ],
+    "threshold": 300
+  },
+  "expectedDividendYield": {
+    "skip": true,
+    "threshold": 7
+  }
+}

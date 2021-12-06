@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.adapter.out.stockcode.StockCodeReader;
-import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.out.LoadStockInfoPort;
 import me.siyoon.stockfilter.domain.StockInfo;
 import me.siyoon.stockfilter.exception.StockInfoConnectException;
