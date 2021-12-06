@@ -38,8 +38,6 @@ class NetIncomeFilter implements StockFilterI {
     }
 
     private boolean unknownValuePass(NetIncomeCommand command, Performance performance) {
-        return command.unknownValuePass
-                && (performance == Performance.UNKNOWN_VALUE
-                || performance.netIncome == NetIncome.UNKNOWN_VALUE);
+        return command.unknownValuePass && performance.netIncome == NetIncome.UNKNOWN_VALUE;
     }
 }

@@ -8,7 +8,7 @@ import lombok.ToString;
 
 @ToString
 @AllArgsConstructor
-public class Performances { // 기간별 실적 분석
+public class Performances { // 기간별 기업 실적
 
     private final Map<Period, Performance> value;
 

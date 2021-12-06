@@ -42,9 +42,7 @@ class ExpectationDividendYieldFilter implements StockFilterI {
 
     private boolean unknownValuePass(ExpectedDividendYieldCommand command,
                                      Performance performance) {
-        return command.unknownValuePass
-                && (performance == Performance.UNKNOWN_VALUE
-                || performance.dps == DPS.UNKNOWN_VALUE);
+        return command.unknownValuePass && performance.dps == DPS.UNKNOWN_VALUE;
     }
 
     private DividendYield expectedDividendYield(Double price, Performance performance) {

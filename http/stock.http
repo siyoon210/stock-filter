@@ -21,7 +21,7 @@ Content-Type: application/json
       "TWO_YEARS_AGO",
       "THREE_YEARS_AGO"
     ],
-    "threshold": 300
+    "threshold": 1300
   },
   "expectedDividendYield": {
     "skip": true,

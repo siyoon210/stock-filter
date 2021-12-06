@@ -7,7 +7,7 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @ToString
-public class Performance { // 실적 분석
+public class Performance { // 기업 실적
 
     public static final Performance UNKNOWN_VALUE = Performance.builder()
                                                                .netIncome(NetIncome.UNKNOWN_VALUE)

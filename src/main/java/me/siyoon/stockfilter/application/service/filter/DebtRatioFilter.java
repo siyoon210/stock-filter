@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 class DebtRatioFilter implements StockFilterI {
 
-    // {debtRatio}(부채비율)이 {periods} 기간동안 {threshold} 이상인가
+    // {debtRatio}(부채비율)이 {periods} 기간동안 {threshold} 이하인가
     @Override
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         DebtRatioCommand command = filterCommand.debtRatio;
@@ -38,8 +38,6 @@ class DebtRatioFilter implements StockFilterI {
     }
 
     private boolean unknownValuePass(DebtRatioCommand command, Performance performance) {
-        return command.unknownValuePass
-                && (performance == Performance.UNKNOWN_VALUE
-                || performance.debtRatio == DebtRatio.UNKNOWN_VALUE);
+        return command.unknownValuePass && performance.debtRatio == DebtRatio.UNKNOWN_VALUE;
     }
 }
