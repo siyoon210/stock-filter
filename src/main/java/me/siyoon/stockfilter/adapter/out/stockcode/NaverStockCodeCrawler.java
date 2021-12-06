@@ -21,11 +21,9 @@ public class NaverStockCodeCrawler implements StockCodeReader {
 
     @Override
     public List<String> stockCodes() {
-        log.info("{} Stock codes read start.", this.getClass().getName());
         List<String> stockCodes = new ArrayList<>();
         stockCodes.addAll(kospiStockCodes());
         stockCodes.addAll(kosdaqStockCodes());
-        log.info("{} Stock codes read end. size={}", this.getClass().getName(), stockCodes.size());
         return stockCodes;
     }
 

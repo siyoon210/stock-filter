@@ -13,6 +13,16 @@ Content-Type: application/json
     ],
     "threshold": 0
   },
+  "operatingIncome": {
+    "skip": false,
+    "unknownValuePass": true,
+    "periods": [
+      "LAST_YEAR",
+      "TWO_YEARS_AGO",
+      "THREE_YEARS_AGO"
+    ],
+    "threshold": 0
+  },
   "debtRatio": {
     "skip": false,
     "unknownValuePass": true,
