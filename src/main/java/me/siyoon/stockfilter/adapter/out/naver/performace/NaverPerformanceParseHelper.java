@@ -18,13 +18,23 @@ public class NaverPerformanceParseHelper {
                                                                        Period.THREE_YEARS_AGO, 0);
     public static Element performanceTable(Document document) {
         try {
-            return document.getElementById("content")
-                           .getElementsByClass("cop_analysis").get(0)
-                           .getElementsByClass("sub_section").get(0)
-                           .getElementsByTag("table").get(0);
+            Element performanceTable = document.getElementById("content")
+                                      .getElementsByClass("cop_analysis").get(0)
+                                      .getElementsByClass("sub_section").get(0)
+                                      .getElementsByTag("table").get(0);
+
+            if (doesNotHaveAnyPerformanceInfo(performanceTable)) {
+                throw new StockInfoParseException("실적 정보 없음");
+            }
+
+            return performanceTable;
         } catch (Exception e) {
             throw new StockInfoParseException("실적 분석 테이블 파싱 실패 " + e.getMessage());
         }
+    }
+
+    private static boolean doesNotHaveAnyPerformanceInfo(Element performanceTable) {
+        return performanceTable.getElementsByTag("caption").isEmpty();
     }
 
     public static String element(Period period, Element performanceTable,

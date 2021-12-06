@@ -3,10 +3,11 @@ package me.siyoon.stockfilter.adapter.out.naver.performace;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.siyoon.stockfilter.domain.DPS;
 import me.siyoon.stockfilter.domain.DebtRatio;
 import me.siyoon.stockfilter.domain.Period;
 import org.jsoup.nodes.Element;
+
+import static me.siyoon.stockfilter.adapter.out.naver.ExceptionLogHelper.logParseException;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -21,7 +22,7 @@ public class NaverDebtRatioParser {
                                                                    DEBT_RATIO_INDEX, DEBT_RATIO_TEXT);
             return new DebtRatio(Double.valueOf(textValue));
         } catch (Exception e) {
-            log.warn("NaverDpsParser {}", e.getMessage());
+            logParseException(NaverDebtRatioParser.class.getSimpleName(), e);
             return DebtRatio.UNKNOWN_VALUE;
         }
     }

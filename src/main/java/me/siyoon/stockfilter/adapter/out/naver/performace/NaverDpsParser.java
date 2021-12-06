@@ -7,6 +7,8 @@ import me.siyoon.stockfilter.domain.DPS;
 import me.siyoon.stockfilter.domain.Period;
 import org.jsoup.nodes.Element;
 
+import static me.siyoon.stockfilter.adapter.out.naver.ExceptionLogHelper.logParseException;
+
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class NaverDpsParser {
@@ -20,7 +22,7 @@ public class NaverDpsParser {
                                                                    DPS_INDEX, DPS_TEXT);
             return new DPS(Double.valueOf(textValue));
         } catch (Exception e) {
-            log.warn("NaverDpsParser {}", e.getMessage());
+            logParseException(NaverDpsParser.class.getSimpleName(), e);
             return DPS.UNKNOWN_VALUE;
         }
     }

@@ -15,6 +15,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
 
+import static me.siyoon.stockfilter.adapter.out.naver.ExceptionLogHelper.logParseException;
+
 @Slf4j
 @Component
 @RequiredArgsConstructor
@@ -48,7 +50,7 @@ public class NaverStockInfoCrawler implements LoadStockInfoPort {
                             .performances(performanceParser.performances(document))
                             .build();
         } catch (StockInfoParseException e) {
-            log.warn("StockInfoParseException. {}", e.getMessage());
+            logParseException(NaverStockInfoCrawler.class.getSimpleName(), e);
             return null;
         }
     }

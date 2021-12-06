@@ -7,6 +7,8 @@ import me.siyoon.stockfilter.domain.OperatingIncome;
 import me.siyoon.stockfilter.domain.Period;
 import org.jsoup.nodes.Element;
 
+import static me.siyoon.stockfilter.adapter.out.naver.ExceptionLogHelper.logParseException;
+
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class NaverOperatingIncomeParser {
@@ -21,7 +23,7 @@ public class NaverOperatingIncomeParser {
                                                                    OPERATING_INCOME_TEXT);
             return new OperatingIncome(Double.valueOf(textValue));
         } catch (Exception e) {
-            log.warn("NaverOperatingIncomeParser {}", e.getMessage());
+            logParseException(NaverOperatingIncomeParser.class.getSimpleName(), e);
             return OperatingIncome.UNKNOWN_VALUE;
         }
     }
