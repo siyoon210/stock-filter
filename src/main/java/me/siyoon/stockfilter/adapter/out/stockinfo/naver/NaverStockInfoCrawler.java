@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.naver;
+package me.siyoon.stockfilter.adapter.out.stockinfo.naver;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,8 +14,6 @@ import me.siyoon.stockfilter.exception.StockInfoParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
-
-import static me.siyoon.stockfilter.adapter.out.naver.ExceptionLogHelper.logParseException;
 
 @Slf4j
 @Component
@@ -50,7 +48,7 @@ public class NaverStockInfoCrawler implements LoadStockInfoPort {
                             .performances(performanceParser.performances(document))
                             .build();
         } catch (StockInfoParseException e) {
-            logParseException(NaverStockInfoCrawler.class.getSimpleName(), e);
+            ExceptionLogHelper.logParseException(NaverStockInfoCrawler.class.getSimpleName(), e);
             return null;
         }
     }

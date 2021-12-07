@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.naver.performace;
+package me.siyoon.stockfilter.adapter.out.stockinfo.naver.performace;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -7,7 +7,7 @@ import me.siyoon.stockfilter.domain.DPS;
 import me.siyoon.stockfilter.domain.Period;
 import org.jsoup.nodes.Element;
 
-import static me.siyoon.stockfilter.adapter.out.naver.ExceptionLogHelper.logParseException;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.ExceptionLogHelper.logParseException;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)

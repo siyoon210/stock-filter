@@ -1,13 +1,12 @@
-package me.siyoon.stockfilter.adapter.out.naver.performace;
+package me.siyoon.stockfilter.adapter.out.stockinfo.naver.performace;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.siyoon.stockfilter.adapter.out.stockinfo.naver.ExceptionLogHelper;
 import me.siyoon.stockfilter.domain.NetIncome;
 import me.siyoon.stockfilter.domain.Period;
 import org.jsoup.nodes.Element;
-
-import static me.siyoon.stockfilter.adapter.out.naver.ExceptionLogHelper.logParseException;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -23,7 +22,7 @@ public class NaverNetIncomeParser {
                                                                    NET_INCOME_TEXT);
             return new NetIncome(Double.valueOf(textValue));
         } catch (Exception e) {
-            logParseException(NaverNetIncomeParser.class.getSimpleName(), e);
+            ExceptionLogHelper.logParseException(NaverNetIncomeParser.class.getSimpleName(), e);
             return NetIncome.UNKNOWN_VALUE;
         }
     }

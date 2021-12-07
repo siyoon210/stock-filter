@@ -3,7 +3,7 @@ package me.siyoon.stockfilter.adapter.in;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import me.siyoon.stockfilter.adapter.out.naver.NaverStockInfoCrawler;
+import me.siyoon.stockfilter.adapter.out.stockinfo.naver.NaverStockInfoCrawler;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterUseCase;
 import me.siyoon.stockfilter.domain.StockInfo;
