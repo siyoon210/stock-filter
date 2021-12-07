@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performace.NaverDebtRatioParser;
+import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performace.NaverDividendYieldParser;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performace.NaverDpsParser;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performace.NaverNetIncomeParser;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performace.NaverOperatingIncomeParser;
@@ -39,6 +40,7 @@ public class NaverPerformanceParser {
                           .netIncome(NaverNetIncomeParser.netIncome(period, performanceTable))
                           .debtRatio(NaverDebtRatioParser.debtRatio(period, performanceTable))
                           .dps(NaverDpsParser.dps(period, performanceTable))
+                          .dividendYield(NaverDividendYieldParser.dividendYield(period, performanceTable))
                           .build();
     }
 }

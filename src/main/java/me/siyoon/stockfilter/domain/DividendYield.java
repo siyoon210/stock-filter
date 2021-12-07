@@ -8,6 +8,9 @@ import lombok.ToString;
 @EqualsAndHashCode
 @AllArgsConstructor
 public class DividendYield { // 배당률
+
+    public static final DividendYield UNKNOWN_VALUE = new DividendYield(Double.MIN_VALUE);
+
     private final Double value;
 
     public boolean isGreaterThan(Double value) {
