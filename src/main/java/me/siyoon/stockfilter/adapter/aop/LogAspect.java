@@ -23,7 +23,7 @@ public class LogAspect {
         return result;
     }
 
-    @Around("execution(public * me.siyoon.stockfilter.adapter.out.stockinfo.*.*.*.loadedStockInfos())")
+    @Around("execution(public * me.siyoon.stockfilter.adapter.out.stockinfo.*.*.loadedStockInfos())")
     public Object loggingStockInfo(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         log.info("Stock Info 로드 시작.");
         long startAt = System.currentTimeMillis();

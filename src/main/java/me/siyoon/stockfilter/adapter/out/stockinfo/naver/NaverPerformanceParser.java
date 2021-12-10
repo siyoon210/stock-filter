@@ -10,6 +10,7 @@ import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance.NaverDivide
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance.NaverDpsParser;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance.NaverNetIncomeParser;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance.NaverOperatingIncomeParser;
+import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance.NaverPerParser;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance.NaverPerformanceParseHelper;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance.NaverQuickRatioParser;
 import me.siyoon.stockfilter.domain.Performance;
@@ -41,6 +42,7 @@ public class NaverPerformanceParser {
                           .netIncome(NaverNetIncomeParser.netIncome(period, performanceTable))
                           .debtRatio(NaverDebtRatioParser.debtRatio(period, performanceTable))
                           .quickRatio(NaverQuickRatioParser.quickRatio(period, performanceTable))
+                          .per(NaverPerParser.per(period, performanceTable))
                           .dps(NaverDpsParser.dps(period, performanceTable))
                           .dividendYield(NaverDividendYieldParser.dividendYield(period, performanceTable))
                           .build();

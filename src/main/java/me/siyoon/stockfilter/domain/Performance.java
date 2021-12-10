@@ -15,6 +15,7 @@ public class Performance { // 기업 실적
     public final NetIncome netIncome; // 당기순이익
     public final DebtRatio debtRatio; // 부채비율
     public final QuickRatio quickRatio; // 당좌비율
+    public final PER per;
     public final DPS dps; // 주당 배당금 (Dividend Per Share)
     public final DividendYield dividendYield; // 시가배당률
 
@@ -24,6 +25,7 @@ public class Performance { // 기업 실적
                           .netIncome(NetIncome.UNKNOWN_VALUE)
                           .debtRatio(DebtRatio.UNKNOWN_VALUE)
                           .quickRatio(QuickRatio.UNKNOWN_VALUE)
+                          .per(PER.UNKNOWN_VALUE)
                           .dps(DPS.UNKNOWN_VALUE)
                           .dividendYield(DividendYield.UNKNOWN_VALUE)
                           .build();

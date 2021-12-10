@@ -5,7 +5,7 @@ Content-Type: application/json
 {
   "netIncome": {
     "skip": false,
-    "unknownValuePass": true,
+    "unknownValuePass": false,
     "periods": [
       "LAST_YEAR",
       "TWO_YEARS_AGO",
@@ -15,7 +15,7 @@ Content-Type: application/json
   },
   "operatingIncome": {
     "skip": false,
-    "unknownValuePass": true,
+    "unknownValuePass": false,
     "periods": [
       "LAST_YEAR",
       "TWO_YEARS_AGO",
@@ -25,21 +25,36 @@ Content-Type: application/json
   },
   "debtRatio": {
     "skip": false,
-    "unknownValuePass": true,
+    "unknownValuePass": false,
     "periods": [
       "LAST_YEAR",
-      "TWO_YEARS_AGO"
+      "TWO_YEARS_AGO",
+      "THREE_YEARS_AGO"
     ],
     "threshold": 100
   },
   "quickRatio": {
     "skip": false,
-    "unknownValuePass": true,
+    "unknownValuePass": false,
     "periods": [
       "LAST_YEAR",
-      "TWO_YEARS_AGO"
+      "TWO_YEARS_AGO",
+      "THREE_YEARS_AGO"
     ],
-    "threshold": 70
+    "threshold": 80
+  },
+  "per": {
+    "skip": false,
+    "unknownValuePass": true,
+    "periods": [
+      "LAST_YEAR"
+    ],
+    "threshold": 10
+  },
+  "expectedPer": {
+    "skip": false,
+    "unknownValuePass": true,
+    "threshold": 10
   },
   "dividendYield": {
     "skip": false,
@@ -49,11 +64,11 @@ Content-Type: application/json
       "TWO_YEARS_AGO",
       "THREE_YEARS_AGO"
     ],
-    "threshold": 4
+    "threshold": 2
   },
   "expectedDividendYield": {
-    "skip": false,
-    "unknownValuePass": true,
+    "skip": true,
+    "unknownValuePass": false,
     "threshold": 4
   }
 }
