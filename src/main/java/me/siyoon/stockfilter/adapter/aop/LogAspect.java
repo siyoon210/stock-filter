@@ -13,12 +13,24 @@ import org.springframework.stereotype.Component;
 public class LogAspect {
 
     @Around("execution(public * me.siyoon.stockfilter.adapter.out.stockcode.*.stockCodes())")
-    public Object logging(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    public Object loggingStockCode(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         log.info("Stock Code 추출 시작.");
         long startAt = System.currentTimeMillis();
         Object result = proceedingJoinPoint.proceed();
         long endAt = System.currentTimeMillis();
-        log.info("Stock Code 추출 끝. size: {} ({}ms)", ((List<String>) result).size(), endAt - startAt);
+        log.info("Stock Code 추출 끝. size: {} ({}ms)", ((List<String>) result).size(),
+                 endAt - startAt);
+        return result;
+    }
+
+    @Around("execution(public * me.siyoon.stockfilter.adapter.out.stockinfo.*.*.*.loadedStockInfos())")
+    public Object loggingStockInfo(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        log.info("Stock Info 로드 시작.");
+        long startAt = System.currentTimeMillis();
+        Object result = proceedingJoinPoint.proceed();
+        long endAt = System.currentTimeMillis();
+        log.info("Stock Info 로드 끝. size: {} ({}ms)", ((List<String>) result).size(),
+                 endAt - startAt);
         return result;
     }
 }

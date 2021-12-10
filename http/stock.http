@@ -49,7 +49,7 @@ Content-Type: application/json
       "TWO_YEARS_AGO",
       "THREE_YEARS_AGO"
     ],
-    "threshold": 2
+    "threshold": 4
   },
   "expectedDividendYield": {
     "skip": false,

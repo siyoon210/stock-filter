@@ -28,7 +28,7 @@ public class NaverStockInfoCrawler implements LoadStockInfoPort {
     private final NaverPerformanceParser performanceParser;
 
     @Override
-    public List<StockInfo> stockInfos() {
+    public List<StockInfo> loadedStockInfos() {
         List<String> stockCodes = stockCodeReader.stockCodes();
         return stockCodes.parallelStream()
                          .map(this::stockInfo)

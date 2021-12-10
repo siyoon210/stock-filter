@@ -5,5 +5,5 @@ import me.siyoon.stockfilter.domain.StockInfo;
 
 public interface LoadStockInfoPort {
 
-    List<StockInfo> stockInfos();
+    List<StockInfo> loadedStockInfos();
 }
