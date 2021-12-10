@@ -28,14 +28,22 @@ Content-Type: application/json
     "unknownValuePass": true,
     "periods": [
       "LAST_YEAR",
-      "TWO_YEARS_AGO",
-      "THREE_YEARS_AGO"
+      "TWO_YEARS_AGO"
     ],
     "threshold": 100
   },
-  "dividendYield": {
+  "quickRatio": {
     "skip": false,
     "unknownValuePass": true,
+    "periods": [
+      "LAST_YEAR",
+      "TWO_YEARS_AGO"
+    ],
+    "threshold": 70
+  },
+  "dividendYield": {
+    "skip": false,
+    "unknownValuePass": false,
     "periods": [
       "LAST_YEAR",
       "TWO_YEARS_AGO",
@@ -44,8 +52,8 @@ Content-Type: application/json
     "threshold": 2
   },
   "expectedDividendYield": {
-    "skip": true,
-    "unknownValuePass": false,
-    "threshold": 5
+    "skip": false,
+    "unknownValuePass": true,
+    "threshold": 4
   }
 }

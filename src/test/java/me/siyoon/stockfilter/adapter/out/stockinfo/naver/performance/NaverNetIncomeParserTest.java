@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.stockinfo.naver.performace;
+package me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance;
 
 import java.io.File;
 import java.io.IOException;

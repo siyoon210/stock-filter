@@ -13,6 +13,7 @@ public class StockFilterCommand {
     public final OperatingIncomeCommand operatingIncome; // 영업이익
     public final NetIncomeCommand netIncome;  // 당기순이익
     public final DebtRatioCommand debtRatio; // 부채비율
+    public final QuickRatioCommand quickRatio; // 당좌비율
     public final DividendYieldCommand dividendYield; // 시가배당률
     public final ExpectedDividendYieldCommand expectedDividendYield; // 예상 배당률
 
@@ -21,11 +22,13 @@ public class StockFilterCommand {
             OperatingIncomeCommand operatingIncome,
             NetIncomeCommand netIncome,
             DebtRatioCommand debtRatio,
+            QuickRatioCommand quickRatio,
             DividendYieldCommand dividendYield,
             ExpectedDividendYieldCommand expectedDividendYield) {
         this.operatingIncome = operatingIncome;
         this.netIncome = netIncome;
         this.debtRatio = debtRatio;
+        this.quickRatio = quickRatio;
         this.dividendYield = dividendYield;
         this.expectedDividendYield = expectedDividendYield;
     }
@@ -79,6 +82,26 @@ public class StockFilterCommand {
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
         public DebtRatioCommand(boolean skip, boolean unknownValuePass,
+                                List<Period> periods,
+                                Double threshold) {
+            this.skip = skip;
+            this.unknownValuePass = unknownValuePass;
+            this.periods = periods;
+            this.threshold = threshold;
+        }
+    }
+
+    @ToString
+    @Builder
+    public static class QuickRatioCommand { // 당좌비율
+
+        public final boolean skip;
+        public final boolean unknownValuePass;
+        public final List<Period> periods;
+        public final Double threshold;
+
+        @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+        public QuickRatioCommand(boolean skip, boolean unknownValuePass,
                                 List<Period> periods,
                                 Double threshold) {
             this.skip = skip;
