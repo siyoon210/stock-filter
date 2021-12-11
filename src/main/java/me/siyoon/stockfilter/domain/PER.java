@@ -14,13 +14,21 @@ public class PER {
     private final Double value;
 
     public boolean isLessThan(Double value) {
-        if (isNegativePER()) {
+        if (isNegative()) {
             return false;
         }
         return this.value < value;
     }
 
-    private boolean isNegativePER() {
+    public boolean isPositive() {
+        return this.value > 0;
+    }
+
+    public boolean isNegative() {
         return this.value < 0;
+    }
+
+    public Double dividedBy(PER per) {
+        return this.value / per.value;
     }
 }

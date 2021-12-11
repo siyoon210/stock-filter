@@ -20,6 +20,10 @@ public class StockInfo {
         return performances.in(periods);
     }
 
+    public Performance performanceOf(Period period) {
+        return performances.of(period);
+    }
+
     public Double price() {
         return tradingInfo.price;
     }
