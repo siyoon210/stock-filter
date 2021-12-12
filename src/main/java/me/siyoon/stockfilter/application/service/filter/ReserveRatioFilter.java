@@ -18,7 +18,7 @@ class ReserveRatioFilter implements StockFilterI {
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         ReserveRatioCommand command = filterCommand.reserveRatio;
 
-        if (command.skip) {
+        if (!command.test) {
             return true;
         }
 

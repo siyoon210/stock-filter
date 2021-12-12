@@ -3,9 +3,7 @@ package me.siyoon.stockfilter.application.service.filter;
 import java.util.List;
 import java.util.function.Predicate;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
-import me.siyoon.stockfilter.application.port.in.StockFilterCommand.NetIncomeCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand.OperatingIncomeCommand;
-import me.siyoon.stockfilter.domain.NetIncome;
 import me.siyoon.stockfilter.domain.OperatingIncome;
 import me.siyoon.stockfilter.domain.Performance;
 import me.siyoon.stockfilter.domain.StockInfo;
@@ -19,7 +17,7 @@ class OperatingIncomeFilter implements StockFilterI {
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         OperatingIncomeCommand command = filterCommand.operatingIncome;
 
-        if (command.skip) {
+        if (!command.test) {
             return true;
         }
 

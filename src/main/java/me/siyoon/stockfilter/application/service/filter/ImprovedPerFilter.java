@@ -16,7 +16,7 @@ class ImprovedPerFilter implements StockFilterI {
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         ImprovedPerCommand command = filterCommand.improvedPer;
 
-        if (command.skip) {
+        if (!command.test) {
             return true;
         }
 

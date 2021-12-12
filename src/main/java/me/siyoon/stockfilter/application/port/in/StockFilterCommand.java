@@ -49,15 +49,15 @@ public class StockFilterCommand {
     @Builder
     public static class OperatingIncomeCommand { // 영업이익
 
-        public final boolean skip;
+        public final boolean test;
         public final boolean unknownValuePass;
         public final List<Period> periods;
         public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public OperatingIncomeCommand(boolean skip, boolean unknownValuePass, List<Period> periods,
+        public OperatingIncomeCommand(boolean test, boolean unknownValuePass, List<Period> periods,
                                       Double threshold) {
-            this.skip = skip;
+            this.test = test;
             this.unknownValuePass = unknownValuePass;
             this.periods = periods;
             this.threshold = threshold;
@@ -67,15 +67,15 @@ public class StockFilterCommand {
     @ToString
     public static class NetIncomeCommand { // 당기순이익
 
-        public final boolean skip;
+        public final boolean test;
         public final boolean unknownValuePass;
         public final List<Period> periods;
         public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public NetIncomeCommand(boolean skip, boolean unknownValuePass, List<Period> periods,
+        public NetIncomeCommand(boolean test, boolean unknownValuePass, List<Period> periods,
                                 Double threshold) {
-            this.skip = skip;
+            this.test = test;
             this.unknownValuePass = unknownValuePass;
             this.periods = periods;
             this.threshold = threshold;
@@ -87,16 +87,16 @@ public class StockFilterCommand {
     @Builder
     public static class DebtRatioCommand { // 부채비율
 
-        public final boolean skip;
+        public final boolean test;
         public final boolean unknownValuePass;
         public final List<Period> periods;
         public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public DebtRatioCommand(boolean skip, boolean unknownValuePass,
+        public DebtRatioCommand(boolean test, boolean unknownValuePass,
                                 List<Period> periods,
                                 Double threshold) {
-            this.skip = skip;
+            this.test = test;
             this.unknownValuePass = unknownValuePass;
             this.periods = periods;
             this.threshold = threshold;
@@ -107,16 +107,16 @@ public class StockFilterCommand {
     @Builder
     public static class QuickRatioCommand { // 당좌비율
 
-        public final boolean skip;
+        public final boolean test;
         public final boolean unknownValuePass;
         public final List<Period> periods;
         public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public QuickRatioCommand(boolean skip, boolean unknownValuePass,
+        public QuickRatioCommand(boolean test, boolean unknownValuePass,
                                  List<Period> periods,
                                  Double threshold) {
-            this.skip = skip;
+            this.test = test;
             this.unknownValuePass = unknownValuePass;
             this.periods = periods;
             this.threshold = threshold;
@@ -127,16 +127,16 @@ public class StockFilterCommand {
     @Builder
     public static class ReserveRatioCommand { // 유보율
 
-        public final boolean skip;
+        public final boolean test;
         public final boolean unknownValuePass;
         public final List<Period> periods;
         public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public ReserveRatioCommand(boolean skip, boolean unknownValuePass,
+        public ReserveRatioCommand(boolean test, boolean unknownValuePass,
                                  List<Period> periods,
                                  Double threshold) {
-            this.skip = skip;
+            this.test = test;
             this.unknownValuePass = unknownValuePass;
             this.periods = periods;
             this.threshold = threshold;
@@ -147,16 +147,16 @@ public class StockFilterCommand {
     @Builder
     public static class PerCommand { // PER
 
-        public final boolean skip;
+        public final boolean test;
         public final boolean unknownValuePass;
         public final List<Period> periods;
         public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public PerCommand(boolean skip, boolean unknownValuePass,
+        public PerCommand(boolean test, boolean unknownValuePass,
                           List<Period> periods,
                           Double threshold) {
-            this.skip = skip;
+            this.test = test;
             this.unknownValuePass = unknownValuePass;
             this.periods = periods;
             this.threshold = threshold;
@@ -167,15 +167,15 @@ public class StockFilterCommand {
     @Builder
     public static class ExpectedPerCommand { // 예상(추정) PER
 
-        public final boolean skip;
+        public final boolean test;
         public final boolean unknownValuePass;
         public final List<Period> periods = List.of(Period.THIS_YEAR);
         public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public ExpectedPerCommand(boolean skip, boolean unknownValuePass,
+        public ExpectedPerCommand(boolean test, boolean unknownValuePass,
                                   Double threshold) {
-            this.skip = skip;
+            this.test = test;
             this.unknownValuePass = unknownValuePass;
             this.threshold = threshold;
         }
@@ -185,12 +185,12 @@ public class StockFilterCommand {
     @ToString
     public static class ImprovedPerCommand { // 작년대비 개선된 예측(추정)PER
 
-        public final boolean skip;
+        public final boolean test;
         public final Double ratio;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public ImprovedPerCommand(boolean skip, Double ratio) {
-            this.skip = skip;
+        public ImprovedPerCommand(boolean test, Double ratio) {
+            this.test = test;
             this.ratio = ratio;
         }
     }
@@ -199,16 +199,16 @@ public class StockFilterCommand {
     @Builder
     public static class DividendYieldCommand { // 시가배당률
 
-        public final boolean skip;
+        public final boolean test;
         public final boolean unknownValuePass;
         public final List<Period> periods;
         public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public DividendYieldCommand(boolean skip, boolean unknownValuePass,
+        public DividendYieldCommand(boolean test, boolean unknownValuePass,
                                     List<Period> periods,
                                     Double threshold) {
-            this.skip = skip;
+            this.test = test;
             this.unknownValuePass = unknownValuePass;
             this.periods = periods;
             this.threshold = threshold;
@@ -218,15 +218,15 @@ public class StockFilterCommand {
     @ToString
     public static class ExpectedDividendYieldCommand { // 예상 배당률
 
-        public final boolean skip;
+        public final boolean test;
         public final boolean unknownValuePass;
         public final List<Period> periods = List.of(Period.THIS_YEAR);
         public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public ExpectedDividendYieldCommand(boolean skip, boolean unknownValuePass,
+        public ExpectedDividendYieldCommand(boolean test, boolean unknownValuePass,
                                             Double threshold) {
-            this.skip = skip;
+            this.test = test;
             this.unknownValuePass = unknownValuePass;
             this.threshold = threshold;
         }

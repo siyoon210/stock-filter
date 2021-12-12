@@ -18,7 +18,7 @@ class ExpectationDividendYieldFilter implements StockFilterI {
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         ExpectedDividendYieldCommand command = filterCommand.expectedDividendYield;
 
-        if (command.skip) {
+        if (!command.test) {
             return true;
         }
 

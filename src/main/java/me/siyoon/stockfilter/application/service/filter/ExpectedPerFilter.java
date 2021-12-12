@@ -17,7 +17,7 @@ class ExpectedPerFilter implements StockFilterI {
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         ExpectedPerCommand command = filterCommand.expectedPer;
 
-        if (command.skip) {
+        if (!command.test) {
             return true;
         }
 

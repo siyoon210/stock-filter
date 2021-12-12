@@ -17,7 +17,7 @@ class PerFilter implements StockFilterI {
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         PerCommand command = filterCommand.per;
 
-        if (command.skip) {
+        if (!command.test) {
             return true;
         }
 

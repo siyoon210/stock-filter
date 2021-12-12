@@ -19,7 +19,7 @@ class DividendYieldFilter implements StockFilterI {
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         DividendYieldCommand command = filterCommand.dividendYield;
 
-        if (command.skip) {
+        if (!command.test) {
             return true;
         }
 

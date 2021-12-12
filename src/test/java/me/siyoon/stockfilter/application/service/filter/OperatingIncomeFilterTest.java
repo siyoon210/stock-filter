@@ -43,7 +43,7 @@ class OperatingIncomeFilterTest {
 
     private StockFilterCommand stockFilterCommand() {
         OperatingIncomeCommand command = OperatingIncomeCommand.builder()
-                                                               .skip(false)
+                                                               .test(true)
                                                                .unknownValuePass(false)
                                                                .periods(List.of(Period.LAST_YEAR))
                                                                .threshold(THRESHOLD)

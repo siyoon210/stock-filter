@@ -17,7 +17,7 @@ class DebtRatioFilter implements StockFilterI {
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         DebtRatioCommand command = filterCommand.debtRatio;
 
-        if (command.skip) {
+        if (!command.test) {
             return true;
         }
 

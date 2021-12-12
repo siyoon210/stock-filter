@@ -52,7 +52,7 @@ class ImprovedPerFilterTest {
 
     private StockFilterCommand stockFilterCommand() {
         ImprovedPerCommand improvedPerCommand = ImprovedPerCommand.builder()
-                                                                  .skip(false)
+                                                                  .test(true)
                                                                   .ratio(RATIO)
                                                                   .build();
         return StockFilterCommand.builder()

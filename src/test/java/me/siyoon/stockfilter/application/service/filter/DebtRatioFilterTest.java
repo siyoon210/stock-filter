@@ -43,7 +43,7 @@ class DebtRatioFilterTest {
 
     private StockFilterCommand stockFilterCommand() {
         DebtRatioCommand debtRatioCommand = DebtRatioCommand.builder()
-                                                            .skip(false)
+                                                            .test(true)
                                                             .unknownValuePass(false)
                                                             .periods(List.of(Period.LAST_YEAR))
                                                             .threshold(THRESHOLD)

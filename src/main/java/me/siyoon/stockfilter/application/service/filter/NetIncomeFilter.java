@@ -17,7 +17,7 @@ class NetIncomeFilter implements StockFilterI {
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         NetIncomeCommand command = filterCommand.netIncome;
 
-        if (command.skip) {
+        if (!command.test) {
             return true;
         }
 

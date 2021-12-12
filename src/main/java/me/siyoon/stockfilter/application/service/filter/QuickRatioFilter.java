@@ -18,7 +18,7 @@ class QuickRatioFilter implements StockFilterI {
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         QuickRatioCommand command = filterCommand.quickRatio;
 
-        if (command.skip) {
+        if (!command.test) {
             return true;
         }
 
