@@ -14,6 +14,7 @@ public class StockFilterCommand {
     public final NetIncomeCommand netIncome;  // 당기순이익
     public final DebtRatioCommand debtRatio; // 부채비율
     public final QuickRatioCommand quickRatio; // 당좌비율
+    public final ReserveRatioCommand reserveRatio; // 유보율
     public final PerCommand per; // PER
     public final ExpectedPerCommand expectedPer; // 예상(추정) PER
     public final ImprovedPerCommand improvedPer; // per 개선
@@ -26,6 +27,7 @@ public class StockFilterCommand {
             NetIncomeCommand netIncome,
             DebtRatioCommand debtRatio,
             QuickRatioCommand quickRatio,
+            ReserveRatioCommand reserveRatio,
             PerCommand per,
             ExpectedPerCommand expectedPer,
             ImprovedPerCommand improvedPer,
@@ -35,6 +37,7 @@ public class StockFilterCommand {
         this.netIncome = netIncome;
         this.debtRatio = debtRatio;
         this.quickRatio = quickRatio;
+        this.reserveRatio = reserveRatio;
         this.per = per;
         this.expectedPer = expectedPer;
         this.improvedPer = improvedPer;
@@ -111,6 +114,26 @@ public class StockFilterCommand {
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
         public QuickRatioCommand(boolean skip, boolean unknownValuePass,
+                                 List<Period> periods,
+                                 Double threshold) {
+            this.skip = skip;
+            this.unknownValuePass = unknownValuePass;
+            this.periods = periods;
+            this.threshold = threshold;
+        }
+    }
+
+    @ToString
+    @Builder
+    public static class ReserveRatioCommand { // 유보율
+
+        public final boolean skip;
+        public final boolean unknownValuePass;
+        public final List<Period> periods;
+        public final Double threshold;
+
+        @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+        public ReserveRatioCommand(boolean skip, boolean unknownValuePass,
                                  List<Period> periods,
                                  Double threshold) {
             this.skip = skip;
