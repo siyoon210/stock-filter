@@ -28,7 +28,7 @@ public class PER {
         return this.value < 0;
     }
 
-    public Double dividedBy(PER per) {
-        return this.value / per.value;
+    public Double improvedRatioComparedTo(PER previousPer) {
+        return (previousPer.value - this.value) / previousPer.value * 100;
     }
 }

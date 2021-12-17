@@ -40,11 +40,7 @@ class ImprovedPerFilter implements StockFilterI {
             return false;
         }
 
-        return improvedRatio(lastYearPER, thisYearPER) > command.ratio;
-    }
-
-    private double improvedRatio(PER lastYearPER, PER thisYearPER) {
-        return 100 - (thisYearPER.dividedBy(lastYearPER) * 100);
+        return thisYearPER.improvedRatioComparedTo(lastYearPER) > command.ratio;
     }
 
     private boolean isUnknownValue(PER lastYearPER,

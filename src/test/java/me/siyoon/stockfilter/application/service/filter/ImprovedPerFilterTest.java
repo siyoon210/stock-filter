@@ -42,10 +42,11 @@ class ImprovedPerFilterTest {
 
     private static Stream<Arguments> passed_test() {
         return Stream.of(
-//                Arguments.of(10.0, 7.9, true),
-//                Arguments.of(50.0, 39.0, true),
-//                Arguments.of(-5.0, 30.0, true),
-//                Arguments.of(10.0, 8.0, false),
+                Arguments.of(18.0, 14.0, true),
+                Arguments.of(10.0, 7.9, true),
+                Arguments.of(50.0, 39.0, true),
+                Arguments.of(-5.0, 30.0, true),
+                Arguments.of(10.0, 8.0, false),
                 Arguments.of(5.0, -30.0, false)
         );
     }
