@@ -9,7 +9,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class DebtRatio { // 부채비율
 
-    public static final DebtRatio UNKNOWN_VALUE = new DebtRatio(Double.MIN_VALUE);
+    public static final DebtRatio UNKNOWN_VALUE = new DebtRatio(Double.MAX_VALUE);
 
     private final Double value;
 

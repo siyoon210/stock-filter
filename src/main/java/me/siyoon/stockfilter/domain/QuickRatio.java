@@ -9,7 +9,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class QuickRatio { // 당좌비율
 
-    public static final QuickRatio UNKNOWN_VALUE = new QuickRatio(Double.MAX_VALUE);
+    public static final QuickRatio UNKNOWN_VALUE = new QuickRatio(Double.MIN_VALUE);
 
     private final Double value;
 
