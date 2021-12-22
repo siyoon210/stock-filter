@@ -3,6 +3,7 @@ package me.siyoon.stockfilter.domain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.ToString;
+import me.siyoon.stockfilter.domain.financial.SalesRevenue;
 
 @Builder
 @AllArgsConstructor
