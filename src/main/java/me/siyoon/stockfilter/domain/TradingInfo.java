@@ -1,10 +1,12 @@
 package me.siyoon.stockfilter.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.ToString;
 
 @ToString
 @Builder
+@AllArgsConstructor
 public class TradingInfo { // 거래정보
 
     public final Double marketCap; // 시가총액

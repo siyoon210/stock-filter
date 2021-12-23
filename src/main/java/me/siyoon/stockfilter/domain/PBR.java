@@ -18,4 +18,8 @@ public class PBR {
         double value = marketCap / Equity.totalValue(equities);
         return new PBR(value);
     }
+
+    public Double inverseValue() {
+        return 1 / value;
+    }
 }

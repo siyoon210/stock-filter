@@ -36,4 +36,8 @@ public class PER {
         double value = marketCap / NetIncome.totalValue(netIncomes);
         return new PER(value);
     }
+
+    public Double inverseValue() {
+        return 1 / value;
+    }
 }

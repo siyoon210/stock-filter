@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import me.siyoon.stockfilter.domain.financial.CFO;
-import me.siyoon.stockfilter.domain.financial.Equity;
 
 @AllArgsConstructor
 @ToString
@@ -18,5 +17,9 @@ public class PCR {
     public static PCR pcr(Double marketCap, CFO... cfos) {
         double value = marketCap / CFO.totalValue(cfos);
         return new PCR(value);
+    }
+
+    public Double inverseValue() {
+        return 1 / value;
     }
 }

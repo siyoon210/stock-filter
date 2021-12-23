@@ -12,4 +12,11 @@ public class NumberExtractor {
         }
         return Double.valueOf(text.replace(",", ""));
     }
+
+    public static Long longValue(String text) {
+        if (text == null || text.isEmpty()) {
+            return null;
+        }
+        return Long.valueOf(text.replace(",", ""));
+    }
 }
