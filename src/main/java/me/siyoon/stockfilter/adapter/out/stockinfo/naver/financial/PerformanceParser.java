@@ -14,6 +14,8 @@ import org.openqa.selenium.WebDriver;
 import org.springframework.stereotype.Component;
 
 import static java.util.stream.Collectors.toMap;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.CfoParser.cfo;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.EquityParser.equity;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.NetIncomeParser.netIncome;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.SalesRevenueParser.salesRevenue;
 
@@ -54,6 +56,8 @@ public class PerformanceParser {
         return Performance2.builder()
                            .salesRevenue(salesRevenue(performanceTable, period))
                            .netIncome(netIncome(performanceTable, period))
+                           .equity(equity(performanceTable, period))
+                           .cfo(cfo(performanceTable, period))
                            .build();
     }
 }

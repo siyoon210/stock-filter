@@ -7,9 +7,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class SalesRevenue { // 매출액
+public class CFO { // 영업활동현금흐름 (Cash Flows from Operating)
 
-    public static final SalesRevenue UNKNOWN_VALUE = new SalesRevenue(Double.MIN_VALUE);
+    public static final CFO UNKNOWN_VALUE = new CFO(Double.MIN_VALUE);
 
     private final Double value; // 억원
 }

@@ -7,9 +7,9 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class SalesRevenue { // 매출액
+public class Equity { // 자본 (순자산)
 
-    public static final SalesRevenue UNKNOWN_VALUE = new SalesRevenue(Double.MIN_VALUE);
+    public static final Equity UNKNOWN_VALUE = new Equity(Double.MIN_VALUE);
 
     private final Double value; // 억원
 }
