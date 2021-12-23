@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.domain;
 
+import java.util.Arrays;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -15,5 +16,11 @@ public class NetIncome { // 당기순이익
 
     public boolean isGreaterThan(Double value) {
         return this.value > value;
+    }
+
+    public static Double totalValue(NetIncome... netIncomes) {
+        return Arrays.stream(netIncomes)
+                     .map(netIncome -> netIncome.value)
+                     .reduce(0.0, Double::sum);
     }
 }

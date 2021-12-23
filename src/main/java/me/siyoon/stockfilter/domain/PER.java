@@ -31,4 +31,9 @@ public class PER {
     public Double improvedRatioComparedTo(PER previousPer) {
         return (previousPer.value - this.value) / previousPer.value * 100;
     }
+
+    public static PER per(Double marketCap, NetIncome... netIncomes) {
+        double value = marketCap / NetIncome.totalValue(netIncomes);
+        return new PER(value);
+    }
 }
