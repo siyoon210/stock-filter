@@ -41,6 +41,6 @@ class NaverPerformanceParserTest {
 
         // then
         assertThat(performances.of(Period.LAST_YEAR).netIncome).isEqualTo(new NetIncome(1286.0));
-        assertThat(performances.of(Period.THIS_YEAR).dps).isEqualTo(new DPS(454.0));
+        assertThat(performances.of(Period.THIS_YEAR_EXPECTED).dps).isEqualTo(new DPS(454.0));
     }
 }

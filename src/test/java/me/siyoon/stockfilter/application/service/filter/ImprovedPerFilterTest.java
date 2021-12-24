@@ -71,7 +71,7 @@ class ImprovedPerFilterTest {
                                                      .build();
 
         Performances performances = new Performances(Map.of(Period.LAST_YEAR, lastYearPerformance,
-                                                            Period.THIS_YEAR, thisYearPerformance));
+                                                            Period.THIS_YEAR_EXPECTED, thisYearPerformance));
 
         return StockInfo.builder()
                         .performances(performances)

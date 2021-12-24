@@ -175,7 +175,7 @@ public class StockFilterCommand {
 
         public final boolean test;
         public final boolean unknownValuePass;
-        public final List<Period> periods = List.of(Period.THIS_YEAR);
+        public final List<Period> periods = List.of(Period.THIS_YEAR_EXPECTED);
         public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
@@ -226,7 +226,7 @@ public class StockFilterCommand {
 
         public final boolean test;
         public final boolean unknownValuePass;
-        public final List<Period> periods = List.of(Period.THIS_YEAR);
+        public final List<Period> periods = List.of(Period.THIS_YEAR_EXPECTED);
         public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)

@@ -12,7 +12,7 @@ import org.jsoup.nodes.Element;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class NaverPerformanceParseHelper {
 
-    private static final Map<Period, Integer> INDEX_BY_PERIOD = Map.of(Period.THIS_YEAR, 3,
+    private static final Map<Period, Integer> INDEX_BY_PERIOD = Map.of(Period.THIS_YEAR_EXPECTED, 3,
                                                                        Period.LAST_YEAR, 2,
                                                                        Period.TWO_YEARS_AGO, 1,
                                                                        Period.THREE_YEARS_AGO, 0);

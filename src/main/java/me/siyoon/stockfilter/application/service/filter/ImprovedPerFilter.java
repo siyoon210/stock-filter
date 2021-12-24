@@ -21,7 +21,7 @@ class ImprovedPerFilter implements StockFilterI {
         }
 
         PER lastYearPER = stockInfo.performanceOf(Period.LAST_YEAR).per;
-        PER thisYearPER = stockInfo.performanceOf(Period.THIS_YEAR).per;
+        PER thisYearPER = stockInfo.performanceOf(Period.THIS_YEAR_EXPECTED).per;
 
         if (isUnknownValue(lastYearPER, thisYearPER)) {
             return false;
