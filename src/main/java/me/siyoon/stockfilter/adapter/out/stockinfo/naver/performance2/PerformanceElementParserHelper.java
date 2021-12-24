@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial;
+package me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2;
 
 import java.util.EnumMap;
 import java.util.Map;

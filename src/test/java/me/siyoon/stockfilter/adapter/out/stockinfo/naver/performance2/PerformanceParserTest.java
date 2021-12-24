@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial;
+package me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2;
 
 import me.siyoon.stockfilter.domain.performance.Performances2;
 import org.junit.jupiter.api.AfterEach;

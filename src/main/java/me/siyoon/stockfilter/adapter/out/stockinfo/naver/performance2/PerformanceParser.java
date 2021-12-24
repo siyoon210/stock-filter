@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial;
+package me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -15,14 +15,14 @@ import org.openqa.selenium.WebDriver;
 import org.springframework.stereotype.Component;
 
 import static java.util.stream.Collectors.toMap;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.CfoParser.cfo;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.DividendYieldParser.dividendYield;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.DpsParser.dps;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.EquityParser.equity;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.NetIncomeParser.netIncome;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.OperatingIncomeParser.operatingIncome;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.PerParser.per;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.SalesRevenueParser.salesRevenue;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.CfoParser.cfo;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.DividendYieldParser.dividendYield;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.DpsParser.dps;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.EquityParser.equity;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.NetIncomeParser.netIncome;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.OperatingIncomeParser.operatingIncome;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.PerParser.per;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.SalesRevenueParser.salesRevenue;
 
 @Slf4j
 @Component

@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.adapter.out.stockcode.StockCodeReader;
-import me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.PerformanceParser;
+import me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.PerformanceParser;
 import me.siyoon.stockfilter.application.port.out.LoadStockInfoPort;
 import me.siyoon.stockfilter.domain.StockInfo;
 import me.siyoon.stockfilter.exception.StockInfoConnectException;
@@ -29,7 +29,6 @@ public class NaverStockInfoCrawler implements LoadStockInfoPort {
     private final StockCodeReader stockCodeReader;
     private final NaverStockInfoParser stockInfoParser;
     private final NaverTradingInfoParser tradingInfoParser;
-    private final NaverPerformanceParser performanceParser;
     private final PerformanceParser performanceParser2;
 
     @Override
@@ -59,7 +58,6 @@ public class NaverStockInfoCrawler implements LoadStockInfoPort {
                             .name(stockInfoParser.companyName(document))
                             .code(stockCode)
                             .tradingInfo(tradingInfoParser.tradingInfo(document))
-                            .performances(performanceParser.performances(document))
                             .performances2(performanceParser2.performances(driver, stockCode))
                             .build();
         } catch (StockInfoParseException e) {
