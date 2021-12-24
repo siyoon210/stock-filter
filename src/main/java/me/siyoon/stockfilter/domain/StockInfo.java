@@ -4,8 +4,9 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.ToString;
-import me.siyoon.stockfilter.domain.financial.Performance2;
-import me.siyoon.stockfilter.domain.financial.Performances2;
+import me.siyoon.stockfilter.domain.performance.Performance2;
+import me.siyoon.stockfilter.domain.performance.Performances2;
+import me.siyoon.stockfilter.domain.stability.StabilityIndices;
 
 
 @AllArgsConstructor
@@ -18,6 +19,7 @@ public class StockInfo {
     public final TradingInfo tradingInfo; // 거래 정보
     public final Performances performances; // 실적
     public final Performances2 performances2; // 실적
+    public final StabilityIndices stabilityIndices; // 안정성 지표
 
     public List<Performance> performancesIn(List<Period> periods) {
         return performances.in(periods);

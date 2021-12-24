@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.domain;
+package me.siyoon.stockfilter.domain.performance;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

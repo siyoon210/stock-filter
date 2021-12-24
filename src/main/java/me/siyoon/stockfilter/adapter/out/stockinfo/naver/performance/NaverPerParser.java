@@ -4,7 +4,6 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.ExceptionLogHelper;
-import me.siyoon.stockfilter.domain.DebtRatio;
 import me.siyoon.stockfilter.domain.PER;
 import me.siyoon.stockfilter.domain.Period;
 import org.jsoup.nodes.Element;

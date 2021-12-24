@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.domain.Period;
-import me.siyoon.stockfilter.domain.financial.Equity;
+import me.siyoon.stockfilter.domain.performance.Equity;
 import org.jsoup.nodes.Element;
 
 import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.PerformanceElementParserHelper.element;

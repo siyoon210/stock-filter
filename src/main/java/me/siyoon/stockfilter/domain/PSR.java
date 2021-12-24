@@ -3,7 +3,7 @@ package me.siyoon.stockfilter.domain;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import me.siyoon.stockfilter.domain.financial.SalesRevenue;
+import me.siyoon.stockfilter.domain.performance.SalesRevenue;
 
 @AllArgsConstructor
 @ToString

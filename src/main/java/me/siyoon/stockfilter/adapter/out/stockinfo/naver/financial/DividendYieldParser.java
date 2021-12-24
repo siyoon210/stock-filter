@@ -3,8 +3,8 @@ package me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.siyoon.stockfilter.domain.DividendYield;
 import me.siyoon.stockfilter.domain.Period;
+import me.siyoon.stockfilter.domain.performance.DividendYield;
 import org.jsoup.nodes.Element;
 
 import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.financial.PerformanceElementParserHelper.element;

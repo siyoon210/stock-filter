@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.ExceptionLogHelper;
 import me.siyoon.stockfilter.domain.Period;
-import me.siyoon.stockfilter.domain.ReserveRatio;
+import me.siyoon.stockfilter.domain.stability.ReserveRatio;
 import org.jsoup.nodes.Element;
 
 @Slf4j

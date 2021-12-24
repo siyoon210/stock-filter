@@ -1,6 +1,5 @@
-package me.siyoon.stockfilter.domain.financial;
+package me.siyoon.stockfilter.domain.performance;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -22,10 +21,6 @@ public class Performances2 { // 기간별 기업 재무실적
 
     public Performance2 of(Period period) {
         return value.getOrDefault(period, Performance2.UNKNOWN_VALUE);
-    }
-
-    public List<Period> periods() {
-        return new ArrayList<>(value.keySet());
     }
 
     @Override

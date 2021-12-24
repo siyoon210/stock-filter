@@ -1,23 +1,19 @@
-package me.siyoon.stockfilter.domain.financial;
+package me.siyoon.stockfilter.domain.performance;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.ToString;
-import me.siyoon.stockfilter.domain.DPS;
-import me.siyoon.stockfilter.domain.DebtRatio;
-import me.siyoon.stockfilter.domain.DividendYield;
-import me.siyoon.stockfilter.domain.NetIncome;
-import me.siyoon.stockfilter.domain.OperatingIncome;
 import me.siyoon.stockfilter.domain.PER;
-import me.siyoon.stockfilter.domain.QuickRatio;
-import me.siyoon.stockfilter.domain.ReserveRatio;
+import me.siyoon.stockfilter.domain.stability.DebtRatio;
+import me.siyoon.stockfilter.domain.stability.QuickRatio;
+import me.siyoon.stockfilter.domain.stability.ReserveRatio;
 
 @Builder
 @AllArgsConstructor
 @ToString
 public class Performance2 { // 기업 재무실적
 
-    public static final Performance2 UNKNOWN_VALUE = unknownPerformance();
+    public static final Performance2 UNKNOWN_VALUE = unknown();
 
     public final SalesRevenue salesRevenue; // 매출액
     public final OperatingIncome operatingIncome; // 영업이익
@@ -31,7 +27,7 @@ public class Performance2 { // 기업 재무실적
     public final DPS dps; // 과거 주당 배당금 (Dividend Per Share)
     public final DividendYield dividendYield; // 과거 시가배당률
 
-    public static Performance2 unknownPerformance() {
+    public static Performance2 unknown() {
         return Performance2.builder()
                            .salesRevenue(SalesRevenue.UNKNOWN_VALUE)
                            .operatingIncome(OperatingIncome.UNKNOWN_VALUE)

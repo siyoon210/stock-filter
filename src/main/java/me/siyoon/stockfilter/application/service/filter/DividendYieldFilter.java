@@ -4,11 +4,9 @@ import java.util.List;
 import java.util.function.Predicate;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand.DividendYieldCommand;
-import me.siyoon.stockfilter.application.port.in.StockFilterCommand.ExpectedDividendYieldCommand;
-import me.siyoon.stockfilter.domain.DPS;
-import me.siyoon.stockfilter.domain.DividendYield;
 import me.siyoon.stockfilter.domain.Performance;
 import me.siyoon.stockfilter.domain.StockInfo;
+import me.siyoon.stockfilter.domain.performance.DividendYield;
 import org.springframework.stereotype.Component;
 
 @Component

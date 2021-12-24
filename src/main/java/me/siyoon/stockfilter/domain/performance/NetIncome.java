@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.domain;
+package me.siyoon.stockfilter.domain.performance;
 
 import java.util.Arrays;
 import lombok.AllArgsConstructor;

@@ -3,8 +3,8 @@ package me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.siyoon.stockfilter.domain.DPS;
 import me.siyoon.stockfilter.domain.Period;
+import me.siyoon.stockfilter.domain.performance.DPS;
 import org.jsoup.nodes.Element;
 
 import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.ExceptionLogHelper.logParseException;

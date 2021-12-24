@@ -1,15 +1,15 @@
-package me.siyoon.stockfilter.domain;
+package me.siyoon.stockfilter.domain.performance;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
-@AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class OperatingIncome { // 영업이익
+@AllArgsConstructor
+public class DividendYield { // 배당률
 
-    public static final OperatingIncome UNKNOWN_VALUE = new OperatingIncome(Double.MIN_VALUE);
+    public static final DividendYield UNKNOWN_VALUE = new DividendYield(Double.MIN_VALUE);
 
     private final Double value;
 
