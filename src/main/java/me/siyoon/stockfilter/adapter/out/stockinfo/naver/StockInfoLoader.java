@@ -22,7 +22,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class NaverStockInfoCrawler implements LoadStockInfoPort {
+public class StockInfoLoader implements LoadStockInfoPort {
 
     public static final String URL = "https://finance.naver.com/item/main.nhn?code=";
 
@@ -40,6 +40,9 @@ public class NaverStockInfoCrawler implements LoadStockInfoPort {
     private List<StockInfo> stockInfos(List<String> stockCodes) {
         WebDriver driver = new HtmlUnitDriver(BrowserVersion.CHROME, true);
         try {
+            // 네이버 페이지 가져오기,
+            // ex) 종목 메인페이지, financial summary 연간 & 분기 페이지, 안정성 재무 연간 & 분기 페이지
+            // 페이지 -> 도메인으로 변경하기
             return stockCodes.parallelStream()
                              .map(stockCode -> stockInfo(stockCode, driver))
                              .filter(Objects::nonNull)
@@ -51,7 +54,7 @@ public class NaverStockInfoCrawler implements LoadStockInfoPort {
 
     private StockInfo stockInfo(String stockCode, WebDriver driver) {
         try {
-            log.info("크롤링 시작. URL = {}", NaverStockInfoCrawler.URL + stockCode);
+            log.info("크롤링 시작. URL = {}", StockInfoLoader.URL + stockCode);
             Document document = document(stockCode);
 
             return StockInfo.builder()
@@ -61,7 +64,7 @@ public class NaverStockInfoCrawler implements LoadStockInfoPort {
                             .performances2(performanceParser2.performances(driver, stockCode))
                             .build();
         } catch (StockInfoParseException e) {
-            ExceptionLogHelper.logParseException(NaverStockInfoCrawler.class.getSimpleName(), e);
+            ExceptionLogHelper.logParseException(StockInfoLoader.class.getSimpleName(), e);
             return null;
         }
     }
