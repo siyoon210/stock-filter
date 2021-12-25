@@ -17,6 +17,8 @@ class NaverTradingInfoParser {
                           .price(price)
                           .tradingVolume(tradingVolume)
                           .transactionAmount(price * tradingVolume)
+                          .annualHigh(annualHigh(document))
+                          .annualLow(annualLow(document))
                           .build();
     }
 
@@ -48,6 +50,38 @@ class NaverTradingInfoParser {
             return Long.parseLong(text);
         } catch (Exception e) {
             throw new StockInfoParseException("거래량 파싱 실패 " + e.getMessage());
+        }
+    }
+
+    private Double annualHigh(Document document) { // 52주 최고가
+        try {
+            String text = document.getElementById("tab_con1")
+                                  .getElementsByTag("div").get(5)
+                                  .getElementsByTag("table").get(0)
+                                  .getElementsByTag("tbody").get(0)
+                                  .getElementsByTag("tr").get(1)
+                                  .getElementsByTag("td").get(0)
+                                  .getElementsByTag("em").get(0)
+                                  .text().replace(",", "");
+            return Double.parseDouble(text);
+        } catch (Exception e) {
+            throw new StockInfoParseException("52주 최고가 파싱 실패 " + e.getMessage());
+        }
+    }
+
+    private Double annualLow(Document document) { // 52주 최저가
+        try {
+            String text = document.getElementById("tab_con1")
+                                  .getElementsByTag("div").get(5)
+                                  .getElementsByTag("table").get(0)
+                                  .getElementsByTag("tbody").get(0)
+                                  .getElementsByTag("tr").get(1)
+                                  .getElementsByTag("td").get(0)
+                                  .getElementsByTag("em").get(1)
+                                  .text().replace(",", "");
+            return Double.parseDouble(text);
+        } catch (Exception e) {
+            throw new StockInfoParseException("52주 최저가 파싱 실패 " + e.getMessage());
         }
     }
 }

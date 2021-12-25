@@ -20,6 +20,7 @@ public class StockFilterCommand {
     public final ImprovedPerCommand improvedPer; // per 개선
     public final DividendYieldCommand dividendYield; // 시가배당률
     public final ExpectedDividendYieldCommand expectedDividendYield; // 예상 배당률
+    public final AnnualPriceVolatilityCommand annualPriceVolatility; // 52주 최고가 / 52주 최저가
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public StockFilterCommand(
@@ -32,7 +33,8 @@ public class StockFilterCommand {
             ExpectedPerCommand expectedPer,
             ImprovedPerCommand improvedPer,
             DividendYieldCommand dividendYield,
-            ExpectedDividendYieldCommand expectedDividendYield) {
+            ExpectedDividendYieldCommand expectedDividendYield,
+            AnnualPriceVolatilityCommand annualPriceVolatility) {
         this.operatingIncome = operatingIncome;
         this.netIncome = netIncome;
         this.debtRatio = debtRatio;
@@ -43,6 +45,7 @@ public class StockFilterCommand {
         this.improvedPer = improvedPer;
         this.dividendYield = dividendYield;
         this.expectedDividendYield = expectedDividendYield;
+        this.annualPriceVolatility = annualPriceVolatility;
     }
 
     @ToString
@@ -225,6 +228,22 @@ public class StockFilterCommand {
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
         public ExpectedDividendYieldCommand(boolean test, boolean unknownValuePass,
+                                            Double threshold) {
+            this.test = test;
+            this.unknownValuePass = unknownValuePass;
+            this.threshold = threshold;
+        }
+    }
+
+    @ToString
+    public static class AnnualPriceVolatilityCommand { // 52주 최고가 / 52주 최저가
+
+        public final boolean test;
+        public final boolean unknownValuePass;
+        public final Double threshold;
+
+        @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+        public AnnualPriceVolatilityCommand(boolean test, boolean unknownValuePass,
                                             Double threshold) {
             this.test = test;
             this.unknownValuePass = unknownValuePass;
