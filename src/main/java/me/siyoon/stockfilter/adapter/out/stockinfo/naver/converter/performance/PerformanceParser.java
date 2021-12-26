@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.domain.Period;
-import me.siyoon.stockfilter.domain.performance.Performance2;
-import me.siyoon.stockfilter.domain.performance.Performances2;
+import me.siyoon.stockfilter.domain.performance.Performance;
+import me.siyoon.stockfilter.domain.performance.Performances;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -34,14 +34,14 @@ public class PerformanceParser {
     private static final String QUARTER_TABLE_BTN_ID = "cns_Tab22";
     private static final int PERFORMANCE_TABLE_INDEX = 12;
 
-    public Performances2 performances(WebDriver driver, String code) {
-        return new Performances2(performanceByPeriod(driver, code));
+    public Performances performances(WebDriver driver, String code) {
+        return new Performances(performanceByPeriod(driver, code));
     }
 
-    private Map<Period, Performance2> performanceByPeriod(WebDriver driver, String code) {
-        Map<Period, Performance2> performanceByYears
+    private Map<Period, Performance> performanceByPeriod(WebDriver driver, String code) {
+        Map<Period, Performance> performanceByYears
                 = performancesMap(yearlyPerformanceTable(code, driver), Period.YEARS);
-        Map<Period, Performance2> performanceByQuarters
+        Map<Period, Performance> performanceByQuarters
                 = performancesMap(quartersPerformanceTable(code, driver), Period.QUARTERS);
 
         performanceByYears.putAll(performanceByQuarters);
@@ -66,8 +66,8 @@ public class PerformanceParser {
                        .get(PERFORMANCE_TABLE_INDEX);
     }
 
-    private Map<Period, Performance2> performancesMap(Element performanceTable,
-                                                      List<Period> periods) {
+    private Map<Period, Performance> performancesMap(Element performanceTable,
+                                                     List<Period> periods) {
         return periods.stream()
                       .collect(toMap(period -> period,
                                      period -> performance(performanceTable, period),
@@ -75,19 +75,19 @@ public class PerformanceParser {
                                      LinkedHashMap::new));
     }
 
-    private Performance2 performance(Element performanceTable, Period period) {
-        return Performance2.builder()
-                           .salesRevenue(salesRevenue(performanceTable, period))
-                           .operatingIncome(operatingIncome(performanceTable, period))
-                           .netIncome(netIncome(performanceTable, period))
-                           .debtRatio(null)
-                           .quickRatio(null)
-                           .reserveRatio(null)
-                           .equity(equity(performanceTable, period))
-                           .cfo(cfo(performanceTable, period))
-                           .per(per(performanceTable, period))
-                           .dps(dps(performanceTable, period))
-                           .dividendYield(dividendYield(performanceTable, period))
-                           .build();
+    private Performance performance(Element performanceTable, Period period) {
+        return Performance.builder()
+                          .salesRevenue(salesRevenue(performanceTable, period))
+                          .operatingIncome(operatingIncome(performanceTable, period))
+                          .netIncome(netIncome(performanceTable, period))
+                          .debtRatio(null)
+                          .quickRatio(null)
+                          .reserveRatio(null)
+                          .equity(equity(performanceTable, period))
+                          .cfo(cfo(performanceTable, period))
+                          .per(per(performanceTable, period))
+                          .dps(dps(performanceTable, period))
+                          .dividendYield(dividendYield(performanceTable, period))
+                          .build();
     }
 }

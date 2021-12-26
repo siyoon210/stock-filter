@@ -9,18 +9,18 @@ import me.siyoon.stockfilter.domain.Period;
 
 @Builder
 @AllArgsConstructor
-public class Performances2 { // 기간별 기업 재무실적
+public class Performances { // 기간별 기업 재무실적
 
-    private final Map<Period, Performance2> value;
+    private final Map<Period, Performance> value;
 
-    public List<Performance2> in(List<Period> periods) {
+    public List<Performance> in(List<Period> periods) {
         return periods.stream()
-                      .map(period -> value.getOrDefault(period, Performance2.UNKNOWN_VALUE))
+                      .map(period -> value.getOrDefault(period, Performance.UNKNOWN_VALUE))
                       .collect(Collectors.toList());
     }
 
-    public Performance2 of(Period period) {
-        return value.getOrDefault(period, Performance2.UNKNOWN_VALUE);
+    public Performance of(Period period) {
+        return value.getOrDefault(period, Performance.UNKNOWN_VALUE);
     }
 
     @Override

@@ -9,7 +9,7 @@ import me.siyoon.stockfilter.domain.Performance;
 import me.siyoon.stockfilter.domain.Performances;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.StockInfo;
-import me.siyoon.stockfilter.domain.stability.QuickRatio;
+import me.siyoon.stockfilter.domain.performance.QuickRatio;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

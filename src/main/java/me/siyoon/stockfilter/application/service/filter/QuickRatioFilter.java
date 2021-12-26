@@ -4,9 +4,9 @@ import java.util.List;
 import java.util.function.Predicate;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand.QuickRatioCommand;
-import me.siyoon.stockfilter.domain.Performance;
 import me.siyoon.stockfilter.domain.StockInfo;
-import me.siyoon.stockfilter.domain.stability.QuickRatio;
+import me.siyoon.stockfilter.domain.performance.Performance;
+import me.siyoon.stockfilter.domain.performance.QuickRatio;
 import org.springframework.stereotype.Component;
 
 @Component
