@@ -1,17 +1,18 @@
-package me.siyoon.stockfilter.adapter.out.stockinfo.naver;
+package me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.domain.TradingInfo;
 import me.siyoon.stockfilter.exception.StockInfoParseException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component
-class NaverTradingInfoParser {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class TradingInfoParser {
 
-    public TradingInfo tradingInfo(Document document) {
+    public static TradingInfo tradingInfo(Document document) {
         Double price = price(document);
         Long tradingVolume = tradingVolume(document);
         Long numberOfShares = numberOfShares(document);
@@ -26,7 +27,7 @@ class NaverTradingInfoParser {
                           .build();
     }
 
-    private Double price(Document document) { // 주가
+    private static Double price(Document document) { // 주가
         try {
             String text = document.getElementById("chart_area")
                                   .getElementsByClass("rate_info").get(0)
@@ -40,7 +41,7 @@ class NaverTradingInfoParser {
         }
     }
 
-    private Long tradingVolume(Document document) { // 거래량
+    private static Long tradingVolume(Document document) { // 거래량
         try {
             String text = document.getElementById("chart_area")
                                   .getElementsByClass("rate_info").get(0)
@@ -92,12 +93,12 @@ class NaverTradingInfoParser {
     private Long numberOfShares(Document document) { // 주식수
         try {
             Element numberOfShares = document.getElementById("tab_con1")
-                                      .getElementsByClass("first").get(0)
-                                      .getElementsByTag("table").get(0)
-                                      .getElementsByTag("tbody").get(0)
-                                      .getElementsByTag("tr").get(2)
-                                      .getElementsByTag("td").get(1)
-                                      .getElementsByTag("em").get(0);
+                                             .getElementsByClass("first").get(0)
+                                             .getElementsByTag("table").get(0)
+                                             .getElementsByTag("tbody").get(0)
+                                             .getElementsByTag("tr").get(2)
+                                             .getElementsByTag("td").get(1)
+                                             .getElementsByTag("em").get(0);
             return longValue(numberOfShares.text());
         } catch (Exception e) {
             throw new StockInfoParseException("상장주식수 파싱 실패 " + e.getMessage());

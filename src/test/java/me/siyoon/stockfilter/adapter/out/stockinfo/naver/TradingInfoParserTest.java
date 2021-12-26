@@ -3,6 +3,7 @@ package me.siyoon.stockfilter.adapter.out.stockinfo.naver;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.TradingInfoParser;
 import me.siyoon.stockfilter.domain.TradingInfo;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -15,10 +16,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
-class NaverTradingInfoParserTest {
+class TradingInfoParserTest {
 
     @InjectMocks
-    private NaverTradingInfoParser dut;
+    private TradingInfoParser dut;
 
     private Document document;
 

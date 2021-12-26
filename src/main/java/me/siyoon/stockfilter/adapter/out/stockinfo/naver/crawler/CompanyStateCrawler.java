@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Slf4j
 @Component
-public class CompanyStateCrawler {
+class CompanyStateCrawler {
     // 기업현황 페이지
     private static final String COMPANY_STATE_PAGE_URL = "https://navercomp.wisereport.co.kr/v2/company/c1010001.aspx?cmp_cd=";
 

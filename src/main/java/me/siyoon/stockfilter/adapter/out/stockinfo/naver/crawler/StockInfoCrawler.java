@@ -18,7 +18,7 @@ public class StockInfoCrawler {
     private final CompanyStateCrawler companyStateCrawler;
     private final InvestIndexCrawler investIndexCrawler;
 
-    public List<CrawledData> loadedStockInfos(List<String> stockCodes) {
+    public List<CrawledData> crawledDatas(List<String> stockCodes) {
         WebDriver webDriver = new HtmlUnitDriver(BrowserVersion.CHROME, true);
         try {
             return stockCodes.stream()
@@ -31,6 +31,7 @@ public class StockInfoCrawler {
 
     private CrawledData crawledData(WebDriver webDriver, String stockCode) {
         return CrawledData.builder()
+                          .stockCode(stockCode)
                           .mainPage(mainPageCrawler.mainPage(stockCode))
                           .yearlyFinancialSummary(
                                   companyStateCrawler.yearlyFinancialSummary(webDriver, stockCode))

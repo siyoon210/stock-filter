@@ -8,6 +8,7 @@ import org.jsoup.nodes.Element;
 @Builder
 @AllArgsConstructor
 public class CrawledData {
+    public final String stockCode;
     public final Document mainPage;
     public final Element yearlyFinancialSummary;
     public final Element quarterFinancialSummary;

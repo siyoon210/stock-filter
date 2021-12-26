@@ -17,6 +17,9 @@ public class StockInfo {
     public final String name;
     public final String code;
     public final TradingInfo tradingInfo; // 거래 정보
+    // 모든 기간 데이터는 Performances에 들어간다.
+    // StockInfo는 데이터를 쓰기좋게 정제된 도메인이다.
+    // 실제 하고 싶은건 application에서 진행한다.
     public final Performances performances; // 실적
     public final Performances2 performances2; // 실적
     public final StabilityIndices stabilityIndices; // 안정성 지표

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class MainPageCrawler {
+class MainPageCrawler {
     public static final String MAIN_PAGE_URL = "https://finance.naver.com/item/main.nhn?code=";
 
     Document mainPage(String stockCode) {

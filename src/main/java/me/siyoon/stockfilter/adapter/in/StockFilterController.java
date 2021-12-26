@@ -3,7 +3,6 @@ package me.siyoon.stockfilter.adapter.in;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
-import me.siyoon.stockfilter.adapter.out.stockinfo.naver.StockInfoLoader;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterUseCase;
 import me.siyoon.stockfilter.domain.StockInfo;
@@ -20,8 +19,9 @@ public class StockFilterController {
     @GetMapping("/stock")
     public List<String> stock(@RequestBody StockFilterCommand stockFilterCommand) {
         List<StockInfo> stockInfos = stockFilterUseCase.filteredStocks(stockFilterCommand);
+        String naverMainPageUrl = "https://finance.naver.com/item/main.nhn?code=";
         return stockInfos.stream()
-                         .map(stockInfo -> stockInfo.name + ": " + StockInfoLoader.URL + stockInfo.code)
+                         .map(stockInfo -> stockInfo.name + ": " + naverMainPageUrl + stockInfo.code)
                          .collect(Collectors.toList());
     }
 

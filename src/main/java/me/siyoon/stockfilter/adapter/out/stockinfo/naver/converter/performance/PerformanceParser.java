@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2;
+package me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.performance;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -15,14 +15,14 @@ import org.openqa.selenium.WebDriver;
 import org.springframework.stereotype.Component;
 
 import static java.util.stream.Collectors.toMap;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.CfoParser.cfo;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.DividendYieldParser.dividendYield;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.DpsParser.dps;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.EquityParser.equity;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.NetIncomeParser.netIncome;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.OperatingIncomeParser.operatingIncome;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.PerParser.per;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.SalesRevenueParser.salesRevenue;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.performance.CfoParser.cfo;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.performance.DividendYieldParser.dividendYield;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.performance.DpsParser.dps;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.performance.EquityParser.equity;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.performance.NetIncomeParser.netIncome;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.performance.OperatingIncomeParser.operatingIncome;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.performance.PerParser.per;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.performance.SalesRevenueParser.salesRevenue;
 
 @Slf4j
 @Component

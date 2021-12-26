@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2;
+package me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.performance;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -7,7 +7,7 @@ import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.DPS;
 import org.jsoup.nodes.Element;
 
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.performance2.PerformanceElementParserHelper.element;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.performance.PerformanceElementParserHelper.element;
 import static me.siyoon.stockfilter.adapter.out.util.NumberExtractor.doubleValue;
 
 @Slf4j

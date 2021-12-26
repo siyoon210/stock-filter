@@ -1,15 +1,14 @@
-package me.siyoon.stockfilter.adapter.out.stockinfo.naver;
+package me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import me.siyoon.stockfilter.exception.StockInfoParseException;
 import org.jsoup.nodes.Document;
-import org.springframework.stereotype.Component;
 
-@Component
-@Slf4j
-class NaverStockInfoParser {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+class MainPageParser {
 
-    public String companyName(Document document) {
+    public static String companyName(Document document) {
         try {
             return document.getElementById("middle")
                            .getElementsByTag("h2").get(0)
