@@ -6,7 +6,7 @@ import me.siyoon.stockfilter.exception.StockInfoParseException;
 import org.jsoup.nodes.Document;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-class MainPageParser {
+public class MainInfoParser {
 
     public static String companyName(Document document) {
         try {

@@ -1,11 +1,12 @@
 package me.siyoon.stockfilter.domain;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import me.siyoon.stockfilter.domain.performance.NetIncome;
 
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
 public class PER {
@@ -13,6 +14,13 @@ public class PER {
     public static final PER UNKNOWN_VALUE = new PER(Double.MAX_VALUE);
 
     private final Double value;
+
+    public static PER from(Double value) {
+        if (value == null) {
+            return UNKNOWN_VALUE;
+        }
+        return new PER(value);
+    }
 
     public boolean isLessThan(Double value) {
         if (isNegative()) {

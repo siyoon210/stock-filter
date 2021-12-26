@@ -5,11 +5,11 @@ import java.util.Map;
 import java.util.stream.Stream;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand.DebtRatioCommand;
-import me.siyoon.stockfilter.domain.Performance;
-import me.siyoon.stockfilter.domain.Performances;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.StockInfo;
 import me.siyoon.stockfilter.domain.performance.DebtRatio;
+import me.siyoon.stockfilter.domain.performance.Performance;
+import me.siyoon.stockfilter.domain.performance.Performances;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -55,7 +55,7 @@ class DebtRatioFilterTest {
 
     private StockInfo stockInfo(Double debtRatioValue) {
         Performance performance = Performance.builder()
-                                             .debtRatio(new DebtRatio(debtRatioValue))
+                                             .debtRatio(DebtRatio.from(debtRatioValue))
                                              .build();
         Performances performances = new Performances(Map.of(Period.LAST_YEAR, performance));
 

@@ -5,10 +5,10 @@ import java.util.Map;
 import java.util.stream.Stream;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand.QuickRatioCommand;
-import me.siyoon.stockfilter.domain.Performance;
-import me.siyoon.stockfilter.domain.Performances;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.StockInfo;
+import me.siyoon.stockfilter.domain.performance.Performance;
+import me.siyoon.stockfilter.domain.performance.Performances;
 import me.siyoon.stockfilter.domain.performance.QuickRatio;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -55,7 +55,7 @@ class QuickRatioFilterTest {
 
     private StockInfo stockInfo(Double quickRatioValue) {
         Performance performance = Performance.builder()
-                                             .quickRatio(new QuickRatio(quickRatioValue))
+                                             .quickRatio(QuickRatio.from(quickRatioValue))
                                              .build();
         Performances performances = new Performances(Map.of(Period.LAST_YEAR, performance));
 

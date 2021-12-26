@@ -19,9 +19,10 @@ public class CrawledDataConverter {
 
     private StockInfo stockInfo(CrawledData crawledData) {
         return StockInfo.builder()
-                        .name(MainPageParser.companyName(crawledData.mainPage))
+                        .name(MainInfoParser.companyName(crawledData.mainPage))
                         .code(crawledData.stockCode)
                         .tradingInfo(TradingInfoParser.tradingInfo(crawledData.mainPage))
+                        .performances(PerformanceParser.performances(crawledData))
                         .build();
     }
 }

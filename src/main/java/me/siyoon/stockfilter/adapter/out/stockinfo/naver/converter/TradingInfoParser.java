@@ -93,12 +93,12 @@ public class TradingInfoParser {
     private Long numberOfShares(Document document) { // 주식수
         try {
             Element numberOfShares = document.getElementById("tab_con1")
-                                             .getElementsByClass("first").get(0)
-                                             .getElementsByTag("table").get(0)
-                                             .getElementsByTag("tbody").get(0)
-                                             .getElementsByTag("tr").get(2)
-                                             .getElementsByTag("td").get(1)
-                                             .getElementsByTag("em").get(0);
+                                      .getElementsByClass("first").get(0)
+                                      .getElementsByTag("table").get(0)
+                                      .getElementsByTag("tbody").get(0)
+                                      .getElementsByTag("tr").get(2)
+                                      .getElementsByTag("td").get(0)
+                                      .getElementsByTag("em").get(0);
             return longValue(numberOfShares.text());
         } catch (Exception e) {
             throw new StockInfoParseException("상장주식수 파싱 실패 " + e.getMessage());

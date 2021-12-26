@@ -5,11 +5,11 @@ import java.util.Map;
 import java.util.stream.Stream;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand.OperatingIncomeCommand;
-import me.siyoon.stockfilter.domain.Performance;
-import me.siyoon.stockfilter.domain.Performances;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.StockInfo;
 import me.siyoon.stockfilter.domain.performance.OperatingIncome;
+import me.siyoon.stockfilter.domain.performance.Performance;
+import me.siyoon.stockfilter.domain.performance.Performances;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -56,7 +56,7 @@ class OperatingIncomeFilterTest {
     private StockInfo stockInfo(Double operatingIncomeValue) {
         Performance performance = Performance.builder()
                                              .operatingIncome(
-                                                     new OperatingIncome(operatingIncomeValue))
+                                                     OperatingIncome.from(operatingIncomeValue))
                                              .build();
         Performances performances = new Performances(Map.of(Period.LAST_YEAR, performance));
 

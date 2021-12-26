@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.performance;
+package me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.financial_summary;
 
 import java.util.EnumMap;
 import java.util.Map;
@@ -11,7 +11,7 @@ import org.jsoup.nodes.Element;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-class PerformanceElementParserHelper {
+class FinancialSummaryParseHelper {
 
     private static final Map<Period, Integer> INDEX_BY_PERIOD = new EnumMap<>(Period.class);
 
@@ -37,14 +37,15 @@ class PerformanceElementParserHelper {
         INDEX_BY_PERIOD.putAll(indexByQuarters);
     }
 
-    public static Element element(Element performanceTable, Period period,
+    public static Element element(Element financialSummary, Period period,
                                   String label, int elementIndex) {
-        Element element = performanceTable.getElementsByTag("tbody").get(0)
+        Element element = financialSummary.getElementsByTag("tbody").get(0)
                                           .getElementsByTag("tr").get(elementIndex);
         validateLabel(element, label);
 
         Integer periodIndex = INDEX_BY_PERIOD.get(period);
-        return element.getElementsByTag("td").get(periodIndex);
+        return element.getElementsByTag("td")
+                      .get(periodIndex);
     }
 
     private static void validateLabel(Element element, String label) {
