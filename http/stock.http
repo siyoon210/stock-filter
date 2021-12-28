@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "netIncome": {
-    "test": false,
+    "test": true,
     "unknownValuePass": false,
     "periods": [
       "LAST_YEAR",
@@ -24,17 +24,17 @@ Content-Type: application/json
     "threshold": 0
   },
   "debtRatio": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "LAST_YEAR",
       "TWO_YEARS_AGO",
       "THREE_YEARS_AGO"
     ],
-    "threshold": 100
+    "threshold": 180
   },
   "quickRatio": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "LAST_YEAR",
@@ -52,12 +52,12 @@ Content-Type: application/json
     "threshold": 7000
   },
   "per": {
-    "test": false,
+    "test": true,
     "unknownValuePass": false,
     "periods": [
       "LAST_YEAR"
     ],
-    "threshold": 10
+    "threshold": 20
   },
   "expectedPer": {
     "test": false,
@@ -66,14 +66,13 @@ Content-Type: application/json
   },
   "improvedPer": {
     "test": false,
-    "ratio": 80
+    "ratio": 10
   },
   "dividendYield": {
     "test": true,
     "unknownValuePass": false,
     "periods": [
-      "TWO_YEARS_AGO",
-      "THREE_YEARS_AGO"
+      "LAST_YEAR"
     ],
     "threshold": 2
   },
@@ -84,6 +83,11 @@ Content-Type: application/json
   },
   "annualPriceVolatility": {
     "test": true,
-    "threshold": 1.3
+    "threshold": 1.7
+  },
+  "annualHigherCurrentPriceRatio": {
+    "test": true,
+    "minThreshold": 1.2,
+    "maxThreshold": 1.5
   }
 }

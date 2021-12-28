@@ -21,6 +21,7 @@ public class StockFilterCommand {
     public final DividendYieldCommand dividendYield; // 시가배당률
     public final ExpectedDividendYieldCommand expectedDividendYield; // 예상 배당률
     public final AnnualPriceVolatilityCommand annualPriceVolatility; // 52주 최고가 / 52주 최저가
+    public final AnnualHigherCurrentPriceRatioCommand annualHigherCurrentPriceRatio; // 52주 최고가 / 현재가
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public StockFilterCommand(
@@ -34,7 +35,8 @@ public class StockFilterCommand {
             ImprovedPerCommand improvedPer,
             DividendYieldCommand dividendYield,
             ExpectedDividendYieldCommand expectedDividendYield,
-            AnnualPriceVolatilityCommand annualPriceVolatility) {
+            AnnualPriceVolatilityCommand annualPriceVolatility,
+            AnnualHigherCurrentPriceRatioCommand annualHigherCurrentPriceRatio) {
         this.operatingIncome = operatingIncome;
         this.netIncome = netIncome;
         this.debtRatio = debtRatio;
@@ -46,6 +48,7 @@ public class StockFilterCommand {
         this.dividendYield = dividendYield;
         this.expectedDividendYield = expectedDividendYield;
         this.annualPriceVolatility = annualPriceVolatility;
+        this.annualHigherCurrentPriceRatio = annualHigherCurrentPriceRatio;
     }
 
     @ToString
@@ -248,6 +251,24 @@ public class StockFilterCommand {
             this.test = test;
             this.unknownValuePass = unknownValuePass;
             this.threshold = threshold;
+        }
+    }
+
+    @ToString
+    public static class AnnualHigherCurrentPriceRatioCommand { // 52주 최고가 / 현재주가
+
+        public final boolean test;
+        public final boolean unknownValuePass;
+        public final Double minThreshold;
+        public final Double maxThreshold;
+
+        @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+        public AnnualHigherCurrentPriceRatioCommand(boolean test, boolean unknownValuePass,
+                                            Double minThreshold, Double maxThreshold) {
+            this.test = test;
+            this.unknownValuePass = unknownValuePass;
+            this.minThreshold = minThreshold;
+            this.maxThreshold = maxThreshold;
         }
     }
 }
