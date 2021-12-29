@@ -8,6 +8,8 @@ import me.siyoon.stockfilter.exception.StockInfoParseException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import static me.siyoon.stockfilter.adapter.out.util.NumberExtractor.longValue;
+
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TradingInfoParser {
@@ -17,7 +19,6 @@ public class TradingInfoParser {
         Long tradingVolume = tradingVolume(document);
         Long numberOfShares = numberOfShares(document);
         return TradingInfo.builder()
-                          .marketCap(price * numberOfShares)
                           .price(price)
                           .numberOfShare(numberOfShares)
                           .tradingVolume(tradingVolume)
@@ -58,7 +59,7 @@ public class TradingInfoParser {
         }
     }
 
-    private Double annualHigh(Document document) { // 52주 최고가
+    private static Double annualHigh(Document document) { // 52주 최고가
         try {
             String text = document.getElementById("tab_con1")
                                   .getElementsByTag("div").get(5)
@@ -74,7 +75,7 @@ public class TradingInfoParser {
         }
     }
 
-    private Double annualLow(Document document) { // 52주 최저가
+    private static Double annualLow(Document document) { // 52주 최저가
         try {
             String text = document.getElementById("tab_con1")
                                   .getElementsByTag("div").get(5)
@@ -90,7 +91,7 @@ public class TradingInfoParser {
         }
     }
 
-    private Long numberOfShares(Document document) { // 주식수
+    private static Long numberOfShares(Document document) { // 주식수
         try {
             Element numberOfShares = document.getElementById("tab_con1")
                                       .getElementsByClass("first").get(0)

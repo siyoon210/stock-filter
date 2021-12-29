@@ -19,11 +19,13 @@ public class TradingInfo { // 거래정보
 
     @Builder
     public TradingInfo(Double price, Long numberOfShare, Long tradingVolume,
-                       Double transactionAmount) {
+                       Double transactionAmount, Double annualHigh, Double annualLow) {
         this.marketCap = price * numberOfShare;
         this.price = price;
         this.numberOfShare = numberOfShare;
         this.tradingVolume = tradingVolume;
         this.transactionAmount = transactionAmount;
+        this.annualHigh = annualHigh;
+        this.annualLow = annualLow;
     }
 }
