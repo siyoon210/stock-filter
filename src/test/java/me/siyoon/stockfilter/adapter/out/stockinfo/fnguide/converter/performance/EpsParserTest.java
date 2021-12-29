@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.util.stream.Stream;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.crawler.CrawledData;
 import me.siyoon.stockfilter.domain.Period;
-import me.siyoon.stockfilter.domain.performance.OperatingIncome;
+import me.siyoon.stockfilter.domain.performance.EPS;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,9 +16,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class OperatingIncomeParserTest {
+class EpsParserTest {
 
-    private final OperatingIncomeParser dut = new OperatingIncomeParser();
+    private final EpsParser dut = new EpsParser();
 
     private static Document MAIN_PAGE;
 
@@ -30,25 +30,25 @@ class OperatingIncomeParserTest {
 
     @ParameterizedTest
     @MethodSource
-    void operatingIncome_test(Period period, OperatingIncome expected) {
+    void eps_test(Period period, EPS expected) {
         // given
         CrawledData crawledData = CrawledData.builder()
                                              .mainPage(MAIN_PAGE)
                                              .build();
 
         // when
-        OperatingIncome operatingIncome = dut.operatingIncome(crawledData, period);
+        EPS eps = dut.eps(crawledData, period);
 
         // then
-        assertThat(operatingIncome).isEqualTo(expected);
+        assertThat(eps).isEqualTo(expected);
     }
 
-    private static Stream<Arguments> operatingIncome_test() {
+    private static Stream<Arguments> eps_test() {
         return Stream.of(
-                Arguments.of(Period.LAST_YEAR, OperatingIncome.from(1337.0)),
-                Arguments.of(Period.THIS_YEAR_EXPECTED, OperatingIncome.from(1620.0)),
-                Arguments.of(Period.LAST_QUARTER, OperatingIncome.from(404.0)),
-                Arguments.of(Period.THIS_QUARTER_EXPECTED, OperatingIncome.from(511.0))
+                Arguments.of(Period.LAST_YEAR, EPS.from(2839.0)),
+                Arguments.of(Period.THIS_YEAR_EXPECTED, EPS.from(3196.0)),
+                Arguments.of(Period.LAST_QUARTER, EPS.from(270.0)),
+                Arguments.of(Period.THIS_QUARTER_EXPECTED, EPS.from(1119.0))
         );
     }
 }

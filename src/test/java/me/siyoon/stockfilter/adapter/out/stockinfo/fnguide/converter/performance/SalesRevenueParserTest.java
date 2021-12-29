@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.util.stream.Stream;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.crawler.CrawledData;
 import me.siyoon.stockfilter.domain.Period;
-import me.siyoon.stockfilter.domain.performance.OperatingIncome;
+import me.siyoon.stockfilter.domain.performance.SalesRevenue;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,9 +16,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class OperatingIncomeParserTest {
+class SalesRevenueParserTest {
 
-    private final OperatingIncomeParser dut = new OperatingIncomeParser();
+    private final SalesRevenueParser dut = new SalesRevenueParser();
 
     private static Document MAIN_PAGE;
 
@@ -30,25 +30,25 @@ class OperatingIncomeParserTest {
 
     @ParameterizedTest
     @MethodSource
-    void operatingIncome_test(Period period, OperatingIncome expected) {
+    void salesRevenue_test(Period period, SalesRevenue expected) {
         // given
         CrawledData crawledData = CrawledData.builder()
                                              .mainPage(MAIN_PAGE)
                                              .build();
 
         // when
-        OperatingIncome operatingIncome = dut.operatingIncome(crawledData, period);
+        SalesRevenue salesRevenue = dut.salesRevenue(crawledData, period);
 
         // then
-        assertThat(operatingIncome).isEqualTo(expected);
+        assertThat(salesRevenue).isEqualTo(expected);
     }
 
-    private static Stream<Arguments> operatingIncome_test() {
+    private static Stream<Arguments> salesRevenue_test() {
         return Stream.of(
-                Arguments.of(Period.LAST_YEAR, OperatingIncome.from(1337.0)),
-                Arguments.of(Period.THIS_YEAR_EXPECTED, OperatingIncome.from(1620.0)),
-                Arguments.of(Period.LAST_QUARTER, OperatingIncome.from(404.0)),
-                Arguments.of(Period.THIS_QUARTER_EXPECTED, OperatingIncome.from(511.0))
+                Arguments.of(Period.LAST_YEAR, SalesRevenue.from(24027.0)),
+                Arguments.of(Period.THIS_YEAR_EXPECTED, SalesRevenue.from(26533.0)),
+                Arguments.of(Period.LAST_QUARTER, SalesRevenue.from(6826.0)),
+                Arguments.of(Period.THIS_QUARTER_EXPECTED, SalesRevenue.from(7380.0))
         );
     }
 }

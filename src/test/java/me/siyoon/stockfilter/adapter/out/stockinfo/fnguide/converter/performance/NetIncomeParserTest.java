@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.util.stream.Stream;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.crawler.CrawledData;
 import me.siyoon.stockfilter.domain.Period;
-import me.siyoon.stockfilter.domain.performance.OperatingIncome;
+import me.siyoon.stockfilter.domain.performance.NetIncome;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,9 +16,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class OperatingIncomeParserTest {
+class NetIncomeParserTest {
 
-    private final OperatingIncomeParser dut = new OperatingIncomeParser();
+    private final NetIncomeParser dut = new NetIncomeParser();
 
     private static Document MAIN_PAGE;
 
@@ -30,25 +30,25 @@ class OperatingIncomeParserTest {
 
     @ParameterizedTest
     @MethodSource
-    void operatingIncome_test(Period period, OperatingIncome expected) {
+    void netIncome_test(Period period, NetIncome expected) {
         // given
         CrawledData crawledData = CrawledData.builder()
                                              .mainPage(MAIN_PAGE)
                                              .build();
 
         // when
-        OperatingIncome operatingIncome = dut.operatingIncome(crawledData, period);
+        NetIncome netIncome = dut.netIncome(crawledData, period);
 
         // then
-        assertThat(operatingIncome).isEqualTo(expected);
+        assertThat(netIncome).isEqualTo(expected);
     }
 
-    private static Stream<Arguments> operatingIncome_test() {
+    private static Stream<Arguments> netIncome_test() {
         return Stream.of(
-                Arguments.of(Period.LAST_YEAR, OperatingIncome.from(1337.0)),
-                Arguments.of(Period.THIS_YEAR_EXPECTED, OperatingIncome.from(1620.0)),
-                Arguments.of(Period.LAST_QUARTER, OperatingIncome.from(404.0)),
-                Arguments.of(Period.THIS_QUARTER_EXPECTED, OperatingIncome.from(511.0))
+                Arguments.of(Period.LAST_YEAR, NetIncome.from(855.0)),
+                Arguments.of(Period.THIS_YEAR_EXPECTED, NetIncome.from(989.0)),
+                Arguments.of(Period.LAST_QUARTER, NetIncome.from(91.0)),
+                Arguments.of(Period.THIS_QUARTER_EXPECTED, NetIncome.from(369.0))
         );
     }
 }

@@ -6,7 +6,7 @@ import java.nio.file.Files;
 import java.util.stream.Stream;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.crawler.CrawledData;
 import me.siyoon.stockfilter.domain.Period;
-import me.siyoon.stockfilter.domain.performance.OperatingIncome;
+import me.siyoon.stockfilter.domain.performance.DebtRatio;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.BeforeAll;
@@ -16,9 +16,9 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class OperatingIncomeParserTest {
+class DebtRatioParserTest {
 
-    private final OperatingIncomeParser dut = new OperatingIncomeParser();
+    private final DebtRatioParser dut = new DebtRatioParser();
 
     private static Document MAIN_PAGE;
 
@@ -30,25 +30,25 @@ class OperatingIncomeParserTest {
 
     @ParameterizedTest
     @MethodSource
-    void operatingIncome_test(Period period, OperatingIncome expected) {
+    void debtRatio_test(Period period, DebtRatio expected) {
         // given
         CrawledData crawledData = CrawledData.builder()
                                              .mainPage(MAIN_PAGE)
                                              .build();
 
         // when
-        OperatingIncome operatingIncome = dut.operatingIncome(crawledData, period);
+        DebtRatio debtRatio = dut.debtRatio(crawledData, period);
 
         // then
-        assertThat(operatingIncome).isEqualTo(expected);
+        assertThat(debtRatio).isEqualTo(expected);
     }
 
-    private static Stream<Arguments> operatingIncome_test() {
+    private static Stream<Arguments> debtRatio_test() {
         return Stream.of(
-                Arguments.of(Period.LAST_YEAR, OperatingIncome.from(1337.0)),
-                Arguments.of(Period.THIS_YEAR_EXPECTED, OperatingIncome.from(1620.0)),
-                Arguments.of(Period.LAST_QUARTER, OperatingIncome.from(404.0)),
-                Arguments.of(Period.THIS_QUARTER_EXPECTED, OperatingIncome.from(511.0))
+                Arguments.of(Period.LAST_YEAR, DebtRatio.from(79.73)),
+                Arguments.of(Period.THIS_YEAR_EXPECTED, DebtRatio.from(86.89)),
+                Arguments.of(Period.LAST_QUARTER, DebtRatio.from(90.43)),
+                Arguments.of(Period.THIS_QUARTER_EXPECTED, DebtRatio.UNKNOWN_VALUE)
         );
     }
 }

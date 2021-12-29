@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.adapter.out.stockinfo.naver.crawler.CrawledData;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.SalesRevenue;
+import me.siyoon.stockfilter.exception.StockInfoFatalException;
 import org.jsoup.nodes.Element;
 import org.springframework.stereotype.Component;
 
@@ -21,9 +22,9 @@ public class SalesRevenueParser {
         try {
             Element element = element(crawledData, period, LABEL, ELEMENT_INDEX);
             return SalesRevenue.from(doubleValue(element.text()));
-        } catch (NullPointerException ignored) {
-            return SalesRevenue.UNKNOWN_VALUE;
-        } catch (Exception e) {
+        } catch (StockInfoFatalException e) {
+            throw e;
+        } catch (RuntimeException e) {
             log.warn("SalesRevenueParser. data: {}, period: {}", crawledData, period, e);
             return SalesRevenue.UNKNOWN_VALUE;
         }
