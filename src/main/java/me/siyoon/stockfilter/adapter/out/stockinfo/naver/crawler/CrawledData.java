@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.ToString;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.exception.StockInfoFatalException;
+import me.siyoon.stockfilter.exception.StockInfoParseException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
@@ -42,5 +43,26 @@ public class CrawledData {
         }
 
         throw new StockInfoFatalException("Period 알 수 없음. " + period);
+    }
+
+    public Element performanceTable() {
+        try {
+            Element performanceTable = mainPage.getElementById("content")
+                                               .getElementsByClass("cop_analysis").get(0)
+                                               .getElementsByClass("sub_section").get(0)
+                                               .getElementsByTag("table").get(0);
+
+            if (doesNotHaveAnyPerformanceInfo(performanceTable)) {
+                throw new StockInfoParseException("실적 정보 없음");
+            }
+
+            return performanceTable;
+        } catch (Exception e) {
+            throw new StockInfoParseException("실적 분석 테이블 파싱 실패 " + e.getMessage());
+        }
+    }
+
+    private boolean doesNotHaveAnyPerformanceInfo(Element performanceTable) {
+        return performanceTable.getElementsByTag("caption").isEmpty();
     }
 }

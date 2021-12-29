@@ -30,9 +30,9 @@ class FinancialSummaryParseHelper {
                 Period.THREE_QUARTERS_AGO, 2,
                 Period.TWO_QUARTERS_AGO, 3,
                 Period.LAST_QUARTER, 4,
-                Period.NEXT_QUARTER_EXPECTED, 5,
-                Period.AFTER_TWO_QUARTERS_EXPECTED, 6,
-                Period.AFTER_THREE_QUARTERS_EXPECTED, 7
+                Period.THIS_QUARTER_EXPECTED, 5,
+                Period.NEXT_QUARTER_EXPECTED, 6,
+                Period.AFTER_TWO_QUARTERS_EXPECTED, 7
         );
         INDEX_BY_PERIOD.putAll(indexByQuarters);
     }

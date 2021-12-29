@@ -37,10 +37,10 @@ public class StockInfoCrawler {
                                   companyStateCrawler.yearlyFinancialSummary(webDriver, stockCode))
                           .quarterFinancialSummary(
                                   companyStateCrawler.quarterFinancialSummary(webDriver, stockCode))
-                          .yearlyStabilityIndex(
-                                  investIndexCrawler.yearlyStabilityIndex(webDriver, stockCode))
-                          .quarterStabilityIndex(
-                                  investIndexCrawler.quarterStabilityIndex(webDriver, stockCode))
+//                          .yearlyStabilityIndex(
+//                                  investIndexCrawler.yearlyStabilityIndex(webDriver, stockCode))
+//                          .quarterStabilityIndex(
+//                                  investIndexCrawler.quarterStabilityIndex(webDriver, stockCode))
                           .build();
     }
 }

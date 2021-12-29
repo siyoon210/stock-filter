@@ -20,9 +20,9 @@ import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.financ
 import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.financial_summary.OperatingIncomeParser.operatingIncome;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.financial_summary.PerParser.per;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.financial_summary.SalesRevenueParser.salesRevenue;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.stability_index.DebtRatioParser.debtRatio;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.stability_index.QuickRatioParser.quickRatio;
-import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.stability_index.ReserveRatioParser.reserveRatio;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.main_performance.DebtRatioParser.debtRatio;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.main_performance.QuickRatioParser.quickRatio;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.naver.converter.main_performance.ReserveRatioParser.reserveRatio;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
