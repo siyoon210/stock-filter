@@ -10,7 +10,7 @@ import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.DebtRatio;
 import org.jsoup.nodes.Element;
 
-import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceElementExceptionHandler.handle;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceExceptionHandler.handle;
 import static me.siyoon.stockfilter.adapter.out.util.NumberExtractor.doubleValue;
 
 @Slf4j
@@ -21,7 +21,7 @@ public class DebtRatioExtractor {
 
     static {
         EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .label("부채비율(%) (총부채 / 총자본) * 100부채비율")
+                                                       .labels("부채비율(%) (총부채 / 총자본) * 100부채비율")
                                                        .elementIndex(12)
                                                        .build();
     }

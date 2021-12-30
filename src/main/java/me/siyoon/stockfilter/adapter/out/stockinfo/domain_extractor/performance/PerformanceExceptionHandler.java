@@ -8,7 +8,7 @@ import me.siyoon.stockfilter.exception.StockInfoFatalException;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class PerformanceElementExceptionHandler {
+public class PerformanceExceptionHandler {
 
     public static Object handle(RuntimeException e, String stockCode, Period period,
                                 Object fallBackValue) {

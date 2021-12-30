@@ -10,7 +10,7 @@ import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.EPS;
 import org.jsoup.nodes.Element;
 
-import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceElementExceptionHandler.handle;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceExceptionHandler.handle;
 import static me.siyoon.stockfilter.adapter.out.util.NumberExtractor.doubleValue;
 
 @Slf4j
@@ -21,7 +21,7 @@ public class EpsExtractor {
 
     static {
         EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .label("EPS(원) 지배주주순이익 / 수정평균주식수EPS(원)")
+                                                       .labels("EPS(원) 지배주주순이익 / 수정평균주식수EPS(원)")
                                                        .elementIndex(18)
                                                        .build();
     }

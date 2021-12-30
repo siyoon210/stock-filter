@@ -10,7 +10,7 @@ import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.SalesRevenue;
 import org.jsoup.nodes.Element;
 
-import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceElementExceptionHandler.handle;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceExceptionHandler.handle;
 import static me.siyoon.stockfilter.adapter.out.util.NumberExtractor.doubleValue;
 
 @Slf4j
@@ -21,7 +21,7 @@ public class SalesRevenueExtractor {
 
     static {
         EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .label("매출액")
+                                                       .labels("매출액", "이자수익", "보험료수익")
                                                        .elementIndex(0)
                                                        .build();
     }

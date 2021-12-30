@@ -10,7 +10,7 @@ import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.ReserveRatio;
 import org.jsoup.nodes.Element;
 
-import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceElementExceptionHandler.handle;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceExceptionHandler.handle;
 import static me.siyoon.stockfilter.adapter.out.util.NumberExtractor.doubleValue;
 
 @Slf4j
@@ -21,7 +21,7 @@ public class ReserveRatioExtractor {
 
     static {
         EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .label("유보율(%) (유보액 / 자본금) * 100유보율")
+                                                       .labels("유보율(%) (유보액 / 자본금) * 100유보율")
                                                        .elementIndex(13)
                                                        .build();
     }

@@ -10,7 +10,7 @@ import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.QuickRatio;
 import org.jsoup.nodes.Element;
 
-import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceElementExceptionHandler.handle;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceExceptionHandler.handle;
 import static me.siyoon.stockfilter.adapter.out.util.NumberExtractor.doubleValue;
 
 @Slf4j

@@ -68,8 +68,9 @@ public class FnGuidePerformanceExtractHelper {
     private static void validateLabel(Element tableBody,
                                       FnGuideFinanceTableExtractParam extractParam) {
         String extractedLabel = extractedLabel(tableBody, extractParam.elementIndex);
-        if (!extractParam.label.equals(extractedLabel)) {
-            log.warn("validateHeaderText 에러 {} != {}", extractParam.label, extractedLabel);
+        if (!extractParam.labels.contains(extractedLabel)) {
+            log.warn("validateHeaderText 에러 {} not contains {}",
+                     extractParam.labels, extractedLabel);
             throw new StockInfoFatalException();
         }
     }
