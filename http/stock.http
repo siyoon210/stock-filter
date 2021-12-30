@@ -8,8 +8,7 @@ Content-Type: application/json
     "unknownValuePass": false,
     "periods": [
       "LAST_YEAR",
-      "TWO_YEARS_AGO",
-      "THREE_YEARS_AGO"
+      "TWO_YEARS_AGO"
     ],
     "threshold": 0
   },
@@ -57,24 +56,24 @@ Content-Type: application/json
     "periods": [
       "LAST_YEAR"
     ],
-    "threshold": 20
+    "threshold": 30
   },
   "expectedPer": {
     "test": false,
-    "unknownValuePass": true,
-    "threshold": 10
+    "unknownValuePass": false,
+    "threshold": 100
   },
   "improvedPer": {
     "test": false,
     "ratio": 10
   },
   "dividendYield": {
-    "test": true,
+    "test": false,
     "unknownValuePass": false,
     "periods": [
       "LAST_YEAR"
     ],
-    "threshold": 3
+    "threshold": 2
   },
   "expectedDividendYield": {
     "test": false,
@@ -86,7 +85,7 @@ Content-Type: application/json
     "threshold": 1.7
   },
   "annualHigherCurrentPriceRatio": {
-    "test": true,
+    "test": false,
     "minThreshold": 1.99,
     "maxThreshold": 10
   }
