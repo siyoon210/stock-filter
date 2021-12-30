@@ -8,9 +8,9 @@ import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.
 import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.naver.NaverPerformanceExtractHelper;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.QuickRatio;
-import me.siyoon.stockfilter.exception.StockInfoFatalException;
 import org.jsoup.nodes.Element;
 
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceElementExceptionHandler.handle;
 import static me.siyoon.stockfilter.adapter.out.util.NumberExtractor.doubleValue;
 
 @Slf4j
@@ -31,16 +31,8 @@ public class QuickRatioExtractor {
             Element element = NaverPerformanceExtractHelper.element(crawledData, period,
                                                                     EXTRACT_PARAM);
             return QuickRatio.from(doubleValue(element.text()));
-        } catch (StockInfoFatalException e) {
-            throw e;
-        } catch (NullPointerException e) {
-            log.info("QuickRatioExtractor. NPE stockCode: {}, period: {}",
-                     crawledData.stockCode, period);
-            return QuickRatio.UNKNOWN_VALUE;
         } catch (RuntimeException e) {
-            log.warn("QuickRatioExtractor. stockCode: {}, period: {}",
-                     crawledData.stockCode, period, e);
-            return QuickRatio.UNKNOWN_VALUE;
+            return (QuickRatio) handle(e, crawledData.stockCode, period, QuickRatio.UNKNOWN_VALUE);
         }
     }
 }

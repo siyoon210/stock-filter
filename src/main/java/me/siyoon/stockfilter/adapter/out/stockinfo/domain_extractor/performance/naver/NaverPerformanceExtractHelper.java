@@ -36,8 +36,8 @@ public class NaverPerformanceExtractHelper {
     private static void validateHeaderText(Element element, String elementText) {
         String actualText = element.getElementsByTag("th").get(0).text();
         if (!elementText.equals(actualText)) {
-            throw new StockInfoFatalException(
-                    elementText + " is not equal to expected header text. text = " + actualText);
+            log.warn("validateHeaderText 에러 {} != {}", elementText, actualText);
+            throw new StockInfoFatalException();
         }
     }
 }

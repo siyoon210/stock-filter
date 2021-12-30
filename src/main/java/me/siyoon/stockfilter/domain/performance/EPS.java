@@ -21,6 +21,10 @@ public class EPS { // 주당순이익 (Earning Per Share)
         return new EPS(value);
     }
 
+    public PER calculatedPer(Double price) {
+        return PER.from(price / value);
+    }
+
     public boolean isGreaterThan(Double value) {
         return this.value > value;
     }

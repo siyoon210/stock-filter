@@ -2,16 +2,16 @@ package me.siyoon.stockfilter.application.service.filter;
 
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand.ImprovedPerCommand;
-import me.siyoon.stockfilter.domain.PER;
-import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.StockInfo;
+import me.siyoon.stockfilter.domain.performance.EPS;
+import me.siyoon.stockfilter.domain.performance.PER;
 import org.springframework.stereotype.Component;
 
 @Component
 class ImprovedPerFilter implements StockFilterI {
 
-    // PER이 개선되었는가?
-    // LAST_YEAR 대비해서 THIS_YEAR 예상(추정) PER이 {ratio}만큼 떨어졌는가?
+    // {basePeriod} 대비해서 {targetPeriod} PER이 {ratio}만큼 떨어졌는가?
+    // PER은 현재주가를 기준으로 계산된다. (현재주가 / Period EPS)
     @Override
     public boolean passed(StockFilterCommand filterCommand, StockInfo stockInfo) {
         ImprovedPerCommand command = filterCommand.improvedPer;
@@ -20,14 +20,24 @@ class ImprovedPerFilter implements StockFilterI {
             return true;
         }
 
-        PER lastYearPER = stockInfo.performanceOf(Period.LAST_YEAR).per;
-        PER thisYearPER = stockInfo.performanceOf(Period.THIS_YEAR_EXPECTED).per;
+        EPS basePeriodEPS = stockInfo.performanceOf(command.basePeriod).eps;
+        EPS targetPeriodEPS = stockInfo.performanceOf(command.targetPeriod).eps;
 
-        if (isUnknownValue(lastYearPER, thisYearPER)) {
+        if (unknownValuePass(command, basePeriodEPS, targetPeriodEPS)) {
             return false;
         }
 
-        return test(command, lastYearPER, thisYearPER);
+        Double price = stockInfo.price();
+        PER basePeriodPER = basePeriodEPS.calculatedPer(price);
+        PER targetPeriodPER = targetPeriodEPS.calculatedPer(price);
+
+        return test(command, basePeriodPER, targetPeriodPER);
+    }
+
+    private boolean unknownValuePass(ImprovedPerCommand command, EPS basePeriodEPS,
+                                     EPS targetPeriodEPS) {
+        return command.unknownValuePass &&
+                (basePeriodEPS == EPS.UNKNOWN_VALUE || targetPeriodEPS == EPS.UNKNOWN_VALUE);
     }
 
     private boolean test(ImprovedPerCommand command, PER lastYearPER, PER thisYearPER) {
@@ -41,10 +51,5 @@ class ImprovedPerFilter implements StockFilterI {
         }
 
         return thisYearPER.improvedRatioComparedTo(lastYearPER) > command.ratio;
-    }
-
-    private boolean isUnknownValue(PER lastYearPER,
-                                   PER thisYearPER) {
-        return lastYearPER == PER.UNKNOWN_VALUE || thisYearPER == PER.UNKNOWN_VALUE;
     }
 }

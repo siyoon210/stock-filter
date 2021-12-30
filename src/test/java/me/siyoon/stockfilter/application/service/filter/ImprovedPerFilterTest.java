@@ -4,9 +4,10 @@ import java.util.Map;
 import java.util.stream.Stream;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand.ImprovedPerCommand;
-import me.siyoon.stockfilter.domain.PER;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.StockInfo;
+import me.siyoon.stockfilter.domain.TradingInfo;
+import me.siyoon.stockfilter.domain.performance.EPS;
 import me.siyoon.stockfilter.domain.performance.Performance;
 import me.siyoon.stockfilter.domain.performance.Performances;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -42,11 +43,11 @@ class ImprovedPerFilterTest {
 
     private static Stream<Arguments> passed_test() {
         return Stream.of(
-                Arguments.of(18.0, 14.0, true),
-                Arguments.of(10.0, 7.9, true),
-                Arguments.of(50.0, 39.0, true),
+                Arguments.of(55, 72, true),
+                Arguments.of(100.0, 126.5, true),
+                Arguments.of(20, 2.5, true),
                 Arguments.of(-5.0, 30.0, true),
-                Arguments.of(10.0, 8.0, false),
+                Arguments.of(100.0, 125, false),
                 Arguments.of(5.0, -30.0, false)
         );
     }
@@ -61,19 +62,22 @@ class ImprovedPerFilterTest {
                                  .build();
     }
 
-    private StockInfo stockInfo(Double lastYearPER, Double thisYearPER) {
+    private StockInfo stockInfo(Double lastYearEPS, Double thisYearEPS) {
         Performance lastYearPerformance = Performance.builder()
-                                                     .per(PER.from(lastYearPER))
+                                                     .eps(EPS.from(lastYearEPS))
                                                      .build();
 
         Performance thisYearPerformance = Performance.builder()
-                                                     .per(PER.from(thisYearPER))
+                                                     .eps(EPS.from(thisYearEPS))
                                                      .build();
 
         Performances performances = new Performances(Map.of(Period.LAST_YEAR, lastYearPerformance,
                                                             Period.THIS_YEAR_EXPECTED, thisYearPerformance));
 
         return StockInfo.builder()
+                        .tradingInfo(TradingInfo.builder()
+                                                .price(1000.0)
+                                                .build())
                         .performances(performances)
                         .build();
     }

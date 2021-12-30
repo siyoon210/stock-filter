@@ -4,12 +4,14 @@ import java.util.EnumMap;
 import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.adapter.out.stockinfo.CrawledData;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.exception.StockInfoFatalException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+@Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FnGuidePerformanceExtractHelper {
 
@@ -67,7 +69,8 @@ public class FnGuidePerformanceExtractHelper {
                                       FnGuideFinanceTableExtractParam extractParam) {
         String extractedLabel = extractedLabel(tableBody, extractParam.elementIndex);
         if (!extractParam.label.equals(extractedLabel)) {
-            throw new StockInfoFatalException(extractParam.label + " 파싱 실패. element: " + tableBody);
+            log.warn("validateHeaderText 에러 {} != {}", extractParam.label, extractedLabel);
+            throw new StockInfoFatalException();
         }
     }
 

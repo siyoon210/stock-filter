@@ -13,6 +13,7 @@ import me.siyoon.stockfilter.domain.performance.Performances;
 
 import static java.util.stream.Collectors.toMap;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.DebtRatioExtractor.debtRatio;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.EpsExtractor.eps;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.NetIncomeExtractor.netIncome;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.OperatingIncomeExtractor.operatingIncome;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.QuickRatioExtractor.quickRatio;
@@ -44,6 +45,7 @@ public class PerformanceExtractor {
                           .debtRatio(debtRatio(crawledData, period))
                           .quickRatio(quickRatio(crawledData, period))
                           .reserveRatio(reserveRatio(crawledData, period))
+                          .eps(eps(crawledData, period))
                           .build();
     }
 }

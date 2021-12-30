@@ -189,14 +189,21 @@ public class StockFilterCommand {
 
     @Builder
     @ToString
-    public static class ImprovedPerCommand { // 작년대비 개선된 예측(추정)PER
+    public static class ImprovedPerCommand { // basePeriod 기준 targetPeriod 개선된 PER
 
         public final boolean test;
+        public final boolean unknownValuePass;
+        public final Period basePeriod;
+        public final Period targetPeriod;
         public final Double ratio;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public ImprovedPerCommand(boolean test, Double ratio) {
+        public ImprovedPerCommand(boolean test, boolean unknownValuePass, Period basePeriod,
+                                  Period targetPeriod, Double ratio) {
             this.test = test;
+            this.unknownValuePass = unknownValuePass;
+            this.basePeriod = basePeriod;
+            this.targetPeriod = targetPeriod;
             this.ratio = ratio;
         }
     }

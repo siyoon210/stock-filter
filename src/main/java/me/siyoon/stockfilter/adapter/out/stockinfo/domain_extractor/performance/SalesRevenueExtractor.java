@@ -8,9 +8,9 @@ import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.
 import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.fnguide.FnGuidePerformanceExtractHelper;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.SalesRevenue;
-import me.siyoon.stockfilter.exception.StockInfoFatalException;
 import org.jsoup.nodes.Element;
 
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceElementExceptionHandler.handle;
 import static me.siyoon.stockfilter.adapter.out.util.NumberExtractor.doubleValue;
 
 @Slf4j
@@ -31,16 +31,9 @@ public class SalesRevenueExtractor {
             Element element = FnGuidePerformanceExtractHelper.element(crawledData, period,
                                                                       EXTRACT_PARAM);
             return SalesRevenue.from(doubleValue(element.text()));
-        } catch (StockInfoFatalException e) {
-            throw e;
-        } catch (NullPointerException e) {
-            log.info("SalesRevenueExtractor. NPE stockCode: {}, period: {}",
-                     crawledData.stockCode, period);
-            return SalesRevenue.UNKNOWN_VALUE;
-        }catch (RuntimeException e) {
-            log.warn("SalesRevenueExtractor. stockCode: {}, period: {}",
-                     crawledData.stockCode, period, e);
-            return SalesRevenue.UNKNOWN_VALUE;
+        } catch (RuntimeException e) {
+            return (SalesRevenue) handle(e, crawledData.stockCode, period,
+                                         SalesRevenue.UNKNOWN_VALUE);
         }
     }
 }

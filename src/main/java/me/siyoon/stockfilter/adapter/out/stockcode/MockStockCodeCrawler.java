@@ -6,6 +6,6 @@ public class MockStockCodeCrawler implements StockCodeReader {
 
     @Override
     public List<String> stockCodes() {
-        return List.of("065710", "005935");
+        return List.of("323410", "376300", "003160");
     }
 }

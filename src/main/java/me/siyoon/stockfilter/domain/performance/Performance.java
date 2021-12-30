@@ -3,7 +3,6 @@ package me.siyoon.stockfilter.domain.performance;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.ToString;
-import me.siyoon.stockfilter.domain.PER;
 
 @Builder
 @AllArgsConstructor
@@ -19,6 +18,7 @@ public class Performance { // 기업 재무실적
     public final QuickRatio quickRatio; // 당좌비율
     public final ReserveRatio reserveRatio; // 유보율
     public final Equity equity; // 자본 (순자산)
+    public final EPS eps; // 주당순이익 (Earning Per Share)
     public final CFO cfo; // 영업활동현금흐름 (Cash Flows from Operating)
     public final PER per; // 과거 PER
     public final DPS dps; // 과거 주당 배당금 (Dividend Per Share)
@@ -33,6 +33,7 @@ public class Performance { // 기업 재무실적
                           .quickRatio(QuickRatio.UNKNOWN_VALUE)
                           .reserveRatio(ReserveRatio.UNKNOWN_VALUE)
                           .equity(Equity.UNKNOWN_VALUE)
+                          .eps(EPS.UNKNOWN_VALUE)
                           .cfo(CFO.UNKNOWN_VALUE)
                           .per(PER.UNKNOWN_VALUE)
                           .dps(DPS.UNKNOWN_VALUE)

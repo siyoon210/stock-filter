@@ -1,9 +1,8 @@
-package me.siyoon.stockfilter.domain;
+package me.siyoon.stockfilter.domain.performance;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import me.siyoon.stockfilter.domain.performance.CFO;
 
 @AllArgsConstructor
 @ToString

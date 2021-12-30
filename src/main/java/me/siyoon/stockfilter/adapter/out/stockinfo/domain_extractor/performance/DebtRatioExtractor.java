@@ -8,9 +8,9 @@ import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.
 import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.fnguide.FnGuidePerformanceExtractHelper;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.DebtRatio;
-import me.siyoon.stockfilter.exception.StockInfoFatalException;
 import org.jsoup.nodes.Element;
 
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerformanceElementExceptionHandler.handle;
 import static me.siyoon.stockfilter.adapter.out.util.NumberExtractor.doubleValue;
 
 @Slf4j
@@ -31,15 +31,8 @@ public class DebtRatioExtractor {
             Element element = FnGuidePerformanceExtractHelper.element(crawledData, period,
                                                                       EXTRACT_PARAM);
             return DebtRatio.from(doubleValue(element.text()));
-        } catch (StockInfoFatalException e) {
-            throw e;
-        } catch (NullPointerException e) {
-            log.info("DebtRatioExtractor. NPE stockCode: {}, period: {}",
-                     crawledData.stockCode, period);
-            return DebtRatio.UNKNOWN_VALUE;
         } catch (RuntimeException e) {
-            log.warn("DebtRatioExtractor. stockCode: {}, period: {}", crawledData.stockCode, period, e);
-            return DebtRatio.UNKNOWN_VALUE;
+            return (DebtRatio) handle(e, crawledData.stockCode, period, DebtRatio.UNKNOWN_VALUE);
         }
     }
 }

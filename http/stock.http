@@ -64,8 +64,11 @@ Content-Type: application/json
     "threshold": 100
   },
   "improvedPer": {
-    "test": false,
-    "ratio": 10
+    "test": true,
+    "unknownValuePass": false,
+    "basePeriod": "THIS_YEAR_EXPECTED",
+    "targetPeriod": "NEXT_YEAR_EXPECTED",
+    "ratio": 5
   },
   "dividendYield": {
     "test": false,

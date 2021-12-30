@@ -1,10 +1,9 @@
-package me.siyoon.stockfilter.domain;
+package me.siyoon.stockfilter.domain.performance;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import me.siyoon.stockfilter.domain.performance.NetIncome;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
