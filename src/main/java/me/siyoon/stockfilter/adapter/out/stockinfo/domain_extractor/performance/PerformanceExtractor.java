@@ -38,14 +38,20 @@ public class PerformanceExtractor {
     }
 
     private static Performance performance(CrawledData crawledData, Period period) {
-        return Performance.builder()
-                          .salesRevenue(salesRevenue(crawledData, period))
-                          .operatingIncome(operatingIncome(crawledData, period))
-                          .netIncome(netIncome(crawledData, period))
-                          .debtRatio(debtRatio(crawledData, period))
-                          .quickRatio(quickRatio(crawledData, period))
-                          .reserveRatio(reserveRatio(crawledData, period))
-                          .eps(eps(crawledData, period))
-                          .build();
+        try {
+            return Performance.builder()
+                              .salesRevenue(salesRevenue(crawledData, period))
+                              .operatingIncome(operatingIncome(crawledData, period))
+                              .netIncome(netIncome(crawledData, period))
+                              .debtRatio(debtRatio(crawledData, period))
+                              .quickRatio(quickRatio(crawledData, period))
+                              .reserveRatio(reserveRatio(crawledData, period))
+                              .eps(eps(crawledData, period))
+                              .build();
+        } catch (Exception e) {
+            log.warn("Performance 파싱 실패. stockCode = {}, period = {}",
+                     crawledData.stockCode, period);
+            return Performance.UNKNOWN_VALUE;
+        }
     }
 }

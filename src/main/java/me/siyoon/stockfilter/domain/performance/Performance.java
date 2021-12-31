@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.domain.performance;
 
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.ToString;
@@ -7,7 +8,7 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @ToString
-public class Performance { // 기업 재무실적
+public class Performance implements Serializable { // 기업 재무실적
 
     public static final Performance UNKNOWN_VALUE = unknown();
 

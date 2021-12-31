@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.domain.performance;
 
+import java.io.Serializable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -8,7 +9,7 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class DebtRatio { // 부채비율
+public class DebtRatio implements Serializable { // 부채비율
 
     public static final DebtRatio UNKNOWN_VALUE = new DebtRatio(Double.MAX_VALUE);
 

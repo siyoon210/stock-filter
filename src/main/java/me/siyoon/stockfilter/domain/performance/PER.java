@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.domain.performance;
 
+import java.io.Serializable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -8,7 +9,7 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class PER {
+public class PER implements Serializable {
 
     public static final PER UNKNOWN_VALUE = new PER(Double.MAX_VALUE);
 

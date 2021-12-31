@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.domain.performance;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -9,7 +10,7 @@ import lombok.ToString;
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
-public class NetIncome { // 당기순이익
+public class NetIncome implements Serializable { // 당기순이익
 
     public static final NetIncome UNKNOWN_VALUE = new NetIncome(Double.MIN_VALUE);
 

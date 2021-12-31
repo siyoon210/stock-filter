@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.domain.performance;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -9,7 +10,7 @@ import me.siyoon.stockfilter.domain.Period;
 
 @Builder
 @AllArgsConstructor
-public class Performances { // 기간별 기업 재무실적
+public class Performances implements Serializable { // 기간별 기업 재무실적
 
     private final Map<Period, Performance> value;
 

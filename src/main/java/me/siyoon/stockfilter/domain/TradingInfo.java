@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.domain;
 
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.ToString;
@@ -7,7 +8,8 @@ import lombok.ToString;
 @ToString
 @Builder
 @AllArgsConstructor
-public class TradingInfo { // 거래정보
+public class TradingInfo implements Serializable { // 거래정보
+    public static final TradingInfo EMPTY = TradingInfo.builder().build();
 
     public final Double marketCap; // 시가총액
     public final Double price; // 주가

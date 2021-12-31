@@ -3,6 +3,7 @@ package me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import me.siyoon.stockfilter.adapter.out.stockinfo.CrawledData;
 import me.siyoon.stockfilter.domain.TradingInfo;
 import me.siyoon.stockfilter.exception.StockInfoParseException;
 import org.jsoup.nodes.Document;
@@ -14,18 +15,23 @@ import static me.siyoon.stockfilter.adapter.out.util.NumberExtractor.longValue;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class TradingInfoExtractor {
 
-    public static TradingInfo tradingInfo(Document naverMainPage) {
-        Double price = price(naverMainPage);
-        Long tradingVolume = tradingVolume(naverMainPage);
-        Long numberOfShares = numberOfShares(naverMainPage);
-        return TradingInfo.builder()
-                          .price(price)
-                          .numberOfShare(numberOfShares)
-                          .tradingVolume(tradingVolume)
-                          .transactionAmount(price * tradingVolume)
-                          .annualHigh(annualHigh(naverMainPage))
-                          .annualLow(annualLow(naverMainPage))
-                          .build();
+    public static TradingInfo tradingInfo(CrawledData crawledData) {
+        try {
+            Double price = price(crawledData.naverMainPage);
+            Long tradingVolume = tradingVolume(crawledData.naverMainPage);
+            Long numberOfShares = numberOfShares(crawledData.naverMainPage);
+            return TradingInfo.builder()
+                              .price(price)
+                              .numberOfShare(numberOfShares)
+                              .tradingVolume(tradingVolume)
+                              .transactionAmount(price * tradingVolume)
+                              .annualHigh(annualHigh(crawledData.naverMainPage))
+                              .annualLow(annualLow(crawledData.naverMainPage))
+                              .build();
+        } catch (StockInfoParseException e) {
+            log.info("TradingInfo 파싱실패. StockCode = {}", crawledData.stockCode);
+            return TradingInfo.EMPTY;
+        }
     }
 
     private static Double price(Document naverMainPage) { // 주가

@@ -24,7 +24,7 @@ public class CrawledData {
                                                     .getElementsByTag("table").get(0);
 
             if (doesNotHaveAnyPerformanceInfo(performanceTable)) {
-                throw new StockInfoParseException("실적 정보 없음");
+                return null;
             }
 
             return performanceTable;

@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.domain.performance;
 
+import java.io.Serializable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -8,7 +9,7 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class EPS { // 주당순이익 (Earning Per Share)
+public class EPS implements Serializable { // 주당순이익 (Earning Per Share)
 
     public static final EPS UNKNOWN_VALUE = new EPS(Double.MIN_VALUE);
 

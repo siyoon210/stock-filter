@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.domain.performance;
 
+import java.io.Serializable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -8,7 +9,7 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class DPS { // 주당 배당금 (Dividend Per Share)
+public class DPS implements Serializable { // 주당 배당금 (Dividend Per Share)
 
     public static final DPS UNKNOWN_VALUE = new DPS(Double.MIN_VALUE);
 

@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.domain.performance;
 
+import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
@@ -7,7 +8,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class PSR {
+public class PSR implements Serializable {
 
     public static final PSR UNKNOWN_VALUE = new PSR(Double.MAX_VALUE);
 

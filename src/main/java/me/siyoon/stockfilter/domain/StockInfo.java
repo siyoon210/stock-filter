@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.domain;
 
+import java.io.Serializable;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +12,9 @@ import me.siyoon.stockfilter.domain.performance.Performances;
 @AllArgsConstructor
 @Builder
 @ToString
-public class StockInfo {
+public class StockInfo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     public final String name;
     public final String code;

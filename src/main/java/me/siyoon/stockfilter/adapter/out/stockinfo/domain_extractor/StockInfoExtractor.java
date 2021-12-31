@@ -20,9 +20,9 @@ public class StockInfoExtractor {
 
     private StockInfo stockInfo(CrawledData crawledData) {
         return StockInfo.builder()
-                        .name(BasicInfoExtractor.companyName(crawledData.naverMainPage))
+                        .name(BasicInfoExtractor.companyName(crawledData))
                         .code(crawledData.stockCode)
-                        .tradingInfo(TradingInfoExtractor.tradingInfo(crawledData.naverMainPage))
+                        .tradingInfo(TradingInfoExtractor.tradingInfo(crawledData))
                         .performances(PerformanceExtractor.performances(crawledData))
                         .build();
     }

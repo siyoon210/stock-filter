@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.domain.performance;
 
+import java.io.Serializable;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -8,7 +9,7 @@ import lombok.ToString;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @ToString
 @EqualsAndHashCode
-public class ReserveRatio { // 유보율
+public class ReserveRatio implements Serializable { // 유보율
 
     public static final ReserveRatio UNKNOWN_VALUE = new ReserveRatio(Double.MIN_VALUE);
 
