@@ -68,7 +68,7 @@ Content-Type: application/json
     "unknownValuePass": false,
     "basePeriod": "THIS_YEAR_EXPECTED",
     "targetPeriod": "NEXT_YEAR_EXPECTED",
-    "ratio": 5
+    "ratio": 50
   },
   "dividendYield": {
     "test": false,

@@ -21,7 +21,8 @@ public class SalesRevenueExtractor {
 
     static {
         EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .labels("매출액", "이자수익", "보험료수익")
+                                                       .labels("매출액", "이자수익", "보험료수익", "영업수익",
+                                                               "순영업수익")
                                                        .elementIndex(0)
                                                        .build();
     }

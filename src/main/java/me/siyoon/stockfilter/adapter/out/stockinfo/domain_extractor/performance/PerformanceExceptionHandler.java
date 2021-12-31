@@ -27,6 +27,12 @@ public class PerformanceExceptionHandler {
             return fallBackValue;
         }
 
+        if (e instanceof IndexOutOfBoundsException) {
+            log.info("{} IndexOutOfBoundsException stockCode: {}, period: {}",
+                     elementClassName, stockCode, period);
+            return fallBackValue;
+        }
+
         log.warn("{} stockCode: {}, period: {}",
                  elementClassName, stockCode, period, e);
         return fallBackValue;

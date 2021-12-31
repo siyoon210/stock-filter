@@ -24,7 +24,7 @@ class ImprovedPerFilter implements StockFilterI {
         EPS targetPeriodEPS = stockInfo.performanceOf(command.targetPeriod).eps;
 
         if (unknownValuePass(command, basePeriodEPS, targetPeriodEPS)) {
-            return false;
+            return true;
         }
 
         Double price = stockInfo.price();
@@ -46,7 +46,7 @@ class ImprovedPerFilter implements StockFilterI {
             return true;
         }
 
-        if (thisYearPER.isNegative()) {
+        if (lastYearPER == PER.UNKNOWN_VALUE || thisYearPER == PER.UNKNOWN_VALUE) {
             return false;
         }
 
