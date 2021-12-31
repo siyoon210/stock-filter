@@ -22,13 +22,13 @@ public class PerformanceExceptionHandler {
         }
 
         if (e instanceof NullPointerException) {
-            log.info("{} NPE stockCode: {}, period: {}",
+            log.debug("{} NPE stockCode: {}, period: {}",
                      elementClassName, stockCode, period);
             return fallBackValue;
         }
 
         if (e instanceof IndexOutOfBoundsException) {
-            log.info("{} IndexOutOfBoundsException stockCode: {}, period: {}",
+            log.debug("{} IndexOutOfBoundsException stockCode: {}, period: {}",
                      elementClassName, stockCode, period);
             return fallBackValue;
         }

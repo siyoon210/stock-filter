@@ -9,6 +9,7 @@ import me.siyoon.stockfilter.domain.StockInfo;
 import me.siyoon.stockfilter.domain.TradingInfo;
 import me.siyoon.stockfilter.domain.performance.Performance;
 import me.siyoon.stockfilter.domain.performance.Performances;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 
@@ -17,6 +18,7 @@ class StockInfoFileRepositoryTest {
     @InjectMocks
     private StockInfoFileRepository dut;
 
+    @Disabled
     @Test
     void write_test() {
         List<StockInfo> stockInfos = stockInfos();
@@ -46,6 +48,7 @@ class StockInfoFileRepositoryTest {
                            .build();
     }
 
+    @Disabled
     @Test
     void read_test() {
         List<StockInfo> read = dut.findAll();

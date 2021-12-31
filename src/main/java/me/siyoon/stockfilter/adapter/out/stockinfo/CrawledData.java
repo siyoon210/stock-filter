@@ -18,22 +18,21 @@ public class CrawledData {
 
     public Element naverPerformanceTable() {
         try {
-            Element performanceTable = naverMainPage.getElementById("content")
-                                                    .getElementsByClass("cop_analysis").get(0)
-                                                    .getElementsByClass("sub_section").get(0)
-                                                    .getElementsByTag("table").get(0);
-
-            if (doesNotHaveAnyPerformanceInfo(performanceTable)) {
+            if (doesNotHaveAnyPerformanceInfo()) {
                 return null;
             }
 
-            return performanceTable;
+            return naverMainPage.getElementById("content")
+                                .getElementsByClass("cop_analysis").get(0)
+                                .getElementsByClass("sub_section").get(0)
+                                .getElementsByTag("table").get(0);
         } catch (Exception e) {
             throw new StockInfoParseException("실적 분석 테이블 파싱 실패 " + e.getMessage());
         }
     }
 
-    private boolean doesNotHaveAnyPerformanceInfo(Element performanceTable) {
-        return performanceTable.getElementsByTag("caption").isEmpty();
+    private boolean doesNotHaveAnyPerformanceInfo() {
+        return naverMainPage.getElementById("content")
+                            .getElementsByClass("cop_analysis").isEmpty();
     }
 }

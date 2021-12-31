@@ -29,7 +29,7 @@ public class TradingInfoExtractor {
                               .annualLow(annualLow(crawledData.naverMainPage))
                               .build();
         } catch (StockInfoParseException e) {
-            log.info("TradingInfo 파싱실패. StockCode = {}", crawledData.stockCode);
+            log.debug("TradingInfo 파싱실패. StockCode = {}", crawledData.stockCode);
             return TradingInfo.EMPTY;
         }
     }

@@ -32,7 +32,9 @@ public class StockInfoFileRepository implements StockInfoRepositoryPort {
         try (FileInputStream fileInput = new FileInputStream(FILE_PATH);
              ObjectInputStream objectInput = new ObjectInputStream(fileInput)){
 
-            return (List<StockInfo>) objectInput.readObject();
+            List<StockInfo> stockInfos = (List<StockInfo>) objectInput.readObject();
+            log.warn("StockInfoFile 읽기 성공. size={}", stockInfos.size());
+            return stockInfos;
         } catch (Exception e) {
             log.warn("StockInfoFile 읽기 실패.");
             return Collections.emptyList();

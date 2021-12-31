@@ -29,10 +29,10 @@ class ImprovedPerFilterTest {
 
     @ParameterizedTest(name = "(예상 PER)이 작년대비 RATIO(20) 이상 개선되었으면 pass")
     @MethodSource
-    void passed_test(Double lastYearPER, Double thisYearPER, boolean expect) {
+    void passed_test(Double basePeriodEPS, Double targetPeriodEPS, boolean expect) {
         // given
         StockFilterCommand filterCommand = stockFilterCommand();
-        StockInfo stockInfo = stockInfo(lastYearPER, thisYearPER);
+        StockInfo stockInfo = stockInfo(basePeriodEPS, targetPeriodEPS);
 
         // when
         boolean actual = dut.passed(filterCommand, stockInfo);
@@ -43,12 +43,14 @@ class ImprovedPerFilterTest {
 
     private static Stream<Arguments> passed_test() {
         return Stream.of(
-                Arguments.of(55, 72, true),
-                Arguments.of(100.0, 126.5, true),
-                Arguments.of(20, 2.5, true),
-                Arguments.of(-5.0, 30.0, true),
-                Arguments.of(100.0, 125, false),
-                Arguments.of(5.0, -30.0, false)
+//                Arguments.of(55.0, 72.0, true),
+//                Arguments.of(100.0, 126.5, true),
+//                Arguments.of(-5.0, 30.0, true),
+//                Arguments.of(-9.0, 1632.0, true),
+//                Arguments.of(5.0, -30.0, false),
+//                Arguments.of(20.0, 2.5, false),
+//                Arguments.of(100.0, 125.0, false),
+                Arguments.of(-2820.0, null, false)
         );
     }
 
@@ -56,23 +58,25 @@ class ImprovedPerFilterTest {
         ImprovedPerCommand improvedPerCommand = ImprovedPerCommand.builder()
                                                                   .test(true)
                                                                   .ratio(RATIO)
+                                                                  .basePeriod(Period.LAST_YEAR)
+                                                                  .targetPeriod(Period.THIS_YEAR_EXPECTED)
                                                                   .build();
         return StockFilterCommand.builder()
                                  .improvedPer(improvedPerCommand)
                                  .build();
     }
 
-    private StockInfo stockInfo(Double lastYearEPS, Double thisYearEPS) {
-        Performance lastYearPerformance = Performance.builder()
-                                                     .eps(EPS.from(lastYearEPS))
+    private StockInfo stockInfo(Double basePeriodEPS, Double targetPeriodEPS) {
+        Performance basePeriodPerformance = Performance.builder()
+                                                     .eps(EPS.from(basePeriodEPS))
                                                      .build();
 
-        Performance thisYearPerformance = Performance.builder()
-                                                     .eps(EPS.from(thisYearEPS))
+        Performance targetPeriodPerformance = Performance.builder()
+                                                     .eps(EPS.from(targetPeriodEPS))
                                                      .build();
 
-        Performances performances = new Performances(Map.of(Period.LAST_YEAR, lastYearPerformance,
-                                                            Period.THIS_YEAR_EXPECTED, thisYearPerformance));
+        Performances performances = new Performances(Map.of(Period.LAST_YEAR, basePeriodPerformance,
+                                                            Period.THIS_YEAR_EXPECTED, targetPeriodPerformance));
 
         return StockInfo.builder()
                         .tradingInfo(TradingInfo.builder()

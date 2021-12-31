@@ -40,16 +40,20 @@ class ImprovedPerFilter implements StockFilterI {
                 (basePeriodEPS == EPS.UNKNOWN_VALUE || targetPeriodEPS == EPS.UNKNOWN_VALUE);
     }
 
-    private boolean test(ImprovedPerCommand command, PER lastYearPER, PER thisYearPER) {
-        // (PER)이 양수로 전환된 경우는 pass로 간주한다.
-        if (lastYearPER.isNegative() && thisYearPER.isPositive()) {
-            return true;
-        }
-
-        if (lastYearPER == PER.UNKNOWN_VALUE || thisYearPER == PER.UNKNOWN_VALUE) {
+    private boolean test(ImprovedPerCommand command, PER basePeriodPER, PER targetPeriodPER) {
+        if (basePeriodPER.equals(PER.UNKNOWN_VALUE) || targetPeriodPER.equals(PER.UNKNOWN_VALUE)) {
             return false;
         }
 
-        return thisYearPER.improvedRatioComparedTo(lastYearPER) > command.ratio;
+        // (PER)이 양수로 전환된 경우는 pass로 간주한다. todo 턴어라운드시에 pass로 볼지 command로 입력받아서 처리하기
+        if (basePeriodPER.isNegative() && targetPeriodPER.isPositive()) {
+            return true;
+        }
+
+        if (targetPeriodPER.isNegative()) {
+            return false;
+        }
+
+        return targetPeriodPER.improvedRatioComparedTo(basePeriodPER) > command.ratio;
     }
 }

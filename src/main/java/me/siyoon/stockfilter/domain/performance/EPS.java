@@ -23,7 +23,7 @@ public class EPS implements Serializable { // 주당순이익 (Earning Per Share
     }
 
     public PER calculatedPer(Double price) {
-        if (price == null) {
+        if (this.equals(UNKNOWN_VALUE) || price == null) {
             return PER.UNKNOWN_VALUE;
         }
         return PER.from(price / value);
