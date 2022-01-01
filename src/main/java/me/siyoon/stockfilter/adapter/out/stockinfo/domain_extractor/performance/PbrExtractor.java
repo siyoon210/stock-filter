@@ -21,7 +21,7 @@ public class PbrExtractor {
 
     static {
         EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .labels("PBR(배) 수정주가(보통주) / 수정BPSPBR")
+                                                       .labels("PBR(배)")
                                                        .elementIndex(22)
                                                        .build();
     }

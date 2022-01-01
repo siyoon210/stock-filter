@@ -21,7 +21,7 @@ public class ReserveRatioExtractor {
 
     static {
         EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .labels("유보율(%) (유보액 / 자본금) * 100유보율")
+                                                       .labels("유보율(%)")
                                                        .elementIndex(13)
                                                        .build();
     }

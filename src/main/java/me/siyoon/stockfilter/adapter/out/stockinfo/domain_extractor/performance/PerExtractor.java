@@ -21,7 +21,7 @@ public class PerExtractor {
 
     static {
         EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .labels("PER(배) 수정주가(보통주) / 수정EPSPER")
+                                                       .labels("PER(배)")
                                                        .elementIndex(21)
                                                        .build();
     }

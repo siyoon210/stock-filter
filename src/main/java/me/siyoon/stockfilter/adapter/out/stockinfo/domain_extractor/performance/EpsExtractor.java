@@ -21,7 +21,7 @@ public class EpsExtractor {
 
     static {
         EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .labels("EPS(원) 지배주주순이익 / 수정평균주식수EPS(원)")
+                                                       .labels("EPS(원)")
                                                        .elementIndex(18)
                                                        .build();
     }

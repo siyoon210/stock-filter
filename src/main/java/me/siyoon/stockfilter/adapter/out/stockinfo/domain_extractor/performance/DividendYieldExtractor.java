@@ -21,7 +21,7 @@ public class DividendYieldExtractor {
 
     static {
         EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .labels("배당수익률(%) (배당금(보통주,현금) / 시가총액(보통)) * 100배당수익률")
+                                                       .labels("배당수익률(%)")
                                                        .elementIndex(24)
                                                        .build();
     }

@@ -76,7 +76,12 @@ public class FnGuidePerformanceExtractHelper {
     }
 
     private static String extractedLabel(Element tableBody, int elementIndex) {
-        return tableBody.getElementsByTag("tr").get(elementIndex)
-                        .getElementsByTag("th").get(0).text();
+        Element th = tableBody.getElementsByTag("tr").get(elementIndex)
+                              .getElementsByTag("th").get(0);
+        if (th.getElementsByTag("dl").isEmpty()) {
+            return th.text();
+        }
+        return th.getElementsByTag("dl").get(0)
+                 .getElementsByTag("dt").get(0).text();
     }
 }

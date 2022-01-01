@@ -21,7 +21,7 @@ public class DpsExtractor {
 
     static {
         EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .labels("DPS(원) DPS(보통주,현금) * 무상조정수정계수(보통주)DPS(원)")
+                                                       .labels("DPS(원)")
                                                        .elementIndex(20)
                                                        .build();
     }

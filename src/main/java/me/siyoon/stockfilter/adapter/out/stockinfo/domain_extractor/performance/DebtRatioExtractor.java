@@ -21,7 +21,7 @@ public class DebtRatioExtractor {
 
     static {
         EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .labels("부채비율(%) (총부채 / 총자본) * 100부채비율")
+                                                       .labels("부채비율(%)")
                                                        .elementIndex(12)
                                                        .build();
     }
