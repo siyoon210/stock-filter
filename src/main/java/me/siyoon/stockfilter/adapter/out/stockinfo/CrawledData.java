@@ -1,6 +1,5 @@
 package me.siyoon.stockfilter.adapter.out.stockinfo;
 
-import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.ToString;
@@ -11,7 +10,7 @@ import org.jsoup.nodes.Element;
 @Builder
 @AllArgsConstructor
 @ToString
-public class CrawledData implements Serializable {
+public class CrawledData {
 
     public final String stockCode;
     public final Document naverMainPage;
