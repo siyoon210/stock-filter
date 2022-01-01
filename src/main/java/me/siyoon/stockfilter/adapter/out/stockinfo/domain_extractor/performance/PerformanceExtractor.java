@@ -13,6 +13,8 @@ import me.siyoon.stockfilter.domain.performance.Performances;
 
 import static java.util.stream.Collectors.toMap;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.DebtRatioExtractor.debtRatio;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.DividendYieldExtractor.dividendYield;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.DpsExtractor.dps;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.EpsExtractor.eps;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.NetIncomeExtractor.netIncome;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.OperatingIncomeExtractor.operatingIncome;
@@ -47,6 +49,8 @@ public class PerformanceExtractor {
                               .quickRatio(quickRatio(crawledData, period))
                               .reserveRatio(reserveRatio(crawledData, period))
                               .eps(eps(crawledData, period))
+                              .dividendYield(dividendYield(crawledData, period))
+                              .dps(dps(crawledData, period))
                               .build();
         } catch (Exception e) {
             log.warn("Performance 파싱 실패. stockCode = {}, period = {}",

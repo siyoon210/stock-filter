@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class StockInfoExtractor {
 
-    public List<StockInfo> stockInfos(List<CrawledData> crawledDatas) {
+    public List<StockInfo> stockInfosFrom(List<CrawledData> crawledDatas) {
         return crawledDatas.parallelStream()
                            .map(this::stockInfo)
                            .collect(Collectors.toList());

@@ -4,16 +4,18 @@ Content-Type: application/json
 
 {
   "netIncome": {
-    "test": false,
+    "test": true,
     "unknownValuePass": false,
     "periods": [
       "LAST_YEAR",
-      "TWO_YEARS_AGO"
+      "TWO_YEARS_AGO",
+      "THREE_YEARS_AGO",
+      "THIS_YEAR_EXPECTED"
     ],
     "threshold": 0
   },
   "operatingIncome": {
-    "test": false,
+    "test": true,
     "unknownValuePass": false,
     "periods": [
       "LAST_YEAR",
@@ -64,19 +66,19 @@ Content-Type: application/json
     "threshold": 100
   },
   "improvedPer": {
-    "test": true,
+    "test": false,
     "unknownValuePass": false,
     "basePeriod": "THIS_YEAR_EXPECTED",
     "targetPeriod": "NEXT_YEAR_EXPECTED",
-    "ratio": 50
+    "ratio": 20
   },
   "dividendYield": {
-    "test": false,
+    "test": true,
     "unknownValuePass": false,
     "periods": [
       "LAST_YEAR"
     ],
-    "threshold": 2
+    "threshold": 1
   },
   "expectedDividendYield": {
     "test": false,

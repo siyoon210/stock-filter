@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class StockInfoRetrieveLoader implements StockInfoRetrievePort {
+public class StockInfoRetrieveProcessor implements StockInfoRetrievePort {
 
     private final StockCodeReader stockCodeReader;
     private final StockInfoDataCrawler stockInfoDataCrawler;
@@ -23,6 +23,6 @@ public class StockInfoRetrieveLoader implements StockInfoRetrievePort {
     public List<StockInfo> loadedStockInfos() {
         List<String> stockCodes = stockCodeReader.stockCodes();
         List<CrawledData> crawledDatas = stockInfoDataCrawler.crawledDatas(stockCodes);
-        return stockInfoExtractor.stockInfos(crawledDatas);
+        return stockInfoExtractor.stockInfosFrom(crawledDatas);
     }
 }
