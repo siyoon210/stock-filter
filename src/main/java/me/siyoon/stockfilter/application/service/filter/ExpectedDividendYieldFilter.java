@@ -11,7 +11,7 @@ import me.siyoon.stockfilter.domain.performance.Performance;
 import org.springframework.stereotype.Component;
 
 @Component
-class ExpectationDividendYieldFilter implements StockFilterI {
+class ExpectedDividendYieldFilter implements StockFilterI {
 
     // {expectedDividendYield}(예상 배당률)이 THIS_YEAR 기간동안 {threshold} 이상인가
     @Override

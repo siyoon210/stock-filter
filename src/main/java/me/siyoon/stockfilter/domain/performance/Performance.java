@@ -22,6 +22,7 @@ public class Performance implements Serializable { // 기업 재무실적
     public final EPS eps; // 주당순이익 (Earning Per Share)
     public final CFO cfo; // 영업활동현금흐름 (Cash Flows from Operating)
     public final PER per; // 과거 PER
+    public final PBR pbr; // 과거 PBR
     public final DPS dps; // 과거 주당 배당금 (Dividend Per Share)
     public final DividendYield dividendYield; // 과거 시가배당률
 
@@ -37,6 +38,7 @@ public class Performance implements Serializable { // 기업 재무실적
                           .eps(EPS.UNKNOWN_VALUE)
                           .cfo(CFO.UNKNOWN_VALUE)
                           .per(PER.UNKNOWN_VALUE)
+                          .pbr(PBR.UNKNOWN_VALUE)
                           .dps(DPS.UNKNOWN_VALUE)
                           .dividendYield(DividendYield.UNKNOWN_VALUE)
                           .build();

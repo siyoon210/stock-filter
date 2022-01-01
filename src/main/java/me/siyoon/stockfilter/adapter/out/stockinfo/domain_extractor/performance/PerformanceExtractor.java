@@ -18,6 +18,8 @@ import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.perfo
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.EpsExtractor.eps;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.NetIncomeExtractor.netIncome;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.OperatingIncomeExtractor.operatingIncome;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PbrExtractor.pbr;
+import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.PerExtractor.per;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.QuickRatioExtractor.quickRatio;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.ReserveRatioExtractor.reserveRatio;
 import static me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.SalesRevenueExtractor.salesRevenue;
@@ -48,7 +50,9 @@ public class PerformanceExtractor {
                               .debtRatio(debtRatio(crawledData, period))
                               .quickRatio(quickRatio(crawledData, period))
                               .reserveRatio(reserveRatio(crawledData, period))
+                              .per(per(crawledData, period))
                               .eps(eps(crawledData, period))
+                              .pbr(pbr(crawledData, period))
                               .dividendYield(dividendYield(crawledData, period))
                               .dps(dps(crawledData, period))
                               .build();

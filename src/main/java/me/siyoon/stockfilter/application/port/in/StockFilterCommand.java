@@ -16,6 +16,7 @@ public class StockFilterCommand {
     public final QuickRatioCommand quickRatio; // 당좌비율
     public final ReserveRatioCommand reserveRatio; // 유보율
     public final PerCommand per; // PER
+    public final PbrCommand pbr; // PBR
     public final ExpectedPerCommand expectedPer; // 예상(추정) PER
     public final ImprovedPerCommand improvedPer; // per 개선
     public final DividendYieldCommand dividendYield; // 시가배당률
@@ -31,6 +32,7 @@ public class StockFilterCommand {
             QuickRatioCommand quickRatio,
             ReserveRatioCommand reserveRatio,
             PerCommand per,
+            PbrCommand pbr,
             ExpectedPerCommand expectedPer,
             ImprovedPerCommand improvedPer,
             DividendYieldCommand dividendYield,
@@ -43,6 +45,7 @@ public class StockFilterCommand {
         this.quickRatio = quickRatio;
         this.reserveRatio = reserveRatio;
         this.per = per;
+        this.pbr = pbr;
         this.expectedPer = expectedPer;
         this.improvedPer = improvedPer;
         this.dividendYield = dividendYield;
@@ -171,6 +174,26 @@ public class StockFilterCommand {
 
     @ToString
     @Builder
+    public static class PbrCommand { // PBR
+
+        public final boolean test;
+        public final boolean unknownValuePass;
+        public final List<Period> periods;
+        public final Double threshold;
+
+        @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+        public PbrCommand(boolean test, boolean unknownValuePass,
+                          List<Period> periods,
+                          Double threshold) {
+            this.test = test;
+            this.unknownValuePass = unknownValuePass;
+            this.periods = periods;
+            this.threshold = threshold;
+        }
+    }
+
+    @ToString
+    @Builder
     public static class ExpectedPerCommand { // 예상(추정) PER
 
         public final boolean test;
@@ -233,14 +256,16 @@ public class StockFilterCommand {
 
         public final boolean test;
         public final boolean unknownValuePass;
-        public final List<Period> periods = List.of(Period.THIS_YEAR_EXPECTED);
+        public final List<Period> periods;
         public final Double threshold;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
         public ExpectedDividendYieldCommand(boolean test, boolean unknownValuePass,
+                                            List<Period> periods,
                                             Double threshold) {
             this.test = test;
             this.unknownValuePass = unknownValuePass;
+            this.periods = periods;
             this.threshold = threshold;
         }
     }

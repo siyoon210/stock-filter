@@ -24,6 +24,9 @@ public class DPS implements Serializable { // 주당 배당금 (Dividend Per Sha
     }
 
     public DividendYield expectedDividendYield(Double price) { // 예상 배당률
+        if (price == null) {
+            return DividendYield.UNKNOWN_VALUE;
+        }
         return DividendYield.from(value / price * 100);
     }
 }
