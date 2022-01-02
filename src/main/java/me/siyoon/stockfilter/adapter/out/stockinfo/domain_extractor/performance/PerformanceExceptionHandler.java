@@ -4,7 +4,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.domain.Period;
-import me.siyoon.stockfilter.exception.StockInfoFatalException;
+import me.siyoon.stockfilter.exception.StockInfoErrorException;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
@@ -14,15 +14,15 @@ public class PerformanceExceptionHandler {
                                 Object fallBackValue) {
         String elementClassName = fallBackValue.getClass().getSimpleName();
 
-        if (e instanceof StockInfoFatalException) {
+        if (e instanceof StockInfoErrorException) {
             String errorMessage = String.format(
-                    "%s StockInfoFatalException. stockCode:%s, period:%s",
+                    "%s StockInfoErrorException. stockCode:%s, period:%s",
                     elementClassName, stockCode, period);
-            throw new StockInfoFatalException(errorMessage);
+            throw new StockInfoErrorException(errorMessage);
         }
 
         if (e instanceof NullPointerException) {
-            log.debug("{} NPE stockCode: {}, period: {}",
+            log.debug("{} NullPointerException stockCode: {}, period: {}",
                      elementClassName, stockCode, period);
             return fallBackValue;
         }

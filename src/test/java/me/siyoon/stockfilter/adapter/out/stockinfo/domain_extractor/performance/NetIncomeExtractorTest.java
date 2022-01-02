@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.stream.Stream;
-import me.siyoon.stockfilter.adapter.out.stockinfo.CrawledData;
+import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.CrawledData;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.NetIncome;
 import org.jsoup.Jsoup;

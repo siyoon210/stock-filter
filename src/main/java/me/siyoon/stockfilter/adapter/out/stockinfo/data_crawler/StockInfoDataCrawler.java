@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.siyoon.stockfilter.adapter.out.stockinfo.CrawledData;
+import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.CrawledData;
 import org.springframework.stereotype.Component;
 
 @Slf4j

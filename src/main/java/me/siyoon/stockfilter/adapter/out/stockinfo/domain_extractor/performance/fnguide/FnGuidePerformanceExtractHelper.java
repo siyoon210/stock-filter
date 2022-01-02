@@ -5,9 +5,9 @@ import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.siyoon.stockfilter.adapter.out.stockinfo.CrawledData;
+import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.CrawledData;
 import me.siyoon.stockfilter.domain.Period;
-import me.siyoon.stockfilter.exception.StockInfoFatalException;
+import me.siyoon.stockfilter.exception.StockInfoErrorException;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
@@ -62,7 +62,7 @@ public class FnGuidePerformanceExtractHelper {
             return "highlight_D_Q";
         }
 
-        throw new StockInfoFatalException("Unknown Period : " + period);
+        throw new StockInfoErrorException("Unknown Period : " + period);
     }
 
     private static void validateLabel(Element tableBody,
@@ -71,7 +71,7 @@ public class FnGuidePerformanceExtractHelper {
         if (!extractParam.labels.contains(extractedLabel)) {
             log.warn("validateHeaderText 에러 {} not contains {}",
                      extractParam.labels, extractedLabel);
-            throw new StockInfoFatalException();
+            throw new StockInfoErrorException();
         }
     }
 

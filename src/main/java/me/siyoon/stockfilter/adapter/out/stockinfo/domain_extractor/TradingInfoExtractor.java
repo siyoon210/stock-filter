@@ -3,7 +3,7 @@ package me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.siyoon.stockfilter.adapter.out.stockinfo.CrawledData;
+import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.CrawledData;
 import me.siyoon.stockfilter.domain.TradingInfo;
 import me.siyoon.stockfilter.exception.StockInfoParseException;
 import org.jsoup.nodes.Document;
@@ -17,16 +17,17 @@ public class TradingInfoExtractor {
 
     public static TradingInfo tradingInfo(CrawledData crawledData) {
         try {
-            Double price = price(crawledData.naverMainPage);
-            Long tradingVolume = tradingVolume(crawledData.naverMainPage);
-            Long numberOfShares = numberOfShares(crawledData.naverMainPage);
+            Document naverMainPage = crawledData.naverMainPage().document();
+            Double price = price(naverMainPage);
+            Long tradingVolume = tradingVolume(naverMainPage);
+            Long numberOfShares = numberOfShares(naverMainPage);
             return TradingInfo.builder()
                               .price(price)
                               .numberOfShare(numberOfShares)
                               .tradingVolume(tradingVolume)
                               .transactionAmount(price * tradingVolume)
-                              .annualHigh(annualHigh(crawledData.naverMainPage))
-                              .annualLow(annualLow(crawledData.naverMainPage))
+                              .annualHigh(annualHigh(naverMainPage))
+                              .annualLow(annualLow(naverMainPage))
                               .build();
         } catch (StockInfoParseException e) {
             log.debug("TradingInfo 파싱실패. StockCode = {}", crawledData.stockCode);

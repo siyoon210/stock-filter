@@ -4,16 +4,16 @@ import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.siyoon.stockfilter.adapter.out.stockinfo.CrawledData;
+import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.CrawledData;
 import me.siyoon.stockfilter.domain.Period;
-import me.siyoon.stockfilter.exception.StockInfoFatalException;
+import me.siyoon.stockfilter.exception.StockInfoErrorException;
 import org.jsoup.nodes.Element;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class NaverPerformanceExtractHelper {
 
-    private static final Map<Period, Integer> INDEX_BY_PERIOD
+    private static final Map<Period, Integer> INDEX_OF_PERIOD
             = Map.of(Period.THREE_YEARS_AGO, 0,
                      Period.TWO_YEARS_AGO, 1,
                      Period.LAST_YEAR, 2,
@@ -25,19 +25,23 @@ public class NaverPerformanceExtractHelper {
                      Period.THIS_QUARTER_EXPECTED, 9);
 
     public static Element element(CrawledData crawledData, Period period,
-                                  NaverCompanyStateTableExtractParam EXTRACT_PARAM) {
-        Element element = crawledData.naverPerformanceTable()
+                                  NaverCompanyStateTableExtractParam extractParam) {
+        Element element = crawledData.naverMainPage().document()
+                                     .getElementById("content")
+                                     .getElementsByClass("cop_analysis").get(0)
+                                     .getElementsByClass("sub_section").get(0)
+                                     .getElementsByTag("table").get(0)
                                      .getElementsByTag("tbody").get(0)
-                                     .getElementsByTag("tr").get(EXTRACT_PARAM.elementIndex);
-        validateHeaderText(element, EXTRACT_PARAM.label);
-        return element.getElementsByTag("td").get(INDEX_BY_PERIOD.get(period));
+                                     .getElementsByTag("tr").get(extractParam.elementIndex);
+        validateHeaderText(element, extractParam.label);
+        return element.getElementsByTag("td").get(INDEX_OF_PERIOD.get(period));
     }
 
     private static void validateHeaderText(Element element, String elementText) {
         String actualText = element.getElementsByTag("th").get(0).text();
         if (!elementText.equals(actualText)) {
             log.warn("validateHeaderText 에러 {} != {}", elementText, actualText);
-            throw new StockInfoFatalException();
+            throw new StockInfoErrorException();
         }
     }
 }

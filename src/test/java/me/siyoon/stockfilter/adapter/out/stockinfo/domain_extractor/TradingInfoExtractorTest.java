@@ -3,7 +3,7 @@ package me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import me.siyoon.stockfilter.adapter.out.stockinfo.CrawledData;
+import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.CrawledData;
 import me.siyoon.stockfilter.domain.TradingInfo;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

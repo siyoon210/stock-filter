@@ -3,7 +3,7 @@ package me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.siyoon.stockfilter.adapter.out.stockinfo.CrawledData;
+import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.CrawledData;
 import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.naver.NaverCompanyStateTableExtractParam;
 import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.naver.NaverPerformanceExtractHelper;
 import me.siyoon.stockfilter.domain.Period;

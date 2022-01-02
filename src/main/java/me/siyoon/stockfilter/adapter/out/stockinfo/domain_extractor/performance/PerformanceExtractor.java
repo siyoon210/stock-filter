@@ -6,7 +6,7 @@ import java.util.Map;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.siyoon.stockfilter.adapter.out.stockinfo.CrawledData;
+import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.CrawledData;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.Performance;
 import me.siyoon.stockfilter.domain.performance.Performances;
