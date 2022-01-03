@@ -19,12 +19,13 @@ public class CrawledData {
     @Builder
     public CrawledData(String stockCode,
                        Document naverMainPage, Document fnGuideMainPage,
-                       Document annualFinancialSummaryPage,
-                       Document quarterFinancialSummaryPage) {
+                       Document naverAnnualFinancialSummaryPage,
+                       Document naverQuarterFinancialSummaryPage) {
         this.stockCode = stockCode;
         this.naverMainPage = NaverMainPage.from(naverMainPage);
         this.fnGuideMainPage = fnGuideMainPage;
-        this.naverFinancialSummaryPage = NaverFinancialSummaryPage.of(annualFinancialSummaryPage,
-                                                                      quarterFinancialSummaryPage);
+        this.naverFinancialSummaryPage = NaverFinancialSummaryPage.of(
+                naverAnnualFinancialSummaryPage,
+                naverQuarterFinancialSummaryPage);
     }
 }
