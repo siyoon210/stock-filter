@@ -41,8 +41,8 @@ public class SerializableCrawledData implements Serializable {
                           .stockCode(stockCode)
                           .naverMainPage(Jsoup.parse(naverMainPage))
                           .fnGuideMainPage(Jsoup.parse(fnGuideMainPage))
-                          .annualFinancialSummaryPage(Jsoup.parse(annualFinancialSummaryPage))
-                          .quarterFinancialSummaryPage(Jsoup.parse(quarterFinancialSummaryPage))
+                          .naverAnnualFinancialSummaryPage(Jsoup.parse(annualFinancialSummaryPage))
+                          .naverQuarterFinancialSummaryPage(Jsoup.parse(quarterFinancialSummaryPage))
                           .build();
     }
 }
