@@ -3,13 +3,16 @@ package me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.stream.Stream;
 import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.CrawledData;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.SalesRevenue;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,8 +32,9 @@ class SalesRevenueExtractor2Test {
                                                                               .toPath()));
     }
 
-    @Test
-    void _test() {
+    @ParameterizedTest
+    @MethodSource
+    void salesRevenue_test(Period period, SalesRevenue expected) {
         // given
         CrawledData crawledData = CrawledData.builder()
                                              .naverAnnualFinancialSummaryPage(
@@ -38,13 +42,21 @@ class SalesRevenueExtractor2Test {
                                              .naverQuarterFinancialSummaryPage(
                                                      NAVER_QUARTER_FIN_SUMMARY_PAGE)
                                              .build();
-        Period period = Period.LAST_YEAR;
 
         // when
-        SalesRevenue salesRevenue = SalesRevenueExtractor2.salesRevenue(crawledData, period);
+        SalesRevenue actual = SalesRevenueExtractor2.salesRevenue(crawledData, period);
 
         // then
-        //2,326
-        assertThat(salesRevenue).isEqualTo(SalesRevenue.from(2326.0));
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> salesRevenue_test() {
+        return Stream.of(
+                Arguments.of(Period.LAST_YEAR, SalesRevenue.from(2326.0)),
+                Arguments.of(Period.THIS_YEAR_EXPECTED, SalesRevenue.from(3047.0)),
+                Arguments.of(Period.TWO_QUARTERS_AGO, SalesRevenue.from(650.0)),
+                Arguments.of(Period.LAST_QUARTER, SalesRevenue.from(688.0)),
+                Arguments.of(Period.THIS_QUARTER_EXPECTED, SalesRevenue.UNKNOWN_VALUE)
+        );
     }
 }

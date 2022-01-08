@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.naver;
+package me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.naver.company_state;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
