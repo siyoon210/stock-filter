@@ -4,8 +4,8 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.CrawledData;
+import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.naver.company_state.NaverCompanyStateExtractHelper;
 import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.naver.company_state.NaverCompanyStateTableExtractParam;
-import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.naver.company_state.NaverPerformanceExtractHelper;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.QuickRatio;
 import org.jsoup.nodes.Element;
@@ -28,8 +28,8 @@ public class QuickRatioExtractor {
 
     public static QuickRatio quickRatio(CrawledData crawledData, Period period) {
         try {
-            Element element = NaverPerformanceExtractHelper.element(crawledData, period,
-                                                                    EXTRACT_PARAM);
+            Element element = NaverCompanyStateExtractHelper.element(crawledData, period,
+                                                                     EXTRACT_PARAM);
             return QuickRatio.from(doubleValue(element.text()));
         } catch (RuntimeException e) {
             return (QuickRatio) handle(e, crawledData.stockCode, period, QuickRatio.UNKNOWN_VALUE);

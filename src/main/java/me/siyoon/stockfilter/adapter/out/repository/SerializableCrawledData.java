@@ -4,7 +4,7 @@ import java.io.Serializable;
 import lombok.Builder;
 import lombok.ToString;
 import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.CrawledData;
-import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.NaverFinancialSummaryPage;
+import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.NaverFinSummaryPage;
 import org.jsoup.Jsoup;
 
 @ToString
@@ -12,27 +12,23 @@ public class SerializableCrawledData implements Serializable {
 
     public final String stockCode;
     public final String naverMainPage;
-    public final String fnGuideMainPage;
-    public final String annualFinancialSummaryPage;
-    public final String quarterFinancialSummaryPage;
+    public final String annualFinSummaryPage;
+    public final String quarterFinSummaryPage;
 
     @Builder
     public SerializableCrawledData(String stockCode, String naverMainPage,
-                                   String fnGuideMainPage,
-                                   NaverFinancialSummaryPage naverFinancialSummaryPage) {
+                                   NaverFinSummaryPage naverFinSummaryPage) {
         this.stockCode = stockCode;
         this.naverMainPage = naverMainPage;
-        this.fnGuideMainPage = fnGuideMainPage;
-        this.annualFinancialSummaryPage = naverFinancialSummaryPage.annualFinancialSummaryPage.html();
-        this.quarterFinancialSummaryPage = naverFinancialSummaryPage.quarterFinancialSummaryPage.html();
+        this.annualFinSummaryPage = naverFinSummaryPage.annualFinSummaryPage.html();
+        this.quarterFinSummaryPage = naverFinSummaryPage.quarterFinSummaryPage.html();
     }
 
     public static SerializableCrawledData from(CrawledData crawledData) {
         return SerializableCrawledData.builder()
                                       .stockCode(crawledData.stockCode)
                                       .naverMainPage(crawledData.naverMainPage().document().html())
-                                      .fnGuideMainPage(crawledData.fnGuideMainPage.html())
-                                      .naverFinancialSummaryPage(crawledData.naverFinancialSummaryPage)
+                                      .naverFinSummaryPage(crawledData.naverFinSummaryPage)
                                       .build();
     }
 
@@ -40,9 +36,8 @@ public class SerializableCrawledData implements Serializable {
         return CrawledData.builder()
                           .stockCode(stockCode)
                           .naverMainPage(Jsoup.parse(naverMainPage))
-                          .fnGuideMainPage(Jsoup.parse(fnGuideMainPage))
-                          .naverAnnualFinancialSummaryPage(Jsoup.parse(annualFinancialSummaryPage))
-                          .naverQuarterFinancialSummaryPage(Jsoup.parse(quarterFinancialSummaryPage))
+                          .naverAnnualFinSummaryPage(Jsoup.parse(annualFinSummaryPage))
+                          .naverQuarterFinSummaryPage(Jsoup.parse(quarterFinSummaryPage))
                           .build();
     }
 }

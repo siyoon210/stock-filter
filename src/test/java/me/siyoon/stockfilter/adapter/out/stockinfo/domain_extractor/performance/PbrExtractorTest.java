@@ -18,13 +18,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PbrExtractorTest {
 
-    private static Document FN_GUIDE_MAIN_PAGE;
+    private static Document NAVER_ANNUAL_FIN_SUMMARY_PAGE;
+    private static Document NAVER_QUARTER_FIN_SUMMARY_PAGE;
 
     @BeforeAll
     static void setUp() throws IOException {
-        File sampleHtml = new File(
-                "src/test/java/me/siyoon/stockfilter/resource/fnguide/fnguide-main-sample.html");
-        FN_GUIDE_MAIN_PAGE = Jsoup.parse(Files.readString(sampleHtml.toPath()));
+        NAVER_ANNUAL_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-annual-financial-summary-sample.html")
+                                                                             .toPath()));
+
+        NAVER_QUARTER_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-quarter-financial-summary-sample.html")
+                                                                              .toPath()));
     }
 
     @ParameterizedTest
@@ -32,21 +37,24 @@ class PbrExtractorTest {
     void pbr_test(Period period, PBR expected) {
         // given
         CrawledData crawledData = CrawledData.builder()
-                                             .fnGuideMainPage(FN_GUIDE_MAIN_PAGE)
+                                             .naverAnnualFinSummaryPage(
+                                                     NAVER_ANNUAL_FIN_SUMMARY_PAGE)
+                                             .naverQuarterFinSummaryPage(
+                                                     NAVER_QUARTER_FIN_SUMMARY_PAGE)
                                              .build();
 
         // when
-        PBR pbr = PbrExtractor.pbr(crawledData, period);
+        PBR actual = PbrExtractor.pbr(crawledData, period);
 
         // then
-        assertThat(pbr).isEqualTo(expected);
+        assertThat(actual).isEqualTo(expected);
     }
 
     private static Stream<Arguments> pbr_test() {
         return Stream.of(
-                Arguments.of(Period.LAST_YEAR, PBR.from(1.32)),
-                Arguments.of(Period.THIS_YEAR_EXPECTED, PBR.from(1.14)),
-                Arguments.of(Period.LAST_QUARTER, PBR.from(1.36)),
+                Arguments.of(Period.LAST_YEAR, PBR.from(0.83)),
+                Arguments.of(Period.THIS_YEAR_EXPECTED, PBR.UNKNOWN_VALUE),
+                Arguments.of(Period.LAST_QUARTER, PBR.from(0.79)),
                 Arguments.of(Period.THIS_QUARTER_EXPECTED, PBR.UNKNOWN_VALUE)
         );
     }

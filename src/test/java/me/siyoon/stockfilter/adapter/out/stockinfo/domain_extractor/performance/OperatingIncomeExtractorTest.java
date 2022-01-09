@@ -17,13 +17,19 @@ import org.junit.jupiter.params.provider.MethodSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class OperatingIncomeExtractorTest {
-    private static Document FN_GUIDE_MAIN_PAGE;
+
+    private static Document NAVER_ANNUAL_FIN_SUMMARY_PAGE;
+    private static Document NAVER_QUARTER_FIN_SUMMARY_PAGE;
 
     @BeforeAll
     static void setUp() throws IOException {
-        File sampleHtml = new File(
-                "src/test/java/me/siyoon/stockfilter/resource/fnguide/fnguide-main-sample.html");
-        FN_GUIDE_MAIN_PAGE = Jsoup.parse(Files.readString(sampleHtml.toPath()));
+        NAVER_ANNUAL_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-annual-financial-summary-sample.html")
+                                                                             .toPath()));
+
+        NAVER_QUARTER_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-quarter-financial-summary-sample.html")
+                                                                              .toPath()));
     }
 
     @ParameterizedTest
@@ -31,23 +37,25 @@ class OperatingIncomeExtractorTest {
     void operatingIncome_test(Period period, OperatingIncome expected) {
         // given
         CrawledData crawledData = CrawledData.builder()
-                                             .fnGuideMainPage(FN_GUIDE_MAIN_PAGE)
+                                             .naverAnnualFinSummaryPage(
+                                                     NAVER_ANNUAL_FIN_SUMMARY_PAGE)
+                                             .naverQuarterFinSummaryPage(
+                                                     NAVER_QUARTER_FIN_SUMMARY_PAGE)
                                              .build();
 
         // when
-        OperatingIncome operatingIncome = OperatingIncomeExtractor.operatingIncome(crawledData,
-                                                                                   period);
+        OperatingIncome actual = OperatingIncomeExtractor.operatingIncome(crawledData, period);
 
         // then
-        assertThat(operatingIncome).isEqualTo(expected);
+        assertThat(actual).isEqualTo(expected);
     }
 
     private static Stream<Arguments> operatingIncome_test() {
         return Stream.of(
-                Arguments.of(Period.LAST_YEAR, OperatingIncome.from(1337.0)),
-                Arguments.of(Period.THIS_YEAR_EXPECTED, OperatingIncome.from(1620.0)),
-                Arguments.of(Period.LAST_QUARTER, OperatingIncome.from(404.0)),
-                Arguments.of(Period.THIS_QUARTER_EXPECTED, OperatingIncome.from(511.0))
+                Arguments.of(Period.LAST_YEAR, OperatingIncome.from(165.0)),
+                Arguments.of(Period.THIS_YEAR_EXPECTED, OperatingIncome.from(235.0)),
+                Arguments.of(Period.LAST_QUARTER, OperatingIncome.from(62.0)),
+                Arguments.of(Period.THIS_QUARTER_EXPECTED, OperatingIncome.UNKNOWN_VALUE)
         );
     }
 }

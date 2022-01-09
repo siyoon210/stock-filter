@@ -27,10 +27,8 @@ public class StockInfoDataCrawler {
         return CrawledData.builder()
                           .stockCode(stockCode)
                           .naverMainPage(naverMainPage(stockCode))
-                          .naverAnnualFinancialSummaryPage(
-                                  naverAnnualFinancialSummaryPage(stockCode))
-                          .naverQuarterFinancialSummaryPage(
-                                  naverQuarterFinancialSummaryPage(stockCode))
+                          .naverAnnualFinSummaryPage(naverAnnualFinSummaryPage(stockCode))
+                          .naverQuarterFinSummaryPage(naverQuarterFinSummaryPage(stockCode))
                           .build();
     }
 
@@ -38,11 +36,11 @@ public class StockInfoDataCrawler {
         return naverMainPageCrawler.mainPage(stockCode);
     }
 
-    private Document naverAnnualFinancialSummaryPage(String stockCode) {
-        return naverCompanySatePageCrawler.annualFinancialSummaryPage(stockCode);
+    private Document naverAnnualFinSummaryPage(String stockCode) {
+        return naverCompanySatePageCrawler.annualFinSummaryPage(stockCode);
     }
 
-    private Document naverQuarterFinancialSummaryPage(String stockCode) {
-        return naverCompanySatePageCrawler.quarterFinancialSummaryPage(stockCode);
+    private Document naverQuarterFinSummaryPage(String stockCode) {
+        return naverCompanySatePageCrawler.quarterFinSummaryPage(stockCode);
     }
 }

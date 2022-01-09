@@ -11,7 +11,7 @@ import org.jsoup.nodes.Element;
 
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class NaverPerformanceExtractHelper {
+public class NaverCompanyStateExtractHelper {
 
     private static final Map<Period, Integer> INDEX_OF_PERIOD
             = Map.of(Period.THREE_YEARS_AGO, 0,

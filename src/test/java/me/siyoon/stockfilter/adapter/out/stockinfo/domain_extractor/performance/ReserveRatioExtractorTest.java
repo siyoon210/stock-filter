@@ -18,13 +18,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class ReserveRatioExtractorTest {
 
-    private static Document FN_GUIDE_MAIN_PAGE;
+    private static Document NAVER_ANNUAL_FIN_SUMMARY_PAGE;
+    private static Document NAVER_QUARTER_FIN_SUMMARY_PAGE;
 
     @BeforeAll
     static void setUp() throws IOException {
-        File sampleHtml = new File(
-                "src/test/java/me/siyoon/stockfilter/resource/fnguide/fnguide-main-sample.html");
-        FN_GUIDE_MAIN_PAGE = Jsoup.parse(Files.readString(sampleHtml.toPath()));
+        NAVER_ANNUAL_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-annual-financial-summary-sample.html")
+                                                                             .toPath()));
+
+        NAVER_QUARTER_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-quarter-financial-summary-sample.html")
+                                                                              .toPath()));
     }
 
     @ParameterizedTest
@@ -32,21 +37,24 @@ class ReserveRatioExtractorTest {
     void reserveRatio_test(Period period, ReserveRatio expected) {
         // given
         CrawledData crawledData = CrawledData.builder()
-                                             .fnGuideMainPage(FN_GUIDE_MAIN_PAGE)
+                                             .naverAnnualFinSummaryPage(
+                                                     NAVER_ANNUAL_FIN_SUMMARY_PAGE)
+                                             .naverQuarterFinSummaryPage(
+                                                     NAVER_QUARTER_FIN_SUMMARY_PAGE)
                                              .build();
 
         // when
-        ReserveRatio reserveRatio = ReserveRatioExtractor.reserveRatio(crawledData, period);
+        ReserveRatio actual = ReserveRatioExtractor.reserveRatio(crawledData, period);
 
         // then
-        assertThat(reserveRatio).isEqualTo(expected);
+        assertThat(actual).isEqualTo(expected);
     }
 
     private static Stream<Arguments> reserveRatio_test() {
         return Stream.of(
-                Arguments.of(Period.LAST_YEAR, ReserveRatio.from(858.03)),
+                Arguments.of(Period.LAST_YEAR, ReserveRatio.from(2506.22)),
                 Arguments.of(Period.THIS_YEAR_EXPECTED, ReserveRatio.UNKNOWN_VALUE),
-                Arguments.of(Period.LAST_QUARTER, ReserveRatio.from(883.02)),
+                Arguments.of(Period.LAST_QUARTER, ReserveRatio.from(2651.17)),
                 Arguments.of(Period.THIS_QUARTER_EXPECTED, ReserveRatio.UNKNOWN_VALUE)
         );
     }

@@ -17,13 +17,19 @@ import org.junit.jupiter.params.provider.MethodSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class SalesRevenueExtractorTest {
-    private static Document FN_GUIDE_MAIN_PAGE;
+
+    private static Document NAVER_ANNUAL_FIN_SUMMARY_PAGE;
+    private static Document NAVER_QUARTER_FIN_SUMMARY_PAGE;
 
     @BeforeAll
     static void setUp() throws IOException {
-        File sampleHtml = new File(
-                "src/test/java/me/siyoon/stockfilter/resource/fnguide/fnguide-main-sample.html");
-        FN_GUIDE_MAIN_PAGE = Jsoup.parse(Files.readString(sampleHtml.toPath()));
+        NAVER_ANNUAL_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-annual-financial-summary-sample.html")
+                                                                             .toPath()));
+
+        NAVER_QUARTER_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-quarter-financial-summary-sample.html")
+                                                                              .toPath()));
     }
 
     @ParameterizedTest
@@ -31,22 +37,26 @@ class SalesRevenueExtractorTest {
     void salesRevenue_test(Period period, SalesRevenue expected) {
         // given
         CrawledData crawledData = CrawledData.builder()
-                                             .fnGuideMainPage(FN_GUIDE_MAIN_PAGE)
+                                             .naverAnnualFinSummaryPage(
+                                                     NAVER_ANNUAL_FIN_SUMMARY_PAGE)
+                                             .naverQuarterFinSummaryPage(
+                                                     NAVER_QUARTER_FIN_SUMMARY_PAGE)
                                              .build();
 
         // when
-        SalesRevenue salesRevenue = SalesRevenueExtractor.salesRevenue(crawledData, period);
+        SalesRevenue actual = SalesRevenueExtractor.salesRevenue(crawledData, period);
 
         // then
-        assertThat(salesRevenue).isEqualTo(expected);
+        assertThat(actual).isEqualTo(expected);
     }
 
     private static Stream<Arguments> salesRevenue_test() {
         return Stream.of(
-                Arguments.of(Period.LAST_YEAR, SalesRevenue.from(24027.0)),
-                Arguments.of(Period.THIS_YEAR_EXPECTED, SalesRevenue.from(26533.0)),
-                Arguments.of(Period.LAST_QUARTER, SalesRevenue.from(6826.0)),
-                Arguments.of(Period.THIS_QUARTER_EXPECTED, SalesRevenue.from(7380.0))
+                Arguments.of(Period.LAST_YEAR, SalesRevenue.from(2326.0)),
+                Arguments.of(Period.THIS_YEAR_EXPECTED, SalesRevenue.from(3047.0)),
+                Arguments.of(Period.TWO_QUARTERS_AGO, SalesRevenue.from(650.0)),
+                Arguments.of(Period.LAST_QUARTER, SalesRevenue.from(688.0)),
+                Arguments.of(Period.THIS_QUARTER_EXPECTED, SalesRevenue.UNKNOWN_VALUE)
         );
     }
 }

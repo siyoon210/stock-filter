@@ -18,13 +18,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class DividendYieldExtractorTest {
 
-    private static Document FN_GUIDE_MAIN_PAGE;
+    private static Document NAVER_ANNUAL_FIN_SUMMARY_PAGE;
+    private static Document NAVER_QUARTER_FIN_SUMMARY_PAGE;
 
     @BeforeAll
     static void setUp() throws IOException {
-        File sampleHtml = new File(
-                "src/test/java/me/siyoon/stockfilter/resource/fnguide/fnguide-main-sample.html");
-        FN_GUIDE_MAIN_PAGE = Jsoup.parse(Files.readString(sampleHtml.toPath()));
+        NAVER_ANNUAL_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-annual-financial-summary-sample.html")
+                                                                             .toPath()));
+
+        NAVER_QUARTER_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-quarter-financial-summary-sample.html")
+                                                                              .toPath()));
     }
 
     @ParameterizedTest
@@ -32,21 +37,23 @@ class DividendYieldExtractorTest {
     void dividendYield_test(Period period, DividendYield expected) {
         // given
         CrawledData crawledData = CrawledData.builder()
-                                             .fnGuideMainPage(FN_GUIDE_MAIN_PAGE)
+                                             .naverAnnualFinSummaryPage(
+                                                     NAVER_ANNUAL_FIN_SUMMARY_PAGE)
+                                             .naverQuarterFinSummaryPage(
+                                                     NAVER_QUARTER_FIN_SUMMARY_PAGE)
                                              .build();
 
         // when
-        DividendYield dividendYield = DividendYieldExtractor.dividendYield(crawledData, period);
+        DividendYield actual = DividendYieldExtractor.dividendYield(crawledData, period);
 
         // then
-        assertThat(dividendYield).isEqualTo(expected);
+        assertThat(actual).isEqualTo(expected);
     }
 
     private static Stream<Arguments> dividendYield_test() {
         return Stream.of(
-                Arguments.of(Period.TWO_YEARS_AGO, DividendYield.from(2.20)),
-                Arguments.of(Period.LAST_YEAR, DividendYield.from(1.74)),
-                Arguments.of(Period.THIS_YEAR_EXPECTED, DividendYield.UNKNOWN_VALUE),
+                Arguments.of(Period.LAST_YEAR, DividendYield.from(2.87)),
+                Arguments.of(Period.THIS_YEAR_EXPECTED, DividendYield.from(2.48)),
                 Arguments.of(Period.LAST_QUARTER, DividendYield.UNKNOWN_VALUE),
                 Arguments.of(Period.THIS_QUARTER_EXPECTED, DividendYield.UNKNOWN_VALUE)
         );

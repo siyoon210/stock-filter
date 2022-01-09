@@ -18,13 +18,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class DebtRatioExtractorTest {
 
-    private static Document FN_GUIDE_MAIN_PAGE;
+    private static Document NAVER_ANNUAL_FIN_SUMMARY_PAGE;
+    private static Document NAVER_QUARTER_FIN_SUMMARY_PAGE;
 
     @BeforeAll
     static void setUp() throws IOException {
-        File sampleHtml = new File(
-                "src/test/java/me/siyoon/stockfilter/resource/fnguide/fnguide-main-sample.html");
-        FN_GUIDE_MAIN_PAGE = Jsoup.parse(Files.readString(sampleHtml.toPath()));
+        NAVER_ANNUAL_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-annual-financial-summary-sample.html")
+                                                                             .toPath()));
+
+        NAVER_QUARTER_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-quarter-financial-summary-sample.html")
+                                                                              .toPath()));
     }
 
     @ParameterizedTest
@@ -32,22 +37,25 @@ class DebtRatioExtractorTest {
     void debtRatio_test(Period period, DebtRatio expected) {
         // given
         CrawledData crawledData = CrawledData.builder()
-                                             .fnGuideMainPage(FN_GUIDE_MAIN_PAGE)
+                                             .naverAnnualFinSummaryPage(
+                                                     NAVER_ANNUAL_FIN_SUMMARY_PAGE)
+                                             .naverQuarterFinSummaryPage(
+                                                     NAVER_QUARTER_FIN_SUMMARY_PAGE)
                                              .build();
 
         // when
-        DebtRatio debtRatio = DebtRatioExtractor.debtRatio(crawledData, period);
+        DebtRatio actual = DebtRatioExtractor.debtRatio(crawledData, period);
 
         // then
-        assertThat(debtRatio).isEqualTo(expected);
+        assertThat(actual).isEqualTo(expected);
     }
 
     private static Stream<Arguments> debtRatio_test() {
         return Stream.of(
-                Arguments.of(Period.LAST_YEAR, DebtRatio.from(79.73)),
-                Arguments.of(Period.THIS_YEAR_EXPECTED, DebtRatio.from(86.89)),
-                Arguments.of(Period.LAST_QUARTER, DebtRatio.from(90.43)),
-                Arguments.of(Period.THIS_QUARTER_EXPECTED, DebtRatio.UNKNOWN_VALUE)
+                Arguments.of(Period.LAST_YEAR, DebtRatio.from(69.79)),
+                Arguments.of(Period.THIS_YEAR_EXPECTED, DebtRatio.from(71.09)),
+                Arguments.of(Period.LAST_QUARTER, DebtRatio.from(85.41)),
+                Arguments.of(Period.THIS_QUARTER_EXPECTED, DebtRatio.from(71.09))
         );
     }
 }

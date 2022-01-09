@@ -17,13 +17,19 @@ import org.junit.jupiter.params.provider.MethodSource;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class EpsExtractorTest {
-    private static Document FN_GUIDE_MAIN_PAGE;
+
+    private static Document NAVER_ANNUAL_FIN_SUMMARY_PAGE;
+    private static Document NAVER_QUARTER_FIN_SUMMARY_PAGE;
 
     @BeforeAll
     static void setUp() throws IOException {
-        File sampleHtml = new File(
-                "src/test/java/me/siyoon/stockfilter/resource/fnguide/fnguide-main-sample.html");
-        FN_GUIDE_MAIN_PAGE = Jsoup.parse(Files.readString(sampleHtml.toPath()));
+        NAVER_ANNUAL_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-annual-financial-summary-sample.html")
+                                                                             .toPath()));
+
+        NAVER_QUARTER_FIN_SUMMARY_PAGE = Jsoup.parse(Files.readString(new File(
+                "src/test/java/me/siyoon/stockfilter/resource/naver/naver-company-state-quarter-financial-summary-sample.html")
+                                                                              .toPath()));
     }
 
     @ParameterizedTest
@@ -31,22 +37,26 @@ class EpsExtractorTest {
     void eps_test(Period period, EPS expected) {
         // given
         CrawledData crawledData = CrawledData.builder()
-                                             .fnGuideMainPage(FN_GUIDE_MAIN_PAGE)
+                                             .naverAnnualFinSummaryPage(
+                                                     NAVER_ANNUAL_FIN_SUMMARY_PAGE)
+                                             .naverQuarterFinSummaryPage(
+                                                     NAVER_QUARTER_FIN_SUMMARY_PAGE)
                                              .build();
 
         // when
-        EPS eps = EpsExtractor.eps(crawledData, period);
+        EPS actual = EpsExtractor.eps(crawledData, period);
 
         // then
-        assertThat(eps).isEqualTo(expected);
+        assertThat(actual).isEqualTo(expected);
     }
 
     private static Stream<Arguments> eps_test() {
         return Stream.of(
-                Arguments.of(Period.LAST_YEAR, EPS.from(2839.0)),
-                Arguments.of(Period.THIS_YEAR_EXPECTED, EPS.from(3196.0)),
-                Arguments.of(Period.LAST_QUARTER, EPS.from(270.0)),
-                Arguments.of(Period.THIS_QUARTER_EXPECTED, EPS.from(1119.0))
+                Arguments.of(Period.TWO_YEARS_AGO, EPS.from(2038.0)),
+                Arguments.of(Period.LAST_YEAR, EPS.from(849.0)),
+                Arguments.of(Period.THIS_YEAR_EXPECTED, EPS.from(1232.0)),
+                Arguments.of(Period.LAST_QUARTER, EPS.from(365.0)),
+                Arguments.of(Period.THIS_QUARTER_EXPECTED, EPS.UNKNOWN_VALUE)
         );
     }
 }

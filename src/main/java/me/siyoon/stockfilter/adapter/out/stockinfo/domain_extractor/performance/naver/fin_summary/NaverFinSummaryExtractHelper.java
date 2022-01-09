@@ -50,7 +50,7 @@ public class NaverFinSummaryExtractHelper {
     }
 
     private static Element tableBody(CrawledData crawledData, Period period) {
-        return crawledData.naverFinancialSummaryPage
+        return crawledData.naverFinSummaryPage
                 .document(period)
                 .getElementsByTag("table").get(tableIndex(period))
                 .getElementsByTag("tbody").get(0);

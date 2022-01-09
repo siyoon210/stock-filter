@@ -4,8 +4,8 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.CrawledData;
-import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.fnguide.FnGuideFinanceTableExtractParam;
-import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.fnguide.FnGuidePerformanceExtractHelper;
+import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.naver.fin_summary.NaverFinSummaryExtractHelper;
+import me.siyoon.stockfilter.adapter.out.stockinfo.domain_extractor.performance.naver.fin_summary.NaverFinSummaryExtractParam;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.performance.EPS;
 import org.jsoup.nodes.Element;
@@ -17,22 +17,23 @@ import static me.siyoon.stockfilter.adapter.out.util.NumberExtractor.doubleValue
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EpsExtractor {
 
-    private static final FnGuideFinanceTableExtractParam EXTRACT_PARAM;
+    private static final NaverFinSummaryExtractParam EXTRACT_PARAM;
 
     static {
-        EXTRACT_PARAM = FnGuideFinanceTableExtractParam.builder()
-                                                       .labels("EPS(원)")
-                                                       .elementIndex(18)
-                                                       .build();
+        EXTRACT_PARAM = NaverFinSummaryExtractParam.builder()
+                                                   .expectedLabel("EPS(원)")
+                                                   .elementIndex(25)
+                                                   .build();
     }
 
     public static EPS eps(CrawledData crawledData, Period period) {
         try {
-            Element element = FnGuidePerformanceExtractHelper.element(crawledData, period,
-                                                                      EXTRACT_PARAM);
+            Element element = NaverFinSummaryExtractHelper.element(crawledData, period,
+                                                                   EXTRACT_PARAM);
             return EPS.from(doubleValue(element.text()));
         } catch (RuntimeException e) {
-            return (EPS) handle(e, crawledData.stockCode, period, EPS.UNKNOWN_VALUE);
+            return (EPS) handle(e, crawledData.stockCode, period,
+                                         EPS.UNKNOWN_VALUE);
         }
     }
 }

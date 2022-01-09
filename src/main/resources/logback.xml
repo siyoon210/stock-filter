@@ -1,7 +1,7 @@
 <configuration debug="false">
     <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%date [%level] %logger -! %msg %n</pattern>
+            <pattern>%date [%level] %logger - %msg %n</pattern>
         </encoder>
     </appender>
 

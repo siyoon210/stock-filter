@@ -9,8 +9,7 @@ public class CrawledData {
 
     public final String stockCode;
     public final NaverMainPage naverMainPage;
-    public final Document fnGuideMainPage;
-    public final NaverFinancialSummaryPage naverFinancialSummaryPage;
+    public final NaverFinSummaryPage naverFinSummaryPage;
 
     public NaverMainPage naverMainPage() {
         return naverMainPage;
@@ -18,14 +17,12 @@ public class CrawledData {
 
     @Builder
     public CrawledData(String stockCode,
-                       Document naverMainPage, Document fnGuideMainPage,
-                       Document naverAnnualFinancialSummaryPage,
-                       Document naverQuarterFinancialSummaryPage) {
+                       Document naverMainPage,
+                       Document naverAnnualFinSummaryPage,
+                       Document naverQuarterFinSummaryPage) {
         this.stockCode = stockCode;
         this.naverMainPage = NaverMainPage.from(naverMainPage);
-        this.fnGuideMainPage = fnGuideMainPage;
-        this.naverFinancialSummaryPage = NaverFinancialSummaryPage.of(
-                naverAnnualFinancialSummaryPage,
-                naverQuarterFinancialSummaryPage);
+        this.naverFinSummaryPage = NaverFinSummaryPage.of(naverAnnualFinSummaryPage,
+                                                          naverQuarterFinSummaryPage);
     }
 }
