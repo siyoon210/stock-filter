@@ -7,6 +7,8 @@ import org.jsoup.nodes.Document;
 @ToString
 public class CrawledData {
 
+    public static final CrawledData EMPTY = CrawledData.builder().build();
+
     public final String stockCode;
     public final NaverMainPage naverMainPage;
     public final NaverFinSummaryPage naverFinSummaryPage;

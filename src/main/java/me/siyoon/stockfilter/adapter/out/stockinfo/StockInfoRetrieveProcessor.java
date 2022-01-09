@@ -30,12 +30,21 @@ public class StockInfoRetrieveProcessor implements StockInfoRetrievePort {
     }
 
     public List<CrawledData> crawledDatas(List<String> stockCodes) {
-        List<CrawledData> crawledDataFromFile = crawledDataFileRepository.findAll();
+        List<CrawledData> crawledDataFromFile = crawledDataFileRepository.findAll(stockCodes);
         if (crawledDataFromFile.isEmpty()) {
             List<CrawledData> crawledDatas = stockInfoDataCrawler.crawledDatas(stockCodes);
-            crawledDataFileRepository.save(crawledDatas);
+            crawledDataFileRepository.saveAll(crawledDatas);
             return crawledDatas;
         }
+        checkSize(stockCodes, crawledDataFromFile);
+        log.info("crawledDataFromFile 읽어오기 성공. size={}", crawledDataFromFile.size());
         return crawledDataFromFile;
+    }
+
+    private void checkSize(List<String> stockCodes, List<CrawledData> crawledDataFromFile) {
+        if (crawledDataFromFile.size() != stockCodes.size()) {
+            log.warn("crawledDataFromFile 와 stockCodes 데이터 사이즈가 다름. {} != {}",
+                     crawledDataFromFile.size(), stockCodes.size());
+        }
     }
 }

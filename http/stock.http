@@ -4,8 +4,8 @@ Content-Type: application/json
 
 {
   "netIncome": {
-    "test": false,
-    "unknownValuePass": false,
+    "test": true,
+    "unknownValuePass": true,
     "periods": [
       "LAST_YEAR",
       "TWO_YEARS_AGO",
@@ -15,7 +15,7 @@ Content-Type: application/json
     "threshold": 0
   },
   "operatingIncome": {
-    "test": false,
+    "test": true,
     "unknownValuePass": false,
     "periods": [
       "LAST_YEAR",
@@ -25,7 +25,7 @@ Content-Type: application/json
     "threshold": 0
   },
   "debtRatio": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "LAST_YEAR",
@@ -35,7 +35,7 @@ Content-Type: application/json
     "threshold": 150
   },
   "quickRatio": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "LAST_YEAR",
@@ -53,20 +53,20 @@ Content-Type: application/json
     "threshold": 7000
   },
   "per": {
-    "test": false,
+    "test": true,
     "unknownValuePass": false,
     "periods": [
       "LAST_YEAR"
     ],
-    "threshold": 30
+    "threshold": 50
   },
   "pbr": {
-    "test": false,
+    "test": true,
     "unknownValuePass": false,
     "periods": [
       "LAST_YEAR"
     ],
-    "threshold": 1.6
+    "threshold": 4
   },
   "expectedPer": {
     "test": false,
@@ -74,24 +74,23 @@ Content-Type: application/json
     "threshold": 100
   },
   "improvedPer": {
-    "test": false,
+    "test": true,
     "unknownValuePass": false,
     "basePeriod": "THIS_YEAR_EXPECTED",
     "targetPeriod": "NEXT_YEAR_EXPECTED",
-    "ratio": 20
+    "ratio": 15
   },
   "dividendYield": {
-    "test": false,
+    "test": true,
     "unknownValuePass": false,
     "periods": [
       "LAST_YEAR",
-      "TWO_YEARS_AGO",
-      "THREE_YEARS_AGO"
+      "TWO_YEARS_AGO"
     ],
-    "threshold": 2.0
+    "threshold": 1.5
   },
   "expectedDividendYield": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "NEXT_YEAR_EXPECTED"
