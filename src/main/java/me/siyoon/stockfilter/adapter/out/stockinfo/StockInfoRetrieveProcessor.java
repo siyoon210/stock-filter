@@ -30,6 +30,7 @@ public class StockInfoRetrieveProcessor implements StockInfoRetrievePort {
     }
 
     public List<CrawledData> crawledDatas(List<String> stockCodes) {
+        log.info("CrawledData 불러오기 시작.");
         List<CrawledData> crawledDataFromFile = crawledDataFileRepository.findAll(stockCodes);
         if (crawledDataFromFile.isEmpty()) {
             List<CrawledData> crawledDatas = stockInfoDataCrawler.crawledDatas(stockCodes);

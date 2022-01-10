@@ -95,7 +95,7 @@ Content-Type: application/json
     "periods": [
       "NEXT_YEAR_EXPECTED"
     ],
-    "threshold": 2
+    "threshold": 4
   },
   "annualPriceVolatility": {
     "test": false,

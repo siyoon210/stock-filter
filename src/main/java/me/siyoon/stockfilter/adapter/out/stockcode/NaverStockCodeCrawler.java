@@ -29,25 +29,20 @@ public class NaverStockCodeCrawler implements StockCodeReader {
 
     private List<String> kospiStockCodes() {
         List<String> kospiStockCodeList = new ArrayList<>();
-
-        int lastKospiPage = 35;
-        addStockCodes(kospiStockCodeList, lastKospiPage, KOSPI_CODE);
-
+        addStockCodes(kospiStockCodeList, KOSPI_CODE);
         return kospiStockCodeList;
     }
 
     private List<String> kosdaqStockCodes() {
         List<String> kosdaqStockCodes = new ArrayList<>();
-
-        int lastKosdaqPage = 31;
-        addStockCodes(kosdaqStockCodes, lastKosdaqPage, KOSDAQ_CODE);
-
+        addStockCodes(kosdaqStockCodes, KOSDAQ_CODE);
         return kosdaqStockCodes;
     }
 
-    private void addStockCodes(List<String> stockCodeList, int lastKospiPage, String kospiCode) {
-        for (int page = 1; page <= lastKospiPage; page++) {
-            Document document = document(kospiCode, page);
+    private void addStockCodes(List<String> stockCodeList, String marketCode) {
+        int lastPage = lastPage(marketCode);
+        for (int page = 1; page <= lastPage; page++) {
+            Document document = document(marketCode, page);
             Elements elementsByTag = document.getElementsByTag("table").get(1)
                                              .getElementsByTag("tbody").get(0)
                                              .getElementsByTag("tr");
@@ -62,6 +57,18 @@ public class NaverStockCodeCrawler implements StockCodeReader {
                 }
             }
         }
+    }
+
+    private int lastPage(String marketCode) {
+        Document document = document(marketCode, 1);
+        String lastPageHref = document.getElementsByClass("Nnavi").get(0)
+                                      .getElementsByTag("tbody").get(0)
+                                      .getElementsByClass("pgRR").get(0)
+                                      .getElementsByTag("a").get(0)
+                                      .attr("href");
+
+        String lastPage = lastPageHref.substring(lastPageHref.lastIndexOf("page=") + 5);
+        return Integer.parseInt(lastPage);
     }
 
     private static Document document(String marketCode, int page) {
