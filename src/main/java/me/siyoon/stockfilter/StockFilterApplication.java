@@ -8,6 +8,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @SpringBootApplication
 public class StockFilterApplication {
 
+    //todo stockCode Repository
+    //todo stockSorter 구현
     public static void main(String[] args) {
         SpringApplication.run(StockFilterApplication.class, args);
     }

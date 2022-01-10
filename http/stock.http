@@ -9,14 +9,13 @@ Content-Type: application/json
     "periods": [
       "LAST_YEAR",
       "TWO_YEARS_AGO",
-      "THREE_YEARS_AGO",
-      "THIS_YEAR_EXPECTED"
+      "THREE_YEARS_AGO"
     ],
     "threshold": 0
   },
   "operatingIncome": {
     "test": true,
-    "unknownValuePass": false,
+    "unknownValuePass": true,
     "periods": [
       "LAST_YEAR",
       "TWO_YEARS_AGO",
@@ -32,7 +31,7 @@ Content-Type: application/json
       "TWO_YEARS_AGO",
       "THREE_YEARS_AGO"
     ],
-    "threshold": 150
+    "threshold": 100
   },
   "quickRatio": {
     "test": true,
@@ -42,7 +41,7 @@ Content-Type: application/json
       "TWO_YEARS_AGO",
       "THREE_YEARS_AGO"
     ],
-    "threshold": 60
+    "threshold": 70
   },
   "reserveRatio": {
     "test": false,
@@ -66,7 +65,7 @@ Content-Type: application/json
     "periods": [
       "LAST_YEAR"
     ],
-    "threshold": 4
+    "threshold": 3
   },
   "expectedPer": {
     "test": false,
@@ -78,7 +77,7 @@ Content-Type: application/json
     "unknownValuePass": false,
     "basePeriod": "THIS_YEAR_EXPECTED",
     "targetPeriod": "NEXT_YEAR_EXPECTED",
-    "ratio": 15
+    "ratio": 1
   },
   "dividendYield": {
     "test": true,
@@ -87,7 +86,7 @@ Content-Type: application/json
       "LAST_YEAR",
       "TWO_YEARS_AGO"
     ],
-    "threshold": 1.5
+    "threshold": 1.8
   },
   "expectedDividendYield": {
     "test": true,
