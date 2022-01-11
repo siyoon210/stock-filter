@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.adapter.out.repository;
+package me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.repository;
 
 import java.io.Serializable;
 import lombok.Builder;
