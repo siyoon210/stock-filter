@@ -4,11 +4,9 @@ import com.gargoylesoftware.htmlunit.CookieManager;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
 import com.gargoylesoftware.htmlunit.util.Cookie;
-import java.io.IOException;
 import java.util.function.Consumer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import me.siyoon.stockfilter.exception.StockInfoConnectException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.stereotype.Component;
@@ -43,8 +41,9 @@ public class NaverCompanySatePageCrawler {
             setCookie.accept(webClient);
             HtmlPage page = webClient.getPage(PAGE_URL + stockCode);
             return Jsoup.parse(page.asXml());
-        } catch (IOException e) {
-            throw new StockInfoConnectException("Connect 실패 : " + stockCode);
+        } catch (Exception e) {
+            log.warn("Connect 실패 : " + stockCode);
+            return companyStatePage(stockCode, setCookie);
         }
     }
 }
