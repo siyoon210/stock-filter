@@ -1,5 +1,6 @@
 package me.siyoon.stockfilter.adapter.out.stockinfo.crawled_data.repository;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -14,9 +15,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class CrawledDataFileRepository {
 
-    //todo PostConstructor data/crawledData/ 디렉토리 없으면 생성하기
-
     private static final String FILE_PATH = "src/main/resources/data/crawledData/";
+
+    public CrawledDataFileRepository() {
+        File baseDirectory = new File(FILE_PATH);
+        if (!baseDirectory.exists()) {
+            baseDirectory.mkdirs();
+        }
+    }
 
     public void saveAll(List<CrawledData> crawledDatas) {
         crawledDatas.parallelStream()
