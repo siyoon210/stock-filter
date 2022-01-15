@@ -24,9 +24,4 @@ public class StockFilterController {
                          .map(stockInfo -> stockInfo.name + ": " + naverMainPageUrl + stockInfo.code)
                          .collect(Collectors.toList());
     }
-
-    @GetMapping("/stock2")
-    public List<String> stock2(@RequestBody Object request) {
-        return null;
-    }
 }

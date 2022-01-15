@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "netIncome": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "THIS_YEAR_EXPECTED",
@@ -15,7 +15,7 @@ Content-Type: application/json
     "threshold": 0
   },
   "operatingIncome": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "LAST_YEAR",
@@ -75,7 +75,7 @@ Content-Type: application/json
   },
   "improvedPer": {
     "test": false,
-    "unknownValuePass": false,
+    "unknownValuePass": true,
     "basePeriod": "THIS_YEAR_EXPECTED",
     "targetPeriod": "NEXT_YEAR_EXPECTED",
     "ratio": 1
@@ -95,7 +95,7 @@ Content-Type: application/json
     "periods": [
       "NEXT_YEAR_EXPECTED"
     ],
-    "threshold": 8
+    "threshold": 5
   },
   "annualPriceVolatility": {
     "test": false,
