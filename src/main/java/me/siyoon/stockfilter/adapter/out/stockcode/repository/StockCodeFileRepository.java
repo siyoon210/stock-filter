@@ -43,7 +43,7 @@ public class StockCodeFileRepository {
             log.debug("stockCodes 읽기 성공.");
             return stockCodes;
         } catch (Exception e) {
-            log.debug("stockCodes 읽기 실패.");
+            log.debug("stockCodes 읽기 실패.", e);
             return Collections.emptyList();
         }
     }

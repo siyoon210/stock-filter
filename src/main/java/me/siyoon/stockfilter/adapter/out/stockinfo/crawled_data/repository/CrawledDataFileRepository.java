@@ -41,7 +41,7 @@ public class CrawledDataFileRepository {
     }
 
     public List<CrawledData> findAll(List<String> stockCodes) {
-        return stockCodes.stream()
+        return stockCodes.parallelStream()
                          .map(this::find)
                          .filter(crawledData -> crawledData != CrawledData.EMPTY)
                          .collect(Collectors.toList());
