@@ -73,12 +73,13 @@ Content-Type: application/json
     "unknownValuePass": false,
     "threshold": 100
   },
-  "improvedPer": {
-    "test": false,
-    "unknownValuePass": true,
+  "epsIncreaseRate": {
+    "test": true,
+    "unknownValuePass": false,
+    "turnedPositivePass": false,
     "basePeriod": "THIS_YEAR_EXPECTED",
     "targetPeriod": "NEXT_YEAR_EXPECTED",
-    "ratio": 1
+    "rate": 5
   },
   "dividendYield": {
     "test": false,
@@ -95,7 +96,7 @@ Content-Type: application/json
     "periods": [
       "NEXT_YEAR_EXPECTED"
     ],
-    "threshold": 5
+    "threshold": 2
   },
   "annualPriceVolatility": {
     "test": false,

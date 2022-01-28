@@ -18,7 +18,7 @@ public class StockFilterCommand {
     public final PerCommand per; // PER
     public final PbrCommand pbr; // PBR
     public final ExpectedPerCommand expectedPer; // 예상(추정) PER
-    public final ImprovedPerCommand improvedPer; // per 개선
+    public final EpsIncreaseRateCommand epsIncreaseRate; // EPS 증가율
     public final DividendYieldCommand dividendYield; // 시가배당률
     public final ExpectedDividendYieldCommand expectedDividendYield; // 예상 배당률
     public final AnnualPriceVolatilityCommand annualPriceVolatility; // 52주 최고가 / 52주 최저가
@@ -34,7 +34,7 @@ public class StockFilterCommand {
             PerCommand per,
             PbrCommand pbr,
             ExpectedPerCommand expectedPer,
-            ImprovedPerCommand improvedPer,
+            EpsIncreaseRateCommand epsIncreaseRate,
             DividendYieldCommand dividendYield,
             ExpectedDividendYieldCommand expectedDividendYield,
             AnnualPriceVolatilityCommand annualPriceVolatility,
@@ -47,7 +47,7 @@ public class StockFilterCommand {
         this.per = per;
         this.pbr = pbr;
         this.expectedPer = expectedPer;
-        this.improvedPer = improvedPer;
+        this.epsIncreaseRate = epsIncreaseRate;
         this.dividendYield = dividendYield;
         this.expectedDividendYield = expectedDividendYield;
         this.annualPriceVolatility = annualPriceVolatility;
@@ -143,8 +143,8 @@ public class StockFilterCommand {
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
         public ReserveRatioCommand(boolean test, boolean unknownValuePass,
-                                 List<Period> periods,
-                                 Double threshold) {
+                                   List<Period> periods,
+                                   Double threshold) {
             this.test = test;
             this.unknownValuePass = unknownValuePass;
             this.periods = periods;
@@ -212,22 +212,25 @@ public class StockFilterCommand {
 
     @Builder
     @ToString
-    public static class ImprovedPerCommand { // basePeriod 기준 targetPeriod 개선된 PER
+    public static class EpsIncreaseRateCommand { // basePeriod 기준 targetPeriod EPS 증가율
 
         public final boolean test;
         public final boolean unknownValuePass;
+        public final boolean turnedPositivePass;
         public final Period basePeriod;
         public final Period targetPeriod;
-        public final Double ratio;
+        public final Double rate;
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
-        public ImprovedPerCommand(boolean test, boolean unknownValuePass, Period basePeriod,
-                                  Period targetPeriod, Double ratio) {
+        public EpsIncreaseRateCommand(boolean test, boolean unknownValuePass,
+                                      boolean turnedPositivePass, Period basePeriod,
+                                      Period targetPeriod, Double rate) {
             this.test = test;
             this.unknownValuePass = unknownValuePass;
+            this.turnedPositivePass = turnedPositivePass;
             this.basePeriod = basePeriod;
             this.targetPeriod = targetPeriod;
-            this.ratio = ratio;
+            this.rate = rate;
         }
     }
 
@@ -296,7 +299,7 @@ public class StockFilterCommand {
 
         @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
         public AnnualHigherCurrentPriceRatioCommand(boolean test, boolean unknownValuePass,
-                                            Double minThreshold, Double maxThreshold) {
+                                                    Double minThreshold, Double maxThreshold) {
             this.test = test;
             this.unknownValuePass = unknownValuePass;
             this.minThreshold = minThreshold;

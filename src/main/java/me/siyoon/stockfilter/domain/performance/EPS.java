@@ -1,6 +1,8 @@
 package me.siyoon.stockfilter.domain.performance;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -29,7 +31,27 @@ public class EPS implements Serializable { // 주당순이익 (Earning Per Share
         return PER.from(price / value);
     }
 
+    public Double increaseRate(EPS targetEps) {
+        return BigDecimal.valueOf(targetEps.value)
+                         .divide(BigDecimal.valueOf(this.value), 2, RoundingMode.HALF_UP)
+                         .subtract(BigDecimal.ONE)
+                         .multiply(BigDecimal.valueOf(100))
+                         .doubleValue();
+    }
+
     public boolean isGreaterThan(Double value) {
         return this.value > value;
+    }
+
+    public boolean isNegative() {
+        return value < 0;
+    }
+
+    public boolean isZero() {
+        return value == 0;
+    }
+
+    public boolean isPositive() {
+        return value > 0;
     }
 }
