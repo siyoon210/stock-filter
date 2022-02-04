@@ -5,5 +5,5 @@ import me.siyoon.stockfilter.domain.StockInfo;
 
 public interface StockExtractUseCase {
 
-    List<StockInfo> extractedStocks(StockFilterCommand filterCommand);
+    List<StockInfoResponse> extractedStocks(StockFilterCommand filterCommand);
 }

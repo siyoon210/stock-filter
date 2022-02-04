@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "netIncome": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "THIS_YEAR_EXPECTED",
@@ -15,7 +15,7 @@ Content-Type: application/json
     "threshold": 0
   },
   "operatingIncome": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "LAST_YEAR",
@@ -45,7 +45,7 @@ Content-Type: application/json
     "threshold": 70
   },
   "reserveRatio": {
-    "test": true,
+    "test": false,
     "unknownValuePass": false,
     "periods": [
       "LAST_YEAR"
@@ -53,7 +53,7 @@ Content-Type: application/json
     "threshold": 1000
   },
   "per": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "LAST_YEAR"
@@ -74,12 +74,12 @@ Content-Type: application/json
     "threshold": 100
   },
   "epsIncreaseRate": {
-    "test": false,
+    "test": true,
     "unknownValuePass": false,
     "turnedPositivePass": false,
     "basePeriod": "THIS_YEAR_EXPECTED",
     "targetPeriod": "NEXT_YEAR_EXPECTED",
-    "rate": 5
+    "rate": 0.1
   },
   "dividendYield": {
     "test": false,
@@ -96,7 +96,7 @@ Content-Type: application/json
     "periods": [
       "NEXT_YEAR_EXPECTED"
     ],
-    "threshold": 2
+    "threshold": 2.5
   },
   "annualPriceVolatility": {
     "test": false,

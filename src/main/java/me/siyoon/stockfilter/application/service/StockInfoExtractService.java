@@ -4,6 +4,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockExtractUseCase;
+import me.siyoon.stockfilter.application.port.in.StockInfoResponse;
 import me.siyoon.stockfilter.application.service.filter.StockFilter;
 import me.siyoon.stockfilter.application.service.sorter.StockSorter;
 import me.siyoon.stockfilter.domain.StockInfo;
@@ -18,7 +19,7 @@ public class StockInfoExtractService implements StockExtractUseCase {
     private final StockSorter stockSorter;
 
     @Override
-    public List<StockInfo> extractedStocks(StockFilterCommand filterCommand) {
+    public List<StockInfoResponse> extractedStocks(StockFilterCommand filterCommand) {
         List<StockInfo> stockInfos = stockInfoReader.stockInfos();
         List<StockInfo> filteredStocks = stockFilter.filteredStocks(filterCommand, stockInfos);
         return stockSorter.sortedStocks(filteredStocks);

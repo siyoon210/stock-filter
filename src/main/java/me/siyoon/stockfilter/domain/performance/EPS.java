@@ -32,6 +32,9 @@ public class EPS implements Serializable { // 주당순이익 (Earning Per Share
     }
 
     public Double increaseRate(EPS targetEps) {
+        if (this.value == 0.0) {
+            return Double.MIN_VALUE;
+        }
         return BigDecimal.valueOf(targetEps.value)
                          .divide(BigDecimal.valueOf(this.value), 2, RoundingMode.HALF_UP)
                          .subtract(BigDecimal.ONE)

@@ -38,4 +38,10 @@ public class StockInfo implements Serializable {
         Performance performance = performanceOf(period);
         return performance.dps.expectedDividendYield(price());
     }
+
+    public double epsIncreaseRateFrom(Period basePeriod, Period targetPeriod) {
+        Performance basePerformance = performanceOf(basePeriod);
+        Performance targetPerformance = performanceOf(targetPeriod);
+        return basePerformance.eps.increaseRate(targetPerformance.eps);
+    }
 }
