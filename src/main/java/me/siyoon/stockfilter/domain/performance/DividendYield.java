@@ -9,7 +9,7 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class DividendYield implements Serializable { // 배당률
+public class DividendYield implements Serializable, Comparable<DividendYield> { // 배당률
 
     public static final DividendYield UNKNOWN_VALUE = new DividendYield(Double.MIN_VALUE);
 
@@ -24,5 +24,10 @@ public class DividendYield implements Serializable { // 배당률
 
     public boolean isGreaterThan(Double value) {
         return this.value > value;
+    }
+
+    @Override
+    public int compareTo(DividendYield o) {
+        return Double.compare(o.value, this.value);
     }
 }

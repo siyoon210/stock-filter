@@ -5,6 +5,7 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.ToString;
+import me.siyoon.stockfilter.domain.performance.DividendYield;
 import me.siyoon.stockfilter.domain.performance.Performance;
 import me.siyoon.stockfilter.domain.performance.Performances;
 
@@ -31,5 +32,10 @@ public class StockInfo implements Serializable {
 
     public Double price() {
         return tradingInfo.price;
+    }
+
+    public DividendYield expectedDividendYieldOf(Period period) {
+        Performance performance = performanceOf(period);
+        return performance.dps.expectedDividendYield(price());
     }
 }

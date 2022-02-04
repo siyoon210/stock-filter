@@ -3,7 +3,7 @@ package me.siyoon.stockfilter.application.port.in;
 import java.util.List;
 import me.siyoon.stockfilter.domain.StockInfo;
 
-public interface StockFilterUseCase {
+public interface StockExtractUseCase {
 
-    List<StockInfo> filteredStocks(StockFilterCommand filterCommand);
+    List<StockInfo> extractedStocks(StockFilterCommand filterCommand);
 }

@@ -1,6 +1,8 @@
 package me.siyoon.stockfilter.domain.performance;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -27,6 +29,11 @@ public class DPS implements Serializable { // 주당 배당금 (Dividend Per Sha
         if (price == null) {
             return DividendYield.UNKNOWN_VALUE;
         }
-        return DividendYield.from(value / price * 100);
+        double calculatedValue = BigDecimal.valueOf(value)
+                                           .divide(BigDecimal.valueOf(price), 2,
+                                                   RoundingMode.HALF_UP)
+                                           .multiply(BigDecimal.valueOf(100))
+                                           .doubleValue();
+        return DividendYield.from(calculatedValue);
     }
 }
