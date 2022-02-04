@@ -15,7 +15,7 @@ public class ExpectedDividendYieldRankExtractor extends RankExtractor{
     }
 
     @Override
-    protected Comparator<StockInfo> comparator() {
+    Comparator<StockInfo> comparator() {
         return (stockInfo1, stockInfo2) -> {
             DividendYield dividendYield1
                     = stockInfo1.expectedDividendYieldOf(Period.NEXT_YEAR_EXPECTED);

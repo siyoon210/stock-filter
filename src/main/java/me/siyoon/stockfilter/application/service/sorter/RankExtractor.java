@@ -1,13 +1,10 @@
 package me.siyoon.stockfilter.application.service.sorter;
 
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import me.siyoon.stockfilter.application.port.in.Rank;
-import me.siyoon.stockfilter.application.port.in.RankByCode;
-import me.siyoon.stockfilter.application.port.in.StockCode;
+import me.siyoon.stockfilter.application.port.in.dto.response.Rank;
+import me.siyoon.stockfilter.application.port.in.dto.response.RankByCode;
 import me.siyoon.stockfilter.domain.StockInfo;
 
 public abstract class RankExtractor implements StockRankExtractorI {
@@ -19,9 +16,8 @@ public abstract class RankExtractor implements StockRankExtractorI {
                                                      .sorted(comparator())
                                                      .collect(Collectors.toList());
         for (int i = 0; i < sortedStockInfos.size(); i++) {
-            StockCode stockCode = StockCode.of(sortedStockInfos.get(i).code);
-            Rank rank = Rank.of(type(), stockCode, i + 1);
-            rankByCode.put(stockCode, rank);
+            Rank rank = Rank.of(type(), i + 1);
+            rankByCode.put(sortedStockInfos.get(i).code, rank);
         }
         return rankByCode;
     }

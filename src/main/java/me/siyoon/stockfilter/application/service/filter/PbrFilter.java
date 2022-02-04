@@ -2,8 +2,8 @@ package me.siyoon.stockfilter.application.service.filter;
 
 import java.util.List;
 import java.util.function.Predicate;
-import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
-import me.siyoon.stockfilter.application.port.in.StockFilterCommand.PbrCommand;
+import me.siyoon.stockfilter.application.port.in.dto.request.StockFilterCommand;
+import me.siyoon.stockfilter.application.port.in.dto.request.StockFilterCommand.PbrCommand;
 import me.siyoon.stockfilter.domain.StockInfo;
 import me.siyoon.stockfilter.domain.performance.PBR;
 import me.siyoon.stockfilter.domain.performance.Performance;

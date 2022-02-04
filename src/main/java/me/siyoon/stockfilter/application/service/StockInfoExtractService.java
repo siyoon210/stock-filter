@@ -2,9 +2,9 @@ package me.siyoon.stockfilter.application.service;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
+import me.siyoon.stockfilter.application.port.in.dto.request.StockFilterCommand;
 import me.siyoon.stockfilter.application.port.in.StockExtractUseCase;
-import me.siyoon.stockfilter.application.port.in.StockInfoResponse;
+import me.siyoon.stockfilter.application.port.in.dto.response.StockInfoResponse;
 import me.siyoon.stockfilter.application.service.filter.StockFilter;
 import me.siyoon.stockfilter.application.service.sorter.StockSorter;
 import me.siyoon.stockfilter.domain.StockInfo;

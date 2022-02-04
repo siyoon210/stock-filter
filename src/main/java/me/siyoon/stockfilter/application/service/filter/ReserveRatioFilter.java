@@ -2,8 +2,8 @@ package me.siyoon.stockfilter.application.service.filter;
 
 import java.util.List;
 import java.util.function.Predicate;
-import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
-import me.siyoon.stockfilter.application.port.in.StockFilterCommand.ReserveRatioCommand;
+import me.siyoon.stockfilter.application.port.in.dto.request.StockFilterCommand;
+import me.siyoon.stockfilter.application.port.in.dto.request.StockFilterCommand.ReserveRatioCommand;
 import me.siyoon.stockfilter.domain.StockInfo;
 import me.siyoon.stockfilter.domain.performance.Performance;
 import me.siyoon.stockfilter.domain.performance.ReserveRatio;

@@ -2,15 +2,14 @@ package me.siyoon.stockfilter.application.service.filter;
 
 import java.util.Map;
 import java.util.stream.Stream;
-import me.siyoon.stockfilter.application.port.in.StockFilterCommand;
-import me.siyoon.stockfilter.application.port.in.StockFilterCommand.EpsIncreaseRateCommand;
+import me.siyoon.stockfilter.application.port.in.dto.request.StockFilterCommand;
+import me.siyoon.stockfilter.application.port.in.dto.request.StockFilterCommand.EpsIncreaseRateCommand;
 import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.StockInfo;
 import me.siyoon.stockfilter.domain.TradingInfo;
 import me.siyoon.stockfilter.domain.performance.EPS;
 import me.siyoon.stockfilter.domain.performance.Performance;
 import me.siyoon.stockfilter.domain.performance.Performances;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

@@ -1,4 +1,4 @@
-package me.siyoon.stockfilter.application.port.in;
+package me.siyoon.stockfilter.application.port.in.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import java.util.List;

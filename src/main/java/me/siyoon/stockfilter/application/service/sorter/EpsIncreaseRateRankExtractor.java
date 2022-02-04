@@ -15,7 +15,7 @@ public class EpsIncreaseRateRankExtractor extends RankExtractor{
     }
 
     @Override
-    protected Comparator<StockInfo> comparator() {
+    Comparator<StockInfo> comparator() {
         return (stockInfo1, stockInfo2) -> {
             double epsIncreaseRate1 = stockInfo1.epsIncreaseRateFrom(Period.THIS_YEAR_EXPECTED,
                                                                      Period.NEXT_YEAR_EXPECTED);

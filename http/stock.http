@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "netIncome": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "THIS_YEAR_EXPECTED",
@@ -15,7 +15,7 @@ Content-Type: application/json
     "threshold": 0
   },
   "operatingIncome": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "LAST_YEAR",
@@ -74,7 +74,7 @@ Content-Type: application/json
     "threshold": 100
   },
   "epsIncreaseRate": {
-    "test": false,
+    "test": true,
     "unknownValuePass": false,
     "turnedPositivePass": false,
     "basePeriod": "THIS_YEAR_EXPECTED",
@@ -82,7 +82,7 @@ Content-Type: application/json
     "rate": 0.1
   },
   "dividendYield": {
-    "test": false,
+    "test": true,
     "unknownValuePass": true,
     "periods": [
       "LAST_YEAR",
