@@ -1,80 +1,40 @@
 package me.siyoon.stockfilter.application.service.sorter;
 
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
+import me.siyoon.stockfilter.application.port.in.Rank;
+import me.siyoon.stockfilter.application.port.in.RankByCode;
 import me.siyoon.stockfilter.application.port.in.StockInfoResponse;
-import me.siyoon.stockfilter.domain.Period;
 import me.siyoon.stockfilter.domain.StockInfo;
-import me.siyoon.stockfilter.domain.performance.DividendYield;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class StockSorter {
 
+    private final List<StockRankExtractorI> stockRankExtractors;
+
     public List<StockInfoResponse> sortedStocks(List<StockInfo> stockInfos) {
-        Map<String, Integer> expectedDividendYieldRankByCode
-                = expectedDividendYieldRankByCode(stockInfos);
-        Map<String, Integer> epsIncreaseRateRankByCode = epsIncreaseRateRankByCode(stockInfos);
+        List<RankByCode> rankByCodes
+                = stockRankExtractors.stream()
+                                     .map(rankExtractor -> rankExtractor.rankByCode(stockInfos))
+                                     .collect(Collectors.toList());
+
         return stockInfos.stream()
-                         .map(stockInfo -> stockInfoResponse(expectedDividendYieldRankByCode,
-                                                         epsIncreaseRateRankByCode, stockInfo))
+                         .map(stockInfo -> stockInfoResponse(rankByCodes, stockInfo))
                          .sorted()
                          .collect(Collectors.toList());
     }
 
-    private StockInfoResponse stockInfoResponse(
-            Map<String, Integer> expectedDividendYieldRankByCode,
-            Map<String, Integer> epsIncreaseRateRankByCode, StockInfo stockInfo) {
-        String code = stockInfo.code;
-        return new StockInfoResponse(stockInfo.name, code,
-                                     expectedDividendYieldRankByCode.getOrDefault(
-                                             code, Integer.MAX_VALUE),
-                                     epsIncreaseRateRankByCode.getOrDefault(
-                                             code, Integer.MAX_VALUE));
+
+    private StockInfoResponse stockInfoResponse(List<RankByCode> rankByCodes, StockInfo stockInfo) {
+        return new StockInfoResponse(stockInfo.name, stockInfo.code, ranks(rankByCodes, stockInfo));
     }
 
-    private Map<String, Integer> expectedDividendYieldRankByCode(List<StockInfo> stockInfos) {
-        Map<String, Integer> expectedDividendYieldRankByCode = new HashMap<>();
-        List<StockInfo> sortedStockInfos = stockInfos.stream()
-                                                     .sorted(expectedDividendYieldComparator())
-                                                     .collect(Collectors.toList());
-        for (int i = 0; i < sortedStockInfos.size(); i++) {
-            expectedDividendYieldRankByCode.put(sortedStockInfos.get(i).code, i + 1);
-        }
-        return expectedDividendYieldRankByCode;
-    }
-
-    private Comparator<StockInfo> expectedDividendYieldComparator() {
-        return (stockInfo1, stockInfo2) -> {
-            DividendYield dividendYield1 = stockInfo1.expectedDividendYieldOf(
-                    Period.NEXT_YEAR_EXPECTED);
-            DividendYield dividendYield2 = stockInfo2.expectedDividendYieldOf(
-                    Period.NEXT_YEAR_EXPECTED);
-            return dividendYield1.compareTo(dividendYield2);
-        };
-    }
-
-    private Map<String, Integer> epsIncreaseRateRankByCode(List<StockInfo> stockInfos) {
-        Map<String, Integer> epsIncreaseRateRankByCode = new HashMap<>();
-        List<StockInfo> sortedStockInfos = stockInfos.stream()
-                                                     .sorted(epsIncreaseRateComparator())
-                                                     .collect(Collectors.toList());
-        for (int i = 0; i < sortedStockInfos.size(); i++) {
-            epsIncreaseRateRankByCode.put(sortedStockInfos.get(i).code, i + 1);
-        }
-        return epsIncreaseRateRankByCode;
-    }
-
-    private Comparator<StockInfo> epsIncreaseRateComparator() {
-        return (stockInfo1, stockInfo2) -> {
-            double epsIncreaseRate1 = stockInfo1.epsIncreaseRateFrom(Period.THIS_YEAR_EXPECTED,
-                                                                     Period.NEXT_YEAR_EXPECTED);
-            double epsIncreaseRate2 = stockInfo2.epsIncreaseRateFrom(Period.THIS_YEAR_EXPECTED,
-                                                                     Period.NEXT_YEAR_EXPECTED);
-            return Double.compare(epsIncreaseRate2, epsIncreaseRate1);
-        };
+    private List<Rank> ranks(List<RankByCode> rankByCodes, StockInfo stockInfo) {
+        return rankByCodes.stream()
+                          .map(rankByCode -> rankByCode.get(stockInfo.code))
+                          .collect(Collectors.toList());
     }
 }
