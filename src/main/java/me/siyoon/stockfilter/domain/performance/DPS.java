@@ -30,7 +30,7 @@ public class DPS implements Serializable { // 주당 배당금 (Dividend Per Sha
             return DividendYield.UNKNOWN_VALUE;
         }
         double calculatedValue = BigDecimal.valueOf(value)
-                                           .divide(BigDecimal.valueOf(price), 2,
+                                           .divide(BigDecimal.valueOf(price), 4,
                                                    RoundingMode.HALF_UP)
                                            .multiply(BigDecimal.valueOf(100))
                                            .doubleValue();
