@@ -10,15 +10,18 @@ import lombok.Builder;
 public class StockInfoResponse implements Comparable<StockInfoResponse> {
 
     private static final String NAVER_MAIN_PAGE_URL = "https://finance.naver.com/item/main.nhn?code=";
+    private static final String ALPHA_SQUARE_PAGE_URL = "https://alphasquare.co.kr/home/analysis/screener?code=";
 
     public final String name;
-    public final String url;
+    public final String naverUrl;
+    public final String alphaSquareUrl;
     public final List<Rank> ranks;
     public final int totalRank;
 
     public StockInfoResponse(String name, String code, List<Rank> ranks) {
         this.name = name;
-        this.url = NAVER_MAIN_PAGE_URL + code;
+        this.naverUrl = NAVER_MAIN_PAGE_URL + code;
+        this.alphaSquareUrl = ALPHA_SQUARE_PAGE_URL + code;
         this.ranks = ranks;
         this.totalRank = totalRank();
     }

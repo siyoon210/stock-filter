@@ -40,7 +40,7 @@ public class StockInfoDataCrawler {
                           .stockCode(stockCode)
                           .naverMainPage(naverMainPage(stockCode))
                           .naverAnnualFinSummaryPage(naverAnnualFinSummaryPage(stockCode))
-                          .naverQuarterFinSummaryPage(naverQuarterFinSummaryPage(stockCode))
+//                          .naverQuarterFinSummaryPage(naverQuarterFinSummaryPage(stockCode))
                           .build();
     }
 

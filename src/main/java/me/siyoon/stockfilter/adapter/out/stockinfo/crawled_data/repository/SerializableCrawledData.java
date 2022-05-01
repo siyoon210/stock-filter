@@ -13,7 +13,7 @@ public class SerializableCrawledData implements Serializable {
     public final String stockCode;
     public final String naverMainPage;
     public final String annualFinSummaryPage;
-    public final String quarterFinSummaryPage;
+//    public final String quarterFinSummaryPage;
 
     @Builder
     public SerializableCrawledData(String stockCode, String naverMainPage,
@@ -21,7 +21,7 @@ public class SerializableCrawledData implements Serializable {
         this.stockCode = stockCode;
         this.naverMainPage = naverMainPage;
         this.annualFinSummaryPage = naverFinSummaryPage.annualFinSummaryPage.html();
-        this.quarterFinSummaryPage = naverFinSummaryPage.quarterFinSummaryPage.html();
+//        this.quarterFinSummaryPage = naverFinSummaryPage.quarterFinSummaryPage.html();
     }
 
     public static SerializableCrawledData from(CrawledData crawledData) {
@@ -37,7 +37,7 @@ public class SerializableCrawledData implements Serializable {
                           .stockCode(stockCode)
                           .naverMainPage(Jsoup.parse(naverMainPage))
                           .naverAnnualFinSummaryPage(Jsoup.parse(annualFinSummaryPage))
-                          .naverQuarterFinSummaryPage(Jsoup.parse(quarterFinSummaryPage))
+//                          .naverQuarterFinSummaryPage(Jsoup.parse(quarterFinSummaryPage))
                           .build();
     }
 }
