@@ -10,6 +10,7 @@ import me.siyoon.stockfilter.domain.performance.OperatingIncome;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -57,5 +58,14 @@ class OperatingIncomeExtractorTest {
                 Arguments.of(Period.LAST_QUARTER, OperatingIncome.from(62.0)),
                 Arguments.of(Period.THIS_QUARTER_EXPECTED, OperatingIncome.UNKNOWN_VALUE)
         );
+    }
+
+    @Test
+    void averageGrowthRateFrom_test() {
+        OperatingIncome threeYearsAgoOperatingIncome = OperatingIncome.from(11550.0);
+        OperatingIncome lastYearOperatingIncome = OperatingIncome.from(13255.0);
+
+        Double growthRate = lastYearOperatingIncome.averageGrowthRateFrom(threeYearsAgoOperatingIncome, 2);
+        assertThat(growthRate).isEqualTo(0.07126093926736643);
     }
 }

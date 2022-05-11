@@ -23,6 +23,7 @@ public class StockFilterCommand {
     public final ExpectedDividendYieldCommand expectedDividendYield; // 예상 배당률
     public final AnnualPriceVolatilityCommand annualPriceVolatility; // 52주 최고가 / 52주 최저가
     public final AnnualHigherCurrentPriceRatioCommand annualHigherCurrentPriceRatio; // 52주 최고가 / 현재가
+    public final JohnTempletonCommand johnTempletonCommand; // 존 템플턴 공식
 
     @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
     public StockFilterCommand(
@@ -38,7 +39,8 @@ public class StockFilterCommand {
             DividendYieldCommand dividendYield,
             ExpectedDividendYieldCommand expectedDividendYield,
             AnnualPriceVolatilityCommand annualPriceVolatility,
-            AnnualHigherCurrentPriceRatioCommand annualHigherCurrentPriceRatio) {
+            AnnualHigherCurrentPriceRatioCommand annualHigherCurrentPriceRatio,
+            JohnTempletonCommand johnTempletonCommand) {
         this.operatingIncome = operatingIncome;
         this.netIncome = netIncome;
         this.debtRatio = debtRatio;
@@ -52,6 +54,7 @@ public class StockFilterCommand {
         this.expectedDividendYield = expectedDividendYield;
         this.annualPriceVolatility = annualPriceVolatility;
         this.annualHigherCurrentPriceRatio = annualHigherCurrentPriceRatio;
+        this.johnTempletonCommand = johnTempletonCommand;
     }
 
     @ToString
@@ -304,6 +307,21 @@ public class StockFilterCommand {
             this.unknownValuePass = unknownValuePass;
             this.minThreshold = minThreshold;
             this.maxThreshold = maxThreshold;
+        }
+    }
+
+    @ToString
+    public static class JohnTempletonCommand { // 52주 최고가 / 현재주가
+
+        public final boolean test;
+        public final boolean unknownValuePass;
+        public final Double threshold;
+
+        @JsonCreator(mode = JsonCreator.Mode.PROPERTIES)
+        public JohnTempletonCommand(boolean test, boolean unknownValuePass, Double threshold) {
+            this.test = test;
+            this.unknownValuePass = unknownValuePass;
+            this.threshold = threshold;
         }
     }
 }

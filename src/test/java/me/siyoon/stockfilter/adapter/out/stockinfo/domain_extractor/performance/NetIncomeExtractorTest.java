@@ -10,6 +10,7 @@ import me.siyoon.stockfilter.domain.performance.NetIncome;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -58,5 +59,21 @@ class NetIncomeExtractorTest {
                 Arguments.of(Period.LAST_QUARTER, NetIncome.from(44.0)),
                 Arguments.of(Period.THIS_QUARTER_EXPECTED, NetIncome.UNKNOWN_VALUE)
         );
+    }
+
+    @Test
+    void increase_test() {
+        NetIncome base = NetIncome.from(164776.0);
+        NetIncome increase1 = base.increase(7.1);
+        NetIncome increase2 = increase1.increase(7.1);
+        NetIncome increase3 = increase2.increase(7.1);
+        NetIncome increase4 = increase3.increase(7.1);
+
+        assertThat(increase1).isEqualTo(NetIncome.from(176475.096));
+        assertThat(increase2).isEqualTo(NetIncome.from(189004.827816));
+        assertThat(increase3).isEqualTo(NetIncome.from(202424.170590936));
+        assertThat(increase4).isEqualTo(NetIncome.from(216796.28670289245));
+        assertThat(NetIncome.totalValue(base, increase1, increase2, increase3, increase4))
+                .isEqualTo(949476.3811098284);
     }
 }

@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "netIncome": {
-    "test": true,
+    "test": false,
     "unknownValuePass": true,
     "periods": [
       "THIS_YEAR_EXPECTED",
@@ -15,7 +15,7 @@ Content-Type: application/json
     "threshold": 0
   },
   "operatingIncome": {
-    "test": true,
+    "test": false,
     "unknownValuePass": true,
     "periods": [
       "LAST_YEAR",
@@ -74,7 +74,7 @@ Content-Type: application/json
     "threshold": 100
   },
   "epsIncreaseRate": {
-    "test": true,
+    "test": false,
     "unknownValuePass": false,
     "turnedPositivePass": false,
     "basePeriod": "THIS_YEAR_EXPECTED",
@@ -82,8 +82,8 @@ Content-Type: application/json
     "rate": 0.1
   },
   "dividendYield": {
-    "test": true,
-    "unknownValuePass": true,
+    "test": false,
+    "unknownValuePass": false,
     "periods": [
       "LAST_YEAR",
       "TWO_YEARS_AGO"
@@ -94,7 +94,7 @@ Content-Type: application/json
     "test": false,
     "unknownValuePass": false,
     "periods": [
-      "NEXT_YEAR_EXPECTED"
+      "THIS_YEAR_EXPECTED"
     ],
     "threshold": 2.5
   },
@@ -106,5 +106,10 @@ Content-Type: application/json
     "test": false,
     "minThreshold": 1.99,
     "maxThreshold": 10
+  },
+  "johnTempletonCommand": {
+    "test": true,
+    "unknownValuePass": false,
+    "threshold": 3
   }
 }
