@@ -18,6 +18,8 @@ public class NaverFinSummaryExtractHelper {
 
     static {
         Map<Period, Integer> indexByYears = Map.of(
+                Period.FIVE_YEARS_AGO, 0,
+                Period.FOUR_YEARS_AGO, 1,
                 Period.THREE_YEARS_AGO, 2,
                 Period.TWO_YEARS_AGO, 3,
                 Period.LAST_YEAR, 4,

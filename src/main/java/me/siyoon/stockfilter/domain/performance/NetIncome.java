@@ -2,6 +2,7 @@ package me.siyoon.stockfilter.domain.performance;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Arrays;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -46,5 +47,12 @@ public class NetIncome implements Serializable { // 당기순이익
         return Arrays.stream(netIncomes)
                      .map(netIncome -> netIncome.value)
                      .reduce(0.0, Double::sum);
+    }
+
+    public Double averageGrowthRateFrom(NetIncome netIncome, int term) {
+        return (Math.pow(BigDecimal.valueOf(value)
+                                   .divide(BigDecimal.valueOf(netIncome.value), 4,
+                                           RoundingMode.HALF_UP)
+                                   .doubleValue(), (double) 1 / term) - 1) * 100;
     }
 }

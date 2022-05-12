@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public enum Period {
+    FIVE_YEARS_AGO("5년전"),
+    FOUR_YEARS_AGO("4년전"),
     THREE_YEARS_AGO("3년전"),
     TWO_YEARS_AGO("2년전"),
     LAST_YEAR("작년"),
@@ -28,7 +30,7 @@ public enum Period {
     );
 
     public static final Set<Period> YEARS = new LinkedHashSet<>(
-            List.of(THREE_YEARS_AGO, TWO_YEARS_AGO, LAST_YEAR, THIS_YEAR_EXPECTED,
+            List.of(FIVE_YEARS_AGO, FOUR_YEARS_AGO, THREE_YEARS_AGO, TWO_YEARS_AGO, LAST_YEAR, THIS_YEAR_EXPECTED,
                     NEXT_YEAR_EXPECTED));
 
     public final String description;

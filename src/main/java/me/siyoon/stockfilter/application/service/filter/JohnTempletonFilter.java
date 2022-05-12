@@ -33,18 +33,18 @@ class JohnTempletonFilter implements StockFilterI {
     }
 
     private double johnTempletonIndex(StockInfo stockInfo) {
-        OperatingIncome threeYearsAgoOperatingIncome = stockInfo.performanceOf(
-                Period.THREE_YEARS_AGO).operatingIncome;
-        OperatingIncome lastYearsOperatingIncome = stockInfo.performanceOf(
-                Period.LAST_YEAR).operatingIncome;
-        Double growthRate = lastYearsOperatingIncome.averageGrowthRateFrom(
-                threeYearsAgoOperatingIncome, 2);
+        NetIncome threeYearsAgoNetIncome = stockInfo.performanceOf(
+                Period.THREE_YEARS_AGO).netIncome;
+        NetIncome lastYearsNetIncome = stockInfo.performanceOf(
+                Period.LAST_YEAR).netIncome;
+        Double growthRate = lastYearsNetIncome.averageGrowthRateFrom(
+                threeYearsAgoNetIncome, 2);
         if (growthRate < 0) {
             return Double.MAX_VALUE;
         }
         Double sum = nextFiveTermExpectedNetIncomeSum(
                 stockInfo.performanceOf(Period.LAST_YEAR).netIncome, growthRate);
-        return (sum * 100000000 / stockInfo.tradingInfo.numberOfShare) / stockInfo.price();
+        return (stockInfo.price() * 5) / (sum * 100000000 / stockInfo.tradingInfo.numberOfShare);
     }
 
     private Double nextFiveTermExpectedNetIncomeSum(NetIncome base, Double growthRate) {
